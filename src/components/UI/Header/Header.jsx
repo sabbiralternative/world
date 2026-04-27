@@ -67,14 +67,34 @@ const Header = () => {
           <div data-v-a601f501 className="header_fixed">
             <div data-v-a601f501 className="haeder-nav flex-d">
               <div data-v-a601f501 className="header-logo">
-                <Link
-                  data-v-a601f501
-                  aria-current="page"
-                  to="/"
-                  className="router-link-active router-link-exact-active"
-                >
-                  <img data-v-a601f501 loading="lazy" src={logo} alt="" />
-                </Link>
+                {token ? (
+                  <div data-v-a601f501 className="after-login-bets-buttons">
+                    <Link
+                      data-v-a601f501
+                      to="/open-bets"
+                      className="router-link-active router-link-exact-active open-bets header_btns"
+                      title="Setting"
+                      aria-current="page"
+                    >
+                      <img
+                        data-v-a601f501
+                        loading="lazy"
+                        src="/assets/open-bet-DHiPf1zm.svg"
+                        alt=""
+                      />{" "}
+                      &nbsp;Bets
+                    </Link>
+                  </div>
+                ) : (
+                  <Link
+                    data-v-a601f501
+                    aria-current="page"
+                    to="/"
+                    className="router-link-active router-link-exact-active"
+                  >
+                    <img data-v-a601f501 loading="lazy" src={logo} alt="" />
+                  </Link>
+                )}
               </div>
               {token ? (
                 <Authorized />
@@ -95,7 +115,7 @@ const Header = () => {
                     </button>
                     {Settings.registration && (
                       <button
-                        onClick={() => navigate("/login")}
+                        onClick={() => navigate("/register")}
                         data-v-a601f501
                         type="button"
                         className="btn btn-login-1"

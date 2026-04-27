@@ -10,11 +10,9 @@ const OddSports = () => {
 
   const groupedData = Object.entries(data)
     .filter(([, value]) => value.visible === true)
-    .sort(([, a], [, b]) => b.inPlay - a.inPlay)
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    }, {});
+    .sort(([, a], [, b]) => {
+      return b.inPlay - a.inPlay;
+    });
 
   const navigateGameList = (eventTypeId, keys) => {
     navigate(`/event-details/${eventTypeId}/${keys}`);
@@ -31,7 +29,7 @@ const OddSports = () => {
               <div data-v-c9d3df59>2</div>
             </div>
           </div>
-          {Object.entries(groupedData).map(([key, value]) => {
+          {groupedData.map(([key, value]) => {
             return (
               <div
                 onClick={() => navigateGameList(value?.eventTypeId, key)}
@@ -79,26 +77,26 @@ const OddSports = () => {
                   <div data-v-c9d3df59 className="oddsEventlist">
                     <div data-v-c9d3df59 className="btn-group">
                       <button data-v-c9d3df59 className="back">
-                        -
+                        {value?.[0]?.ex?.availableToBack?.[0]?.price || "-"}
                       </button>
                       <button data-v-c9d3df59 className="lay">
-                        -
+                        {value?.[0]?.ex?.availableToLay?.[0]?.price || "-"}
                       </button>
                     </div>
                     <div data-v-c9d3df59 className="btn-group">
                       <button data-v-c9d3df59 className="back">
-                        -
+                        {value?.[2]?.ex?.availableToBack?.[0]?.price || "-"}
                       </button>
                       <button data-v-c9d3df59 className="lay">
-                        -
+                        {value?.[2]?.ex?.availableToLay?.[0]?.price || "-"}
                       </button>
                     </div>
                     <div data-v-c9d3df59 className="btn-group">
                       <button data-v-c9d3df59 className="back">
-                        -
+                        {value?.[1]?.ex?.availableToBack?.[0]?.price || "-"}
                       </button>
                       <button data-v-c9d3df59 className="lay">
-                        -
+                        {value?.[1]?.ex?.availableToLay?.[0]?.price || "-"}
                       </button>
                     </div>
                   </div>

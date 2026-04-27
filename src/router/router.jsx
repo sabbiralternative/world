@@ -9,6 +9,14 @@ import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import Account from "../pages/Account/Account";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
+import InPlay from "../pages/InPlay/InPlay";
+import Sports from "../pages/Sports/Sports";
+import OpenBets from "../pages/OpenBets/OpenBets";
+import Profile from "../pages/Profile/Profile";
+import BetHistory from "../pages/BetHistory/BetHistory";
+import AccountStatement from "../pages/AccountStatement/AccountStatement";
+import ProfitLoss from "../pages/ProfitLoss/ProfitLoss";
+import EventDetails from "../pages/EventDetails/EventDetails";
 
 export const router = createBrowserRouter(
   [
@@ -21,7 +29,10 @@ export const router = createBrowserRouter(
           index: true,
           element: <Home />,
         },
-
+        {
+          path: "/event-details/:eventTypeId/:eventId",
+          element: <EventDetails />,
+        },
         {
           path: "/apk",
           element: <APK />,
@@ -33,6 +44,34 @@ export const router = createBrowserRouter(
         {
           path: "/account",
           element: <Account />,
+        },
+        {
+          path: "/in-play",
+          element: <InPlay />,
+        },
+        {
+          path: "/sports",
+          element: <Sports />,
+        },
+        {
+          path: "/open-bets",
+          element: <OpenBets />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+        {
+          path: "/bet-history",
+          element: <BetHistory />,
+        },
+        {
+          path: "/account-statements",
+          element: <AccountStatement />,
+        },
+        {
+          path: "/profit-loss",
+          element: <ProfitLoss />,
         },
       ],
     },

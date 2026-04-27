@@ -48,49 +48,20 @@ const Account = () => {
                 My Profile
               </Link>
             </li>
+
             <li>
-              <Link to="/multi-market" className>
-                Multi Market
-              </Link>
-            </li>
-            <li>
-              <Link to="/bet/bet-history" className>
+              <Link to="/bet-history" className>
                 Bets History
               </Link>
             </li>
             <li>
-              <Link to="/statements" className>
+              <Link to="/account-statements" className>
                 Account Statement
               </Link>
             </li>
             <li>
               <Link to="/profit-loss" className>
                 Profit/Loss
-              </Link>
-            </li>
-            <li>
-              <Link to="/completed-events" className>
-                Completed Events
-              </Link>
-            </li>
-            <li>
-              <Link to="/active-log" className>
-                Activity Log
-              </Link>
-            </li>
-            <li>
-              <Link to="/password-history" className>
-                Password History
-              </Link>
-            </li>
-            <li>
-              <Link to="/notifications" className>
-                Notifications
-              </Link>
-            </li>
-            <li>
-              <Link data-bs-toggle="modal" to="#language_selection_pop_up">
-                Language
               </Link>
             </li>
           </ul>
