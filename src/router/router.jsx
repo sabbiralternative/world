@@ -17,6 +17,13 @@ import BetHistory from "../pages/BetHistory/BetHistory";
 import AccountStatement from "../pages/AccountStatement/AccountStatement";
 import ProfitLoss from "../pages/ProfitLoss/ProfitLoss";
 import EventDetails from "../pages/EventDetails/EventDetails";
+import Deposit from "../pages/Deposit/Deposit";
+import Withdraw from "../pages/Withdraw/Withdraw";
+import DepositWithdrawReport from "../pages/DepositWithdrawReport/DepositWithdrawReport";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
+import SingleProfitLoss from "../pages/BettingProfitLoss/SingleProfitLoss";
+import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
+import BonusStatement from "../pages/BonusStatement/BonusStatement";
 
 export const router = createBrowserRouter(
   [
@@ -72,6 +79,34 @@ export const router = createBrowserRouter(
         {
           path: "/profit-loss",
           element: <ProfitLoss />,
+        },
+        {
+          path: "/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "/withdraw",
+          element: <Withdraw />,
+        },
+        {
+          path: "/deposit-withdraw-report",
+          element: <DepositWithdrawReport />,
+        },
+        {
+          path: "/my-bank-details",
+          element: <MyBankDetails />,
+        },
+        {
+          path: "/betting-profit-loss",
+          element: <BettingProfitLoss />,
+        },
+        {
+          path: "/betting-profit-loss/:marketId",
+          element: <SingleProfitLoss />,
+        },
+        {
+          path: "/bonus-statement",
+          element: <BonusStatement />,
         },
       ],
     },

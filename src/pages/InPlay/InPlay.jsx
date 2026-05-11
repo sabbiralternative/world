@@ -162,7 +162,6 @@ const InPlay = () => {
                         value.visible === true,
                     );
 
-                    console.log(filteredData);
                     return (
                       <div key={category} data-v-1354c224 className="tab-set">
                         <div data-v-1354c224 className="tab-panel hero-img">

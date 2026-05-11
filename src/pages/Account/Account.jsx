@@ -44,8 +44,34 @@ const Account = () => {
 
           <ul>
             <li>
-              <Link to="/profile" className>
-                My Profile
+              <Link to="/deposit" className>
+                Deposit
+              </Link>
+            </li>
+            <li>
+              <Link to="/withdraw" className>
+                Withdraw
+              </Link>
+            </li>
+            <li>
+              <Link to="/deposit-withdraw-report" className>
+                Deposit Withdraw Report
+              </Link>
+            </li>
+            <li>
+              <Link to="/betting-profit-loss" className>
+                Betting Profit Loss
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/my-bank-details" className>
+                My Bank Details
+              </Link>
+            </li>
+            <li>
+              <Link to="/bonus-statement" className>
+                Bonus Statement
               </Link>
             </li>
 

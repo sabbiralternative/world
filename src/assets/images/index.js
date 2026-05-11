@@ -42,6 +42,34 @@ import bep from "../img/bep20.svg";
 import trc from "../img/trc20.svg";
 import upi from "../img/upi.b1dbf1b2.svg";
 import telegram from "../img/telegram.png";
+
+import all from "../img/all.svg";
+import star from "../img/star.svg";
+import back from "../img/back-arrow.svg";
+import bankPicture from "../img/bankPicture.svg";
+import deleteIcon from "../img/delete-icon.svg";
+import edit from "../img/edit.svg";
+import tv from "../img/tv.svg";
+import four from "../img/4.webp";
+import one from "../img/1.webp";
+import two from "../img/2.webp";
+import intCasino from "../img/99998.webp";
+import seven from "../img/7.webp";
+import greyhound from "../img/4339.webp";
+import contactOne from "../img/contact_one.svg";
+import contactTwo from "../img/contact_two.svg";
+import clipBoard from "../img/clipboard_icon.svg";
+import codeBlock from "../img/code_block.svg";
+import institution from "../img/institution.svg";
+import whatsapp from "../img/whatsup.svg";
+import phonpe from "../img/PHONEPE_WEB.png";
+import paytm from "../img/paytm.webp";
+import gpay from "../img/GPAY_WEB.png";
+import backArrow from "../img/back-arrow.svg";
+import bettingProfitLoss from "../img/profile-betting-profit-loss.webp";
+import profileWallet from "../img/profile-wallet.svg";
+import deposit from "../img/depositProfileIcon.svg";
+import withdraw from "../img/withdrawIcon.svg";
 export default {
   telegram,
   trc,
@@ -87,4 +115,31 @@ export default {
   bankTransfer,
   upiIcon,
   kabbadi,
+  all,
+  star,
+  bankPicture,
+  deleteIcon,
+  edit,
+  tv,
+  four,
+  one,
+  two,
+  intCasino,
+  seven,
+  greyhound,
+  contactOne,
+  contactTwo,
+  clipBoard,
+  codeBlock,
+  institution,
+  whatsapp,
+  phonpe,
+  paytm,
+  gpay,
+  backArrow,
+  bettingProfitLoss,
+  profileWallet,
+  deposit,
+  withdraw,
+  back,
 };

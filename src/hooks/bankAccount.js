@@ -9,6 +9,7 @@ export const useBankAccountQuery = (payload) => {
     queryFn: async () => {
       const res = await AxiosSecure.post(API.bankAccount, payload);
       const data = res.data;
+
       if (data?.success) {
         return data?.result;
       }
