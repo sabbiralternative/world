@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/features/auth/authSlice";
+import { Settings } from "../../api";
 
 const Account = () => {
+  const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, memberId } = useSelector((state) => state.auth);
@@ -74,22 +76,31 @@ const Account = () => {
                 Bonus Statement
               </Link>
             </li>
+            {Settings?.referral && (
+              <li>
+                <Link to="/affiliate" className>
+                  Affiliate
+                </Link>
+              </li>
+            )}
 
             <li>
-              <Link to="/bet-history" className>
-                Bets History
+              <Link to="/promotions" className>
+                Promos & Bonus
               </Link>
             </li>
             <li>
-              <Link to="/account-statements" className>
-                Account Statement
+              <Link to="/lossback-bonus" className>
+                Lossback Bonus
               </Link>
             </li>
-            <li>
-              <Link to="/profit-loss" className>
-                Profit/Loss
-              </Link>
-            </li>
+            {closePopupForForever && (
+              <li>
+                <Link to="/app-only-bonus" className>
+                  App Only Bonus
+                </Link>
+              </li>
+            )}
           </ul>
           <a
             onClick={() => {

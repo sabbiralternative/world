@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Settings } from "../../../api";
 import BetSLip from "./BetSLip";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
 const MatchOdds = ({ data }) => {
   const [speedCashOut, setSpeedCashOut] = useState(null);
@@ -18,7 +19,6 @@ const MatchOdds = ({ data }) => {
   const dispatch = useDispatch();
   const { runnerId, stake, predictOdd } = useSelector((state) => state.event);
   const { token } = useSelector((state) => state.auth);
-  const { windowWidth } = useSelector((state) => state.global);
   const { data: exposure } = useExposure(eventId);
 
   const handleBetSlip = (betType, games, runner, price) => {
@@ -219,6 +219,12 @@ const MatchOdds = ({ data }) => {
 
   return (
     <Fragment>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {data?.map((game) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
@@ -337,13 +343,43 @@ const MatchOdds = ({ data }) => {
               </div>
               <div>
                 {game?.runners?.map((runner) => {
+                  const pnl = pnlBySelection?.find(
+                    (pnl) => pnl?.RunnerId === runner?.id,
+                  );
+                  const predictOddValues = predictOdd?.find(
+                    (val) => val?.id === runner?.id,
+                  );
                   return (
                     <div key={runner?.id} className="odds-menu bet-slip-area">
                       <div className="row">
                         <div className="col-md-5 col-7">
                           <p className="team-name">
                             {runner?.name} &nbsp;{" "}
-                            <span className="SportEvent__market__title__exposure" />
+                            <span className="SportEvent__market__title__exposure">
+                              {pnl && (
+                                <span
+                                  className={`${
+                                    pnl?.pnl > 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  }`}
+                                >
+                                  {pnl?.pnl}
+                                </span>
+                              )}
+
+                              {stake && runnerId && predictOddValues && (
+                                <span
+                                  className={` ${
+                                    predictOddValues?.exposure > 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  } `}
+                                >
+                                  &nbsp;({predictOddValues?.exposure})
+                                </span>
+                              )}
+                            </span>
                           </p>
                         </div>
                         <div className="col-md-7 col-5">

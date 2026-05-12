@@ -70,7 +70,9 @@ import bettingProfitLoss from "../img/profile-betting-profit-loss.webp";
 import profileWallet from "../img/profile-wallet.svg";
 import deposit from "../img/depositProfileIcon.svg";
 import withdraw from "../img/withdrawIcon.svg";
+import ladder from "../img/ladder.png";
 export default {
+  ladder,
   telegram,
   trc,
   upi,

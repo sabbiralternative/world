@@ -19167,7 +19167,7 @@ button.btn-fancy_info img {
   font-size: 12px;
   line-height: 1.2;
   font-weight: 400;
-  color: #fff !important;
+  color: #fff;
   min-width: max-content;
 }
 .sucess-simbal {

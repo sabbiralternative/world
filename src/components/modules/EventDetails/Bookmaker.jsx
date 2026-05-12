@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import BetSLip from "./BetSLip";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
 const Bookmaker = ({ data }) => {
   const [speedCashOut, setSpeedCashOut] = useState(null);
@@ -18,7 +19,6 @@ const Bookmaker = ({ data }) => {
   const dispatch = useDispatch();
   const { runnerId, stake, predictOdd } = useSelector((state) => state.event);
   const { token } = useSelector((state) => state.auth);
-  const { windowWidth } = useSelector((state) => state.global);
   const { data: exposure } = useExposure(eventId);
 
   const handleBetSlip = (betType, games, runner, price) => {
@@ -220,6 +220,12 @@ const Bookmaker = ({ data }) => {
   }
   return (
     <Fragment>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {data?.map((game) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
@@ -339,7 +345,29 @@ const Bookmaker = ({ data }) => {
                       <div className="col-7 col-md-5 col-lg-7">
                         <p className="team-name">
                           {runner?.name} &nbsp;{" "}
-                          <span className="SportEvent__market__title__exposure" />
+                          <span className="SportEvent__market__title__exposure">
+                            {pnl && (
+                              <span
+                                className={`${
+                                  pnl?.pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                              >
+                                {pnl?.pnl}
+                              </span>
+                            )}
+
+                            {stake && runnerId && predictOddValues && (
+                              <span
+                                className={` ${
+                                  predictOddValues?.exposure > 0
+                                    ? "text-success"
+                                    : "text-danger"
+                                } `}
+                              >
+                                &nbsp;({predictOddValues?.exposure})
+                              </span>
+                            )}
+                          </span>
                         </p>
                       </div>
                       <div className="col-5 col-md-7 col-lg-5">

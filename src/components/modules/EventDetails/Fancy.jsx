@@ -9,6 +9,8 @@ import {
 } from "../../../redux/features/events/eventSlice";
 import toast from "react-hot-toast";
 import BetSLip from "./BetSLip";
+import Ladder from "../../modals/Ladder/Ladder";
+import images from "../../../assets/images";
 
 const Fancy = ({ data }) => {
   const fancyData = data?.filter(
@@ -17,7 +19,7 @@ const Fancy = ({ data }) => {
       fancy.tabGroupName === "Normal" &&
       fancy?.visible == true,
   );
-  const [marketName, setMarketName] = useState("");
+
   const [ladderData, setLadderData] = useState([]);
   const { eventId } = useParams();
 
@@ -116,19 +118,23 @@ const Fancy = ({ data }) => {
     pnlBySelection = Object?.values(obj);
   }
 
-  const handleGetLadder = async (pnl, marketName) => {
+  const handleGetLadder = async (pnl) => {
     if (!pnl?.MarketId) {
       return;
     }
-    setMarketName(marketName);
+
     const res = await getLadder({ marketId: pnl?.MarketId }).unwrap();
 
     if (res.success) {
       setLadderData(res.result);
     }
   };
+
   return (
     <Fragment>
+      {ladderData?.length > 0 && (
+        <Ladder ladderData={ladderData} setLadderData={setLadderData} />
+      )}
       {fancyData?.length > 0 && (
         <div className="dScreen fancy_odds fancy-primium-tabs">
           <div className="premium-fancy-tabs">
@@ -196,6 +202,10 @@ const Fancy = ({ data }) => {
                   >
                     <div className="fancy-bookmaker-bet-btn">
                       {fancyData?.map((game) => {
+                        const pnl = pnlBySelection?.find(
+                          (pnl) => pnl?.MarketId === game?.id,
+                        );
+
                         return (
                           <div
                             key={game?.id}
@@ -211,24 +221,34 @@ const Fancy = ({ data }) => {
                                       className="img-fluid"
                                     />
                                   </span>
+
                                   <p className="team-name">
                                     <b>{game?.name} &nbsp; </b>
                                   </p>
-                                  <div className="SportEvent__market__title__exposure" />
-                                  <div className="sucess-simbal">
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width={24}
-                                      height={24}
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M9.19003 18.3233C8.96095 18.5538 8.64835 18.6823 8.32369 18.6823C7.99902 18.6823 7.68643 18.5538 7.45735 18.3233L0.538518 11.4034C-0.179506 10.6853 -0.179506 9.52098 0.538518 8.80434L1.40486 7.93777C2.12311 7.21974 3.28608 7.21974 4.00411 7.93777L8.32374 12.2576L19.9958 0.585195C20.714 -0.132829 21.8782 -0.132829 22.595 0.585195L23.4614 1.45176C24.1794 2.16979 24.1794 3.33391 23.4614 4.05078L9.19003 18.3233Z"
-                                        fill="currentColor"
-                                      />
-                                    </svg>
+                                  <div className="SportEvent__market__title__exposure">
+                                    {" "}
+                                    {pnl && (
+                                      <span
+                                        className={`${
+                                          pnl?.pnl > 0
+                                            ? "text-success"
+                                            : "text-danger"
+                                        }`}
+                                      >
+                                        {pnl?.pnl}
+                                      </span>
+                                    )}
                                   </div>
+
+                                  {pnl?.pnl && (
+                                    <div
+                                      style={{ cursor: "pointer" }}
+                                      onClick={() => handleGetLadder(pnl)}
+                                      className="sucess-simbal"
+                                    >
+                                      <img src={images.ladder} alt="" />
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="col-md-5 col-4 px-0">
