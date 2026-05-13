@@ -4,23 +4,27 @@ import { useLogo } from "../../../context/ApiProvider";
 import { Authorized } from "./authorized";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AppPopup from "./AppPopUp";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   setClosePopUpForForever,
   setShowAPKModal,
   setShowAppPopUp,
 } from "../../../redux/features/global/globalSlice";
 import Error from "../../modals/Error/Error";
+import Notification from "./Notification";
+import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
+import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 
 const Header = () => {
+  const stored_build_version = localStorage.getItem("build_version");
+  const [showBuildVersion, setShowBuildVersion] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { logo } = useLogo();
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { showAppPopUp, windowWidth, closePopupForForever } = useSelector(
-    (state) => state?.global,
-  );
+  const { showAppPopUp, windowWidth, closePopupForForever, showAPKModal } =
+    useSelector((state) => state?.global);
 
   useEffect(() => {
     const apk_modal_shown = sessionStorage.getItem("apk_modal_shown");
@@ -54,14 +58,38 @@ const Header = () => {
     location.pathname,
   ]);
 
+  useEffect(() => {
+    const newVersion = Settings?.build_version;
+    if (!stored_build_version) {
+      if (newVersion) {
+        localStorage.setItem("build_version", newVersion);
+      }
+    }
+    if (stored_build_version && newVersion) {
+      const parseVersion = JSON.parse(stored_build_version);
+      if (newVersion > parseVersion) {
+        setShowBuildVersion(true);
+      }
+    }
+  }, [stored_build_version]);
+
   if (Settings.app_only && !closePopupForForever) {
     return <Error />;
   }
 
   return (
     <Fragment>
-      {/* <Notification /> */}
+      <Notification />
       {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
+      {Settings.apk_link && showAPKModal && (
+        <DownloadAPK setShowAPKModal={setShowAPKModal} />
+      )}
+      {showBuildVersion && !showAPKModal && (
+        <BuildVersion
+          build_version={Settings?.build_version}
+          setShowBuildVersion={setShowBuildVersion}
+        />
+      )}
       <header data-v-a601f501 className="heading-section" loading="lazy">
         <div data-v-a601f501 className="contanier">
           <div data-v-a601f501 className="header_fixed">

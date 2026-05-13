@@ -6,12 +6,12 @@
 }
 .primary-icon-color svg,
 .back-from-iframe svg {
-  stroke: var(--color-bg-primary);
+  stroke: var(--theme-gradient1);
 }
 
 .change-password svg,
 .primary-icons svg {
-  fill: var(--color-bg-primary);
+  fill: var(--theme-gradient1);
 }
 
 .text-secondary {
@@ -540,7 +540,7 @@ input:-moz-autofill {
 }
 
 .dropdownBG {
-  background-color: var(--color-bg-primary) !important;
+  background-color: var(--theme-gradient1) !important;
 }
 
 .swal2-container:has(.alert-dialog) {
@@ -972,7 +972,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
   width: 30px;
   height: 45px;
   top: 0;
-  background-color: var(--color-bg-primary);
+  background-color: var(--theme-gradient1);
 }
 
 button.btn {
@@ -1288,7 +1288,7 @@ html * {
   }
   .sc_cw-overs-info-mobile {
     display: flex !important;
-    border-top: 0.5px solid var(--color-bg-primary) !important;
+    border-top: 0.5px solid var(--theme-gradient1) !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: #fff !important;
