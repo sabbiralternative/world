@@ -1,0 +1,253 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Settings } from "../../../api";
+import {
+  setShowBanner,
+  setShowLoginModal,
+} from "../../../redux/features/global/globalSlice";
+import { useLoginMutation } from "../../../redux/features/auth/authApi";
+import { useForm } from "react-hook-form";
+import { setUser } from "../../../redux/features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+const Unauthorized = () => {
+  const navigate = useNavigate();
+  const { closePopupForForever } = useSelector((state) => state.global);
+  const dispatch = useDispatch();
+  const [handleLogin] = useLoginMutation();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async ({ username, password }) => {
+    const loginData = {
+      username: username,
+      password: password,
+      b2c: Settings.b2c,
+      apk: closePopupForForever ? true : false,
+      nonce: crypto.randomUUID(),
+    };
+    const result = await handleLogin(loginData).unwrap();
+
+    if (result.success) {
+      const token = result?.result?.token;
+      const bonusToken = result?.result?.bonusToken;
+      const user = result?.result?.loginName;
+      const game = result?.result?.buttonValue?.game;
+      const memberId = result?.result?.memberId;
+      const banner = result?.result?.banner;
+
+      dispatch(setUser({ user, token, memberId }));
+      localStorage.setItem("memberId", memberId);
+      localStorage.setItem("buttonValue", JSON.stringify(game));
+      localStorage.setItem("token", token);
+      localStorage.setItem("bonusToken", bonusToken);
+      if (banner) {
+        localStorage.setItem("banner", banner);
+        dispatch(setShowBanner(true));
+      }
+      if (result?.result?.changePassword) {
+        localStorage.setItem("changePassword", true);
+        navigate("/change-password");
+      }
+      if (!result?.result?.changePassword && token && user) {
+        toast.success("Login successful");
+      }
+    } else {
+      toast.error(result?.error);
+    }
+  };
+
+  /* handle login demo user */
+  const loginWithDemo = async () => {
+    /* Random token generator */
+    /* Encrypted the post data */
+    const loginData = {
+      username: "demo",
+      password: "",
+      b2c: Settings.b2c,
+      apk: closePopupForForever ? true : false,
+      nonce: crypto.randomUUID(),
+    };
+    const result = await handleLogin(loginData).unwrap();
+
+    if (result.success) {
+      const token = result?.result?.token;
+      const bonusToken = result?.result?.bonusToken;
+      const user = result?.result?.loginName;
+      const game = result?.result?.buttonValue?.game;
+      const banner = result?.result?.banner;
+
+      dispatch(setUser({ user, token }));
+      localStorage.setItem("buttonValue", JSON.stringify(game));
+      localStorage.setItem("token", token);
+
+      localStorage.setItem("bonusToken", bonusToken);
+      if (banner) {
+        localStorage.setItem("banner", banner);
+        dispatch(setShowBanner(true));
+      }
+      if (token && user) {
+        toast.success("Login successful");
+      }
+    } else {
+      toast.error(result?.error);
+    }
+  };
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const fileUrl = Settings.apk_link;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "site.apk");
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
+  return (
+    <div className="login-box">
+      {Settings.apk_link && (
+        <a onClick={handleDownload}>
+          <svg
+            version="1.1"
+            id="fi_29544"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 550.801 550.801"
+            xmlSpace="preserve"
+            className="dwld-apk d-md-none"
+          >
+            <g>
+              <path
+                d="M136.129,282.393c-2.753-9.181-5.508-20.656-7.802-29.834h-0.453c-2.3,9.178-4.602,20.891-7.117,29.834l-9.181,32.827
+                              h34.188L136.129,282.393z"
+              />
+              <path
+                d="M270.18,251.641c-7.117,0-11.934,0.686-14.468,1.377v45.67c2.987,0.686,6.661,0.918,11.712,0.918
+                              c18.597,0,30.062-9.408,30.062-25.255C297.486,260.128,287.614,251.641,270.18,251.641z"
+              />
+              <path
+                d="M488.427,197.019h-13.226v-63.822c0-0.401-0.063-0.799-0.116-1.205c-0.021-2.531-0.828-5.023-2.563-6.993L366.325,3.694
+                              c-0.031-0.034-0.063-0.045-0.084-0.076c-0.633-0.709-1.371-1.298-2.151-1.804c-0.232-0.158-0.465-0.287-0.707-0.422
+                              c-0.675-0.366-1.393-0.675-2.131-0.896c-0.2-0.053-0.379-0.135-0.58-0.19C359.871,0.119,359.037,0,358.193,0H97.201
+                              c-11.918,0-21.6,9.693-21.6,21.601v175.413H62.378c-17.049,0-30.874,13.818-30.874,30.87v160.542
+                              c0,17.044,13.824,30.876,30.874,30.876h13.223V529.2c0,11.907,9.682,21.601,21.6,21.601h356.4c11.907,0,21.601-9.693,21.601-21.601
+                              V419.302h13.226c17.044,0,30.87-13.827,30.87-30.87V227.89C519.297,210.832,505.471,197.019,488.427,197.019z M97.201,21.601
+                              h250.193v110.51c0,5.967,4.841,10.8,10.8,10.8h95.407v54.108h-356.4V21.601z M332.143,273.444c0,15.14-5.052,27.997-14.222,36.719
+                              c-11.944,11.243-29.61,16.3-50.274,16.3c-4.583,0-8.709-0.237-11.929-0.69v55.308h-34.652V228.456
+                              c10.79-1.83,25.943-3.206,47.274-3.206c21.584,0,36.951,4.126,47.287,12.382C325.493,245.439,332.143,258.293,332.143,273.444z
+                               M95.516,381.08h-36.26l47.271-154.691h45.9l47.965,154.691h-37.645l-11.929-39.704h-44.292L95.516,381.08z M453.601,523.347
+                              h-356.4V419.302h356.4V523.347z M440.259,381.08l-37.874-66.783l-13.31,16.295v50.488h-34.657V226.389h34.657v68.392h0.686
+                              c3.438-5.964,7.113-11.47,10.558-16.985l35.121-51.411h42.909l-51.188,65.87l53.937,88.815h-40.838V381.08z"
+              />
+            </g>
+          </svg>
+        </a>
+      )}
+
+      <button
+        onClick={() => dispatch(setShowLoginModal(true))}
+        className="btn btn-primary login-btn d-none-desktop"
+      >
+        Login
+      </button>
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="off"
+        className="d-none-mobile"
+      >
+        <div className="form-group">
+          <input
+            {...register("username", { required: true })}
+            type="text"
+            placeholder="Username*"
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <div className="input-group">
+            <input
+              {...register("password", { required: true })}
+              placeholder="Password*"
+              type="password"
+              className="form-control"
+            />
+            <div className="input-group-append">
+              <button
+                type="button"
+                className="btn btn-secondary password-visible"
+              >
+                <i aria-hidden="true" className="fa fa-eye" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="customCheck"
+            className="custom-control-input"
+          />
+          <label htmlFor="customCheck" className="custom-control-label">
+            I agree Terms &amp; Conditions
+            <i id="tooltip-agree" className="fas fa-info ml-2 pointer" />
+          </label>
+        </div>
+
+        <button type="submit" className="btn btn-primary">
+          Login
+        </button>
+      </form>
+      <button
+        onClick={loginWithDemo}
+        type="button"
+        className="btn btn-primary btn-demo d-none-mobile ml-1"
+      >
+        Demo
+      </button>
+      {Settings.apk_link && (
+        <a onClick={handleDownload}>
+          <svg
+            version="1.1"
+            id="fi_29544"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 550.801 550.801"
+            xmlSpace="preserve"
+            className="dwld-apk d-none d-md-flex ml-1"
+          >
+            <g>
+              <path
+                d="M136.129,282.393c-2.753-9.181-5.508-20.656-7.802-29.834h-0.453c-2.3,9.178-4.602,20.891-7.117,29.834l-9.181,32.827
+                                  h34.188L136.129,282.393z"
+              />
+              <path
+                d="M270.18,251.641c-7.117,0-11.934,0.686-14.468,1.377v45.67c2.987,0.686,6.661,0.918,11.712,0.918
+                                  c18.597,0,30.062-9.408,30.062-25.255C297.486,260.128,287.614,251.641,270.18,251.641z"
+              />
+              <path
+                d="M488.427,197.019h-13.226v-63.822c0-0.401-0.063-0.799-0.116-1.205c-0.021-2.531-0.828-5.023-2.563-6.993L366.325,3.694
+                                  c-0.031-0.034-0.063-0.045-0.084-0.076c-0.633-0.709-1.371-1.298-2.151-1.804c-0.232-0.158-0.465-0.287-0.707-0.422
+                                  c-0.675-0.366-1.393-0.675-2.131-0.896c-0.2-0.053-0.379-0.135-0.58-0.19C359.871,0.119,359.037,0,358.193,0H97.201
+                                  c-11.918,0-21.6,9.693-21.6,21.601v175.413H62.378c-17.049,0-30.874,13.818-30.874,30.87v160.542
+                                  c0,17.044,13.824,30.876,30.874,30.876h13.223V529.2c0,11.907,9.682,21.601,21.6,21.601h356.4c11.907,0,21.601-9.693,21.601-21.601
+                                  V419.302h13.226c17.044,0,30.87-13.827,30.87-30.87V227.89C519.297,210.832,505.471,197.019,488.427,197.019z M97.201,21.601
+                                  h250.193v110.51c0,5.967,4.841,10.8,10.8,10.8h95.407v54.108h-356.4V21.601z M332.143,273.444c0,15.14-5.052,27.997-14.222,36.719
+                                  c-11.944,11.243-29.61,16.3-50.274,16.3c-4.583,0-8.709-0.237-11.929-0.69v55.308h-34.652V228.456
+                                  c10.79-1.83,25.943-3.206,47.274-3.206c21.584,0,36.951,4.126,47.287,12.382C325.493,245.439,332.143,258.293,332.143,273.444z
+                                   M95.516,381.08h-36.26l47.271-154.691h45.9l47.965,154.691h-37.645l-11.929-39.704h-44.292L95.516,381.08z M453.601,523.347
+                                  h-356.4V419.302h356.4V523.347z M440.259,381.08l-37.874-66.783l-13.31,16.295v50.488h-34.657V226.389h34.657v68.392h0.686
+                                  c3.438-5.964,7.113-11.47,10.558-16.985l35.121-51.411h42.909l-51.188,65.87l53.937,88.815h-40.838V381.08z"
+              />
+            </g>
+          </svg>
+        </a>
+      )}
+    </div>
+  );
+};
+
+export default Unauthorized;

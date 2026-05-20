@@ -34,39 +34,46 @@ const Withdraw = () => {
   }, [bankData, showBankAccount, dispatch]);
 
   return (
-    <main id="main" className="main a23_css">
-      {!showBankAccount && !confirmWithdraw && (
-        <SelectAmount
-          setShowBankAccount={setShowBankAccount}
-          setAmount={setAmount}
-          amount={amount}
-        />
-      )}
-      {showBankAccount && bankData?.length > 0 && (
-        <BankAccounts
-          refetchBankData={refetchBankData}
-          setAmount={setAmount}
-          bankData={bankData}
-          setConfirmWithdraw={setConfirmWithdraw}
-          setShowBankAccount={setShowBankAccount}
-          bank={bank}
-          setBank={setBank}
-        />
-      )}
-      {addBank && bankData?.length < 1 && (
-        <AddBank setAddBank={setAddBank} refetchBankData={refetchBankData} />
-      )}
-      {confirmWithdraw && (
-        <WithdrawConfirm
-          amount={amount}
-          bank={bank}
-          setAmount={setAmount}
-          setShowBankAccount={setShowBankAccount}
-          setConfirmWithdraw={setConfirmWithdraw}
-          setBank={setBank}
-        />
-      )}
-    </main>
+    <div className="center-main-content">
+      <div className="center-container" style={{ width: "100%" }}>
+        <main id="main" className="main a23_css">
+          {!showBankAccount && !confirmWithdraw && (
+            <SelectAmount
+              setShowBankAccount={setShowBankAccount}
+              setAmount={setAmount}
+              amount={amount}
+            />
+          )}
+          {showBankAccount && bankData?.length > 0 && (
+            <BankAccounts
+              refetchBankData={refetchBankData}
+              setAmount={setAmount}
+              bankData={bankData}
+              setConfirmWithdraw={setConfirmWithdraw}
+              setShowBankAccount={setShowBankAccount}
+              bank={bank}
+              setBank={setBank}
+            />
+          )}
+          {addBank && bankData?.length < 1 && (
+            <AddBank
+              setAddBank={setAddBank}
+              refetchBankData={refetchBankData}
+            />
+          )}
+          {confirmWithdraw && (
+            <WithdrawConfirm
+              amount={amount}
+              bank={bank}
+              setAmount={setAmount}
+              setShowBankAccount={setShowBankAccount}
+              setConfirmWithdraw={setConfirmWithdraw}
+              setBank={setBank}
+            />
+          )}
+        </main>
+      </div>
+    </div>
   );
 };
 

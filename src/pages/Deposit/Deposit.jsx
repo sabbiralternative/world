@@ -13,35 +13,43 @@ const Deposit = () => {
   const [tabs, setTabs] = useState("");
 
   return (
-    <main id="main" className="main a23_css">
-      {!paymentMethods && !uploadTransaction && (
-        <AmountBox
-          amount={amount}
-          setAmount={setAmount}
-          setShowModal={setShowModal}
-        />
-      )}
-      {uploadTransaction && (
-        <UploadTransaction tabs={tabs} paymentId={paymentId} amount={amount} />
-      )}
-      {paymentMethods && (
-        <PaymentMethods
-          setTabs={setTabs}
-          tabs={tabs}
-          setUploadTransaction={setUploadTransaction}
-          setPaymentMethods={setPaymentMethods}
-          setPaymentId={setPaymentId}
-          amount={amount}
-        />
-      )}
-      {showModal && (
-        <DepositModal
-          amount={amount}
-          setShowModal={setShowModal}
-          setPaymentMethods={setPaymentMethods}
-        />
-      )}
-    </main>
+    <div className="center-main-content">
+      <div className="center-container" style={{ width: "100%" }}>
+        <main id="main" className="main a23_css">
+          {!paymentMethods && !uploadTransaction && (
+            <AmountBox
+              amount={amount}
+              setAmount={setAmount}
+              setShowModal={setShowModal}
+            />
+          )}
+          {uploadTransaction && (
+            <UploadTransaction
+              tabs={tabs}
+              paymentId={paymentId}
+              amount={amount}
+            />
+          )}
+          {paymentMethods && (
+            <PaymentMethods
+              setTabs={setTabs}
+              tabs={tabs}
+              setUploadTransaction={setUploadTransaction}
+              setPaymentMethods={setPaymentMethods}
+              setPaymentId={setPaymentId}
+              amount={amount}
+            />
+          )}
+          {showModal && (
+            <DepositModal
+              amount={amount}
+              setShowModal={setShowModal}
+              setPaymentMethods={setPaymentMethods}
+            />
+          )}
+        </main>
+      </div>
+    </div>
   );
 };
 

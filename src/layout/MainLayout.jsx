@@ -2,13 +2,18 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Settings } from "../api";
+import HeaderTopPart from "../components/UI/Header/HeaderTopPart";
+import LeftSidebar from "../components/UI/LeftSidebar/LeftSidebar";
 import Header from "../components/UI/Header/Header";
-import Footer from "../components/UI/Footer/Footer";
+import Login from "../components/modals/Login/Login";
+import Register from "../components/modals/Register/Register";
+import ForgotPassword from "../components/modals/ForgotPassword/ForgotPassword";
 
 const MainLayout = () => {
   const [, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
-  const { group } = useSelector((state) => state.global);
+  const { group, showLoginModal, showRegisterModal, showForgotPasswordModal } =
+    useSelector((state) => state.global);
   const location = useLocation();
   const ref = useRef();
 
@@ -36,12 +41,19 @@ const MainLayout = () => {
   }, [stored_build_version]);
 
   return (
-    <div id="app">
-      {" "}
-      <div data-v-2f3cedbb className="container">
-        <Header />
-        <Outlet />
-        <Footer />
+    <div className="login-home">
+      {showLoginModal && <Login />}
+      {showRegisterModal && <Register />}
+      {showForgotPasswordModal && <ForgotPassword />}
+      <div id="app">
+        <div className="wrapper wolf-open-home">
+          <HeaderTopPart />
+          <LeftSidebar />
+          <div className="main-container">
+            <Header />
+            <Outlet />
+          </div>
+        </div>
       </div>
     </div>
   );

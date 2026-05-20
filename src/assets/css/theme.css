@@ -1,0 +1,16 @@
+:root {
+  --bg-body: #23292e;
+  --text-body: #aaafb5;
+  --bg-sidebar: #16191c;
+  --text-sidebar: #aaafb5;
+  --bg-table: #2e3439;
+  --text-table: #aaafb5;
+  --bg-table-header-new: #126e51 !important;
+  --text-table-header-new: #eeeeee !important;
+  --text-highlight: #ffffff;
+  --text-fancy: #fdcf13;
+  --btn-primary: #03b37f;
+  --btn-reset: #fc4242;
+  --bg-tabs: #03b37f33;
+  --bg-news: ;
+}

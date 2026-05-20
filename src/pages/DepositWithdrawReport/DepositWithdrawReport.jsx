@@ -44,71 +44,80 @@ const DepositWithdrawReport = () => {
   }, [tab]);
 
   return (
-    <main id="main" className="main a23_css">
-      <div className="deposit-withdraw-btns  ">
-        <div className="btns-animation ">
-          <div className="btnBox ">
-            <button
-              onClick={() => setDepositWithdraw("deposit")}
-              className={`btn-inactive `}
-            >
-              <span className={`text-white`}>Deposit</span>
-            </button>
-            <button
-              onClick={() => setDepositWithdraw("withdraw")}
-              className="btn-inactive "
-            >
-              <span className={`text-white`}>Withdraw</span>
-            </button>
+    <div className="center-main-content">
+      <div className="center-container" style={{ width: "100%" }}>
+        {" "}
+        <main id="main" className="main a23_css">
+          <div className="deposit-withdraw-btns  ">
+            <div className="btns-animation ">
+              <div className="btnBox ">
+                <button
+                  onClick={() => setDepositWithdraw("deposit")}
+                  className={`btn-inactive `}
+                >
+                  <span className={`text-white`}>Deposit</span>
+                </button>
+                <button
+                  onClick={() => setDepositWithdraw("withdraw")}
+                  className="btn-inactive "
+                >
+                  <span className={`text-white`}>Withdraw</span>
+                </button>
+              </div>
+              <div
+                className={` ${
+                  depositWithdraw === "deposit"
+                    ? "animation-div-1"
+                    : "animation-div-2"
+                }`}
+              ></div>
+            </div>
           </div>
-          <div
-            className={` ${
-              depositWithdraw === "deposit"
-                ? "animation-div-1"
-                : "animation-div-2"
-            }`}
-          ></div>
-        </div>
-      </div>
-      {Settings.complaint && (
-        <div
-          className="bg-primary-light"
-          style={{
-            textAlign: "start",
-            paddingLeft: "0.625rem", // px-2.5
-            paddingRight: "0.625rem",
-            paddingTop: "0.25rem", // py-1
-            paddingBottom: "0.25rem",
-            color: "black",
-            borderRadius: "0.25rem", // rounded
-            fontSize: "12px", // text-[12px]
-            boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)", // shadow-sm
-            marginLeft: "0.5rem", // mx-2
-            marginRight: "0.5rem",
-            display: "flex", // flex
-            alignItems: "center", // items-center
-            gap: "0.5rem", // gap-2
-            transitionProperty: "opacity", // transition-opacity
-            transitionDuration: "500ms", // duration-500
-            opacity: fade ? 1 : 0,
-            fontWeight: 500, // for font-medium in <span>
-          }}
-        >
-          <img
-            style={{ height: "15px" }}
-            src="/icon/info-icon-svgrepo-com.svg"
-            alt=""
-          />
-          <span>
-            {tab === "deposit"
-              ? depositTab[currentIndex]
-              : withdrawTab[currentIndex]}
-          </span>
-        </div>
-      )}
+          {Settings.complaint && (
+            <div
+              className="bg-primary-light"
+              style={{
+                textAlign: "start",
+                paddingLeft: "0.625rem", // px-2.5
+                paddingRight: "0.625rem",
+                paddingTop: "0.25rem", // py-1
+                paddingBottom: "0.25rem",
+                color: "black",
+                borderRadius: "0.25rem", // rounded
+                fontSize: "12px", // text-[12px]
+                boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)", // shadow-sm
+                marginLeft: "0.5rem", // mx-2
+                marginRight: "0.5rem",
+                display: "flex", // flex
+                alignItems: "center", // items-center
+                gap: "0.5rem", // gap-2
+                transitionProperty: "opacity", // transition-opacity
+                transitionDuration: "500ms", // duration-500
+                opacity: fade ? 1 : 0,
+                fontWeight: 500, // for font-medium in <span>
+              }}
+            >
+              <img
+                style={{ height: "15px" }}
+                src="/icon/info-icon-svgrepo-com.svg"
+                alt=""
+              />
+              <span>
+                {tab === "deposit"
+                  ? depositTab[currentIndex]
+                  : withdrawTab[currentIndex]}
+              </span>
+            </div>
+          )}
 
-      {depositWithdraw === "deposit" ? <DepositReport /> : <WithdrawReport />}
-    </main>
+          {depositWithdraw === "deposit" ? (
+            <DepositReport />
+          ) : (
+            <WithdrawReport />
+          )}
+        </main>
+      </div>
+    </div>
   );
 };
 
