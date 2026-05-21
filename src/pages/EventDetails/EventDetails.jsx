@@ -10,13 +10,10 @@ import { Settings } from "../../api";
 import MatchOdds from "../../components/modules/EventDetails/MatchOdds";
 import Bookmaker from "../../components/modules/EventDetails/Bookmaker";
 import Fancy from "../../components/modules/EventDetails/Fancy";
+import RightSidebar from "../../components/modules/EventDetails/RightSidebar";
 
 const EventDetails = () => {
-  const [tab, setTab] = useState("all");
-  const [showOpenBetsModal, setShowOpenBetsModal] = useState(false);
   const [sportsVideo, { data: iframe }] = useVideoMutation();
-  const [showScore, setShowScore] = useState(true);
-  const [showVideo, setShowVideo] = useState(true);
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
   const dispatch = useDispatch();
@@ -144,156 +141,47 @@ const EventDetails = () => {
   }, []);
 
   return (
-    <div data-v-2f3cedbb>
-      <section
-        data-v-2f3cedbb
-        className="simplebar-content-wrapper dashbord-p-top"
-        loading="lazy"
-      >
-        <div className="contan">
-          <div className="user-box">
-            <div className="match-menu">
-              <div data-v-01cb3fd9 className="match-inplay">
-                <div data-v-01cb3fd9 className="match-inplay-tv p-2">
-                  {data?.result?.[0]?.inPlay && (
-                    <h2 data-v-01cb3fd9 className="eventTitle tv-play">
-                      <span data-v-01cb3fd9>In-Play </span>
-                    </h2>
-                  )}
-
-                  <button
-                    data-v-01cb3fd9
-                    data-bs-toggle="modal"
-                    href="#exampleModalTogglebets"
-                    role="button"
-                    className="primary_btn mob_open_bets"
-                  >
-                    <span data-v-01cb3fd9>Bets</span>
-                  </button>
-                </div>
+    <div className="center-main-content">
+      <div className="fullwidthdetail-container">
+        <div className>
+          <div className="casino-container">
+            <div className="detail-page-container cricket-detail">
+              <div className="game-header d-none-mobile sport4">
+                <span className="game-header-name">
+                  {data?.result?.[0]?.eventName}
+                </span>
+                <span className="game-header-date">
+                  {data?.result?.[0]?.openDate}
+                </span>
               </div>
 
-              <div data-v-01cb3fd9 className="mat-mdc-wrap">
-                <div
-                  data-v-01cb3fd9
-                  className="form-check mat-mdc-checkbox"
-                  onClick={() => setTab("all")}
-                >
-                  <input
-                    data-v-01cb3fd9
-                    className="form-check-input"
-                    type="radio"
-                    id="pageFilterall"
-                    name="pageFilterGroup"
-                    defaultValue="all"
-                  />
-                  <label
-                    data-v-01cb3fd9
-                    className={`form-check-label  ${tab === "all" ? "active" : ""}`}
-                    htmlFor="pageFilterall"
-                  >
-                    All
-                  </label>
-                </div>
-                <div
-                  onClick={() => setTab("match_odds")}
-                  data-v-01cb3fd9
-                  className="form-check mat-mdc-checkbox"
-                >
-                  <input
-                    data-v-01cb3fd9
-                    className="form-check-input"
-                    type="radio"
-                    id="pageFiltermatch_odds"
-                    name="pageFilterGroup"
-                    defaultValue="match_odds"
-                  />
-                  <label
-                    data-v-01cb3fd9
-                    className={`form-check-label  ${tab === "match_odds" ? "active" : ""}`}
-                    htmlFor="pageFiltermatch_odds"
-                  >
-                    Match Odds
-                  </label>
-                </div>
-                <div
-                  onClick={() => setTab("bookmaker")}
-                  data-v-01cb3fd9
-                  className="form-check mat-mdc-checkbox"
-                >
-                  <input
-                    data-v-01cb3fd9
-                    className="form-check-input"
-                    type="radio"
-                    id="pageFilterbookmakers"
-                    name="pageFilterGroup"
-                    defaultValue="bookmakers"
-                  />
-                  <label
-                    data-v-01cb3fd9
-                    className={`form-check-label  ${tab === "bookmaker" ? "active" : ""}`}
-                    htmlFor="pageFilterbookmakers"
-                  >
-                    Bookmakers
-                  </label>
-                </div>
-                <div
-                  onClick={() => setTab("fancy")}
-                  data-v-01cb3fd9
-                  className="form-check mat-mdc-checkbox"
-                >
-                  <input
-                    data-v-01cb3fd9
-                    className="form-check-input"
-                    type="radio"
-                    id="pageFilterfancy_filters"
-                    name="pageFilterGroup"
-                    defaultValue="fancy_filters"
-                  />
-                  <label
-                    data-v-01cb3fd9
-                    className={`form-check-label  ${tab === "fancy" ? "active" : ""}`}
-                    htmlFor="pageFilterfancy_filters"
-                  >
-                    Fancy
-                  </label>
-                </div>
-                <div
-                  onClick={() => setTab("tied")}
-                  data-v-01cb3fd9
-                  className="form-check mat-mdc-checkbox"
-                >
-                  <input
-                    data-v-01cb3fd9
-                    className="form-check-input"
-                    type="radio"
-                    id="pageFilterother_match"
-                    name="pageFilterGroup"
-                    defaultValue="other_match"
-                  />
-                  <label
-                    data-v-01cb3fd9
-                    className={`form-check-label  ${tab === "tied" ? "active" : ""}`}
-                    htmlFor="pageFilterother_match"
-                  >
-                    Tied
-                  </label>
-                </div>
+              <div
+                style={{ marginTop: "25px" }}
+                className="game-header d-none-desktop sport4"
+              >
+                <span className="game-header-name">
+                  {data?.result?.[0]?.eventName}
+                  <div>
+                    <small>{data?.result?.[0]?.openDate}</small>
+                  </div>
+                </span>
+                <span></span>
               </div>
-              {(tab === "match_odds" || tab === "all") &&
-                matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
-              {(tab === "bookmaker" || tab === "all") &&
-                bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
-              {(tab === "fancy" || tab === "all") &&
-                data?.result?.length > 0 && <Fancy data={data?.result} />}
 
-              {(tab === "tied" || tab === "all") && tiedMatch?.length > 0 && (
-                <MatchOdds data={tiedMatch} />
-              )}
+              <div className="w-100 d-flex flex-wrap">
+                {matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
+                {bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
+                {data?.result?.length > 0 && <Fancy data={data?.result} />}
+                {/* {eventTypeId == 7 || eventTypeId == 4339 ? (
+                      <HorseGreyhoundEventDetails data={data?.result} />
+                    ) : null} */}
+                {tiedMatch?.length > 0 && <MatchOdds data={tiedMatch} />}
+              </div>
             </div>
           </div>
+          <RightSidebar />
         </div>
-      </section>
+      </div>
     </div>
   );
 };

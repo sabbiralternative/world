@@ -136,182 +136,104 @@ const Fancy = ({ data }) => {
         <Ladder ladderData={ladderData} setLadderData={setLadderData} />
       )}
       {fancyData?.length > 0 && (
-        <div className="dScreen fancy_odds fancy-primium-tabs">
-          <div className="premium-fancy-tabs">
-            <ul
-              className="nav nav-pills de_fancyTab"
-              id="pills-tab"
-              role="tablist"
-            >
-              <li className="nav-item" role="presentation">
-                <a
-                  className="nav-link active"
-                  id="pills-home-tabline"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-home"
-                  type="button"
-                  aria-controls="tabline"
-                  aria-selected="true"
-                >
-                  <span />
-                  <span>Fancy</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="tab-content" id="pills-tabContent">
+        <div className="market-6">
+          <div className="bet-table">
             <div
-              className="tab-pane fade active show"
-              id="pills-home"
-              role="tabpanel"
-              aria-labelledby="pills-home-tab"
-              tabIndex={0}
+              data-toggle="collapse"
+              data-target="#market2"
+              aria-expanded="true"
+              className="bet-table-header"
             >
-              <div type="nav de_fancyTab" className="tab-container">
-                <div className="tab-content">
-                  <div className>
-                    <div className="fancy-bookmaker-bet-btn">
-                      <div className="fancy-tabs-head btn-color">
-                        <div className="row">
-                          <div className="col-md-5 col-4 px-0 ms-auto">
-                            <div className="border-0 dOddsBox faddsBox row align-items-stretch">
-                              <div className="lay faddsBox-wrapc m-0 col-4">
-                                <button className="lay lay-img">NO</button>
-                              </div>
-                              <div className="back faddsBox-wrap col-4">
-                                <button className="back back-img">YES</button>
-                              </div>
-                              <div className="col-4">
-                                <button className="back back-img min_max_heading">
-                                  Min/Max
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+              <div className="nation-name">
+                <span title="Fancy1">
+                  <a title>
+                    <img
+                      src="https://wver.sprintstaticdata.com/v224/static/front/img/arrow-down.svg"
+                      className="mr-1"
+                    />
+                  </a>
+                  Fancy
+                </span>
+              </div>
+            </div>
+            <div
+              id="market2"
+              data-title="OPEN"
+              className="bet-table-body collapse show"
+            >
+              <div className="bet-table-row d-none-mobile">
+                <div className="nation-name" />
+                <div className="lay bl-title lay-title">Yes</div>
+                <div className="back bl-title back-title">No</div>
+              </div>
+              {fancyData?.map((game) => {
+                const pnl = pnlBySelection?.find(
+                  (pnl) => pnl?.MarketId === game?.id,
+                );
+
+                return (
+                  <Fragment key={game?.id}>
+                    <div className="fancy-tripple">
+                      <div className="bet-table-mobile-row d-none-desktop">
+                        <div className="bet-table-mobile-team-name">
+                          <span> {game?.name}</span> <span />
+                        </div>
+                      </div>
+                      <div
+                        data-title={` ${game?.status === "OPEN" ? "ACTIVE" : "SUSPENDED"}`}
+                        className={`bet-table-row  ${game?.status === "OPEN" ? "" : "suspendedtext"} `}
+                      >
+                        <div className="nation-name d-none-mobile">
+                          <p> {game?.name}</p> <p className="mb-0" />
+                        </div>
+
+                        <div
+                          onClick={() =>
+                            handleBetSlip(
+                              "lay",
+                              game,
+                              game?.runners?.[0],
+                              game?.runners?.[0]?.lay?.[0]?.line,
+                              game?.runners?.[0]?.lay?.[0]?.price,
+                            )
+                          }
+                          className="bl-box lay"
+                        >
+                          <span className="d-block odds">
+                            {game?.runners?.[0]?.lay?.[0]?.line}
+                          </span>
+                          <span className="d-block">
+                            {game?.runners?.[0]?.lay?.[0]?.price}
+                          </span>
+                        </div>
+                        <div
+                          onClick={() =>
+                            handleBetSlip(
+                              "back",
+                              game,
+                              game?.runners?.[0],
+                              game?.runners?.[0]?.back?.[0]?.line,
+                              game?.runners?.[0]?.back?.[0]?.price,
+                            )
+                          }
+                          className="bl-box back"
+                        >
+                          <span className="d-block odds">
+                            {game?.runners?.[0]?.back?.[0]?.line}
+                          </span>
+                          <span className="d-block">
+                            {game?.runners?.[0]?.back?.[0]?.price}
+                          </span>
+                        </div>
+                        <div className="fancy-min-max">
+                          Min:<span>{game?.minLiabilityPerBet}</span>
+                          Max:<span>{game?.maxLiabilityPerBet}</span>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="tab-content">
-                  <div
-                    className="tab-pane fade show active"
-                    id="pills-home"
-                    role="tabpanel"
-                    aria-labelledby="pills-home-tab"
-                  >
-                    <div className="fancy-bookmaker-bet-btn">
-                      {fancyData?.map((game) => {
-                        const pnl = pnlBySelection?.find(
-                          (pnl) => pnl?.MarketId === game?.id,
-                        );
-
-                        return (
-                          <div
-                            key={game?.id}
-                            className="fancy-tabs btn-color btn-color bet-slip-area"
-                          >
-                            <div className="row">
-                              <div className="col-md-7 col-8 px-0">
-                                <div className="fancy-title-row">
-                                  <span className="team-pin-img">
-                                    <img
-                                      loading="lazy"
-                                      src="/assets/pin-white-rQYS-7hC.svg"
-                                      className="img-fluid"
-                                    />
-                                  </span>
-
-                                  <p className="team-name">
-                                    <b>{game?.name} &nbsp; </b>
-                                  </p>
-                                  <div className="SportEvent__market__title__exposure">
-                                    {" "}
-                                    {pnl && (
-                                      <span
-                                        className={`${
-                                          pnl?.pnl > 0
-                                            ? "text-success"
-                                            : "text-danger"
-                                        }`}
-                                      >
-                                        {pnl?.pnl}
-                                      </span>
-                                    )}
-                                  </div>
-
-                                  {pnl?.pnl && (
-                                    <div
-                                      style={{ cursor: "pointer" }}
-                                      onClick={() => handleGetLadder(pnl)}
-                                      className="sucess-simbal"
-                                    >
-                                      <img src={images.ladder} alt="" />
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="col-md-5 col-4 px-0">
-                                <div className="dOddsBox row border-0">
-                                  <button
-                                    onClick={() =>
-                                      handleBetSlip(
-                                        "lay",
-                                        game,
-                                        game?.runners?.[0],
-                                        game?.runners?.[0]?.lay?.[0]?.line,
-                                        game?.runners?.[0]?.lay?.[0]?.price,
-                                      )
-                                    }
-                                    className="lay col-4"
-                                  >
-                                    {game?.runners?.[0]?.lay?.[0]?.line}{" "}
-                                    <span>
-                                      {" "}
-                                      {game?.runners?.[0]?.lay?.[0]?.price}
-                                    </span>
-                                  </button>
-                                  <button
-                                    onClick={() =>
-                                      handleBetSlip(
-                                        "back",
-                                        game,
-                                        game?.runners?.[0],
-                                        game?.runners?.[0]?.back?.[0]?.line,
-                                        game?.runners?.[0]?.back?.[0]?.price,
-                                      )
-                                    }
-                                    className="back col-4"
-                                  >
-                                    {game?.runners?.[0]?.back?.[0]?.line}{" "}
-                                    <span>
-                                      {game?.runners?.[0]?.back?.[0]?.price}
-                                    </span>
-                                  </button>
-                                  {game?.status !== "OPEN" && (
-                                    <div className="suspended">
-                                      {game?.status}
-                                    </div>
-                                  )}
-                                  <div className="min_max_value col-4">
-                                    <div className="min-max-h">
-                                      <span> {game?.minLiabilityPerBet}</span> -{" "}
-                                      <span>{game?.maxLiabilityPerBet}</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            {game?.id === runnerId && (
-                              <BetSLip currentPlaceBetEvent={game} />
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  </Fragment>
+                );
+              })}
             </div>
           </div>
         </div>

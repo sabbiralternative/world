@@ -225,278 +225,261 @@ const MatchOdds = ({ data }) => {
           setSpeedCashOut={setSpeedCashOut}
         />
       )}
-      {data?.map((game) => {
-        const teamProfitForGame = teamProfit?.find(
-          (profit) =>
-            profit?.gameId === game?.id && profit?.isOnePositiveExposure,
-        );
-        const speedCashOut = teamProfit?.find(
-          (profit) => profit?.gameId === game?.id && profit?.speedCashOut,
-        );
+      {data?.length > 0 &&
+        data?.map((game) => {
+          const teamProfitForGame = teamProfit?.find(
+            (profit) =>
+              profit?.gameId === game?.id && profit?.isOnePositiveExposure,
+          );
+          const speedCashOut = teamProfit?.find(
+            (profit) => profit?.gameId === game?.id && profit?.speedCashOut,
+          );
 
-        return (
-          <div
-            key={game?.id}
-            className="matchodds-cashout sat-odds-bk-ly-btn-design"
-          >
-            <div className="dScreen">
-              <div className="odds-menu">
-                <div className="row">
-                  <div className="col-12 col-md-7">
-                    <div className="sat-match-odds-flex">
-                      <div className="match-odds-wrap">
-                        <p className="match-odds titleMax">
-                          {" "}
-                          {game?.name?.toUpperCase()}
-                        </p>
-                        <span>
-                          <img
-                            loading="lazy"
-                            src="/assets/pin-white-rQYS-7hC.svg"
-                            className="img-fluid match-odds-pin"
-                          />
-                        </span>
-                      </div>
-
-                      {Settings.cashout &&
-                        game?.runners?.length !== 3 &&
-                        game?.status === "OPEN" &&
-                        !speedCashOut && (
-                          <div className="cashout-container empty-container ng-star-inserted">
-                            <span className="cashout-label">
-                              <button
-                                onClick={() =>
-                                  handleCashOutPlaceBet(
-                                    game,
-                                    "lay",
-                                    dispatch,
-                                    pnlBySelection,
-                                    token,
-                                    teamProfitForGame,
-                                  )
-                                }
-                                style={{
-                                  cursor: `${
-                                    !teamProfitForGame
-                                      ? "not-allowed"
-                                      : "pointer"
-                                  }`,
-                                  opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
-                                }}
-                                type="button"
-                                className="cashout-button"
-                              >
-                                <span className="cashout-icon">
-                                  <i className="fa fa-circle" />
-                                </span>{" "}
-                                Cashout{" "}
-                                {teamProfitForGame?.profit &&
-                                  `(${teamProfitForGame.profit.toFixed(0)})`}
-                              </button>
-                            </span>
-                          </div>
-                        )}
-                      {Settings.cashout &&
-                        game?.runners?.length !== 3 &&
-                        game?.status === "OPEN" &&
-                        game?.name !== "toss" &&
-                        speedCashOut && (
-                          <div className="cashout-container empty-container ng-star-inserted">
-                            <span className="cashout-label">
-                              <button type="button" className="cashout-button">
-                                <span className="cashout-icon">
-                                  <i className="fa fa-circle" />
-                                </span>{" "}
-                                Cashout
-                              </button>
-                            </span>
-                          </div>
-                        )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="odds-menu btn-color">
-                <div className="row">
-                  <div className="col-md-5 col-7">
-                    <div className="minmax mm-fi p-1">
-                      <dl className="fancy-info m-0">
-                        <dt>Min/Max</dt>
-                        <dd>
-                          {" "}
-                          {game?.minLiabilityPerBet}-{game?.maxLiabilityPerBet}
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div className="col-md-7 col-5">
-                    <div className="btn-group dOddsBox">
-                      <div className="back dOddsBox-wrap">
-                        <button className="back back-img">Back</button>
-                      </div>
-                      <div className="lay dOddsBox-wrap">
-                        <button className="lay lay-img">Lay</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                {game?.runners?.map((runner) => {
-                  const pnl = pnlBySelection?.find(
-                    (pnl) => pnl?.RunnerId === runner?.id,
-                  );
-                  const predictOddValues = predictOdd?.find(
-                    (val) => val?.id === runner?.id,
-                  );
-                  return (
-                    <div key={runner?.id} className="odds-menu bet-slip-area">
-                      <div className="row">
-                        <div className="col-md-5 col-7">
-                          <p className="team-name">
-                            {runner?.name} &nbsp;{" "}
-                            <span className="SportEvent__market__title__exposure">
-                              {pnl && (
-                                <span
-                                  className={`${
-                                    pnl?.pnl > 0
-                                      ? "text-success"
-                                      : "text-danger"
-                                  }`}
-                                >
-                                  {pnl?.pnl}
-                                </span>
-                              )}
-
-                              {stake && runnerId && predictOddValues && (
-                                <span
-                                  className={` ${
-                                    predictOddValues?.exposure > 0
-                                      ? "text-success"
-                                      : "text-danger"
-                                  } `}
-                                >
-                                  &nbsp;({predictOddValues?.exposure})
-                                </span>
-                              )}
-                            </span>
-                          </p>
-                        </div>
-                        <div className="col-md-7 col-5">
-                          <div className="btn-group dOddsBox">
-                            <div className="back dOddsBox-wrap">
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "back",
-                                    game,
-                                    runner,
-                                    runner?.back?.[2]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="back back2"
-                              >
-                                {runner?.back?.[2]?.price}{" "}
-                                <span> {runner?.back?.[2]?.size}</span>
-                              </button>
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "back",
-                                    game,
-                                    runner,
-                                    runner?.back?.[1]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="back back1"
-                              >
-                                {runner?.back?.[1]?.price}{" "}
-                                <span>{runner?.back?.[1]?.size}</span>
-                              </button>
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "back",
-                                    game,
-                                    runner,
-                                    runner?.back?.[0]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="back"
-                              >
-                                {runner?.back?.[0]?.price}{" "}
-                                <span>{runner?.back?.[0]?.size}</span>
-                              </button>
-                            </div>
-                            <div className="lay dOddsBox-wrap">
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "lay",
-                                    game,
-                                    runner,
-                                    runner?.lay?.[0]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="lay"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample-one"
-                              >
-                                {runner?.lay?.[0]?.price}
-                                <span> {runner?.lay?.[0]?.size}</span>
-                              </button>
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "lay",
-                                    game,
-                                    runner,
-                                    runner?.lay?.[1]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="lay lay1"
-                              >
-                                {runner?.lay?.[1]?.price}{" "}
-                                <span>{runner?.lay?.[1]?.size}</span>
-                              </button>
-                              <button
-                                onClick={() =>
-                                  handleBetSlip(
-                                    "lay",
-                                    game,
-                                    runner,
-                                    runner?.lay?.[2]?.price,
-                                  )
-                                }
-                                type="button"
-                                className="lay lay2"
-                              >
-                                {runner?.lay?.[2]?.price}{" "}
-                                <span> {runner?.lay?.[2]?.size}</span>
-                              </button>
-                            </div>
-                            {runner?.status !== "OPEN" && (
-                              <div className="suspended">{runner?.status}</div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      {runner?.id === runnerId && (
-                        <BetSLip currentPlaceBetEvent={game} />
+          return (
+            <div key={game?.id} className="market-4" id="goto-8722413562872">
+              <div className="bet-table">
+                <div className="bet-table-header">
+                  <div className="nation-name">
+                    <span
+                      title="MATCH_ODDS"
+                      data-toggle="collapse"
+                      data-target="#market0"
+                      aria-expanded="true"
+                    >
+                      <a href="javascript:void(0)" title>
+                        <img
+                          src="https://wver.sprintstaticdata.com/v224/static/front/img/arrow-down.svg"
+                          className="mr-1"
+                        />
+                      </a>
+                      {game?.name?.toUpperCase()}
+                    </span>
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      !speedCashOut && (
+                        <button
+                          onClick={() =>
+                            handleCashOutPlaceBet(
+                              game,
+                              "lay",
+                              dispatch,
+                              pnlBySelection,
+                              token,
+                              teamProfitForGame,
+                            )
+                          }
+                          style={{
+                            cursor: `${
+                              !teamProfitForGame ? "not-allowed" : "pointer"
+                            }`,
+                            opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                          }}
+                          className="btn btn-success btn-sm"
+                        >
+                          Cashout{" "}
+                          {teamProfitForGame?.profit &&
+                            `(${teamProfitForGame.profit.toFixed(0)})`}
+                        </button>
                       )}
+                    {Settings.cashout &&
+                      game?.runners?.length !== 3 &&
+                      game?.status === "OPEN" &&
+                      game?.name !== "toss" &&
+                      speedCashOut && (
+                        <button
+                          onClick={() =>
+                            setSpeedCashOut({
+                              ...speedCashOut,
+                              market_name: game?.name,
+                              event_name: game?.eventName,
+                            })
+                          }
+                          // disabled={isGameSuspended(game)}
+                          className="btn btn-success btn-sm"
+                        >
+                          Speed Cashout
+                        </button>
+                      )}
+
+                    <span className="max-bet d-none-desktop">
+                      <span title="Max : 1">
+                        Max:
+                        <span>{game?.maxLiabilityPerBet}</span>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div
+                  id="market0"
+                  data-title="OPEN"
+                  className="bet-table-body collapse show"
+                >
+                  <div className="bet-table-row d-none-mobile">
+                    <div className="nation-name">
+                      <span className="max-bet">
+                        <span title="Max : 1">
+                          Max:
+                          <span>{game?.maxLiabilityPerBet}</span>
+                        </span>
+                      </span>
                     </div>
-                  );
-                })}
+                    <div translate="no" className="back bl-title back-title">
+                      Back
+                    </div>
+                    <div translate="no" className="lay bl-title lay-title">
+                      Lay
+                    </div>
+                  </div>
+                  {game?.runners?.map((runner) => {
+                    const pnl = pnlBySelection?.find(
+                      (pnl) => pnl?.RunnerId === runner?.id,
+                    );
+                    const predictOddValues = predictOdd?.find(
+                      (val) => val?.id === runner?.id,
+                    );
+                    return (
+                      <Fragment key={runner?.id}>
+                        <div className="bet-table-mobile-row d-none-desktop">
+                          <div className="bet-table-mobile-team-name">
+                            <span> {runner?.name}</span> <span />
+                          </div>
+                        </div>
+                        <div data-title="ACTIVE" className="bet-table-row">
+                          <div className="nation-name d-none-mobile">
+                            <p>
+                              <span>{runner?.name}</span>
+                              <span className="float-right" />
+                            </p>
+                            <p className="mb-0" />
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "back",
+                                game,
+                                runner,
+                                runner?.back?.[2]?.price,
+                              )
+                            }
+                            className="bl-box back back2"
+                          >
+                            <span className="d-block odds">
+                              {runner?.back?.[2]?.price}
+                            </span>
+                            <span className="d-block">
+                              {" "}
+                              {runner?.back?.[2]?.size}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "back",
+                                game,
+                                runner,
+                                runner?.back?.[1]?.price,
+                              )
+                            }
+                            className="bl-box back back1"
+                          >
+                            <span className="d-block odds">
+                              {" "}
+                              {runner?.back?.[1]?.price}
+                            </span>
+                            <span className="d-block">
+                              {runner?.back?.[1]?.size}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "back",
+                                game,
+                                runner,
+                                runner?.back?.[0]?.price,
+                              )
+                            }
+                            className="bl-box back back"
+                          >
+                            <span className="d-block odds">
+                              {" "}
+                              {runner?.back?.[0]?.price}
+                            </span>
+                            <span className="d-block">
+                              {" "}
+                              {runner?.back?.[0]?.size}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "lay",
+                                game,
+                                runner,
+                                runner?.lay?.[0]?.price,
+                              )
+                            }
+                            className="bl-box lay lay"
+                          >
+                            <span className="d-block odds">
+                              {" "}
+                              {runner?.lay?.[0]?.price}
+                            </span>
+                            <span className="d-block">
+                              {" "}
+                              {runner?.lay?.[0]?.size}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "lay",
+                                game,
+                                runner,
+                                runner?.lay?.[1]?.price,
+                              )
+                            }
+                            className="bl-box lay lay1"
+                          >
+                            <span className="d-block odds">
+                              {" "}
+                              {runner?.lay?.[1]?.price}
+                            </span>
+                            <span className="d-block">
+                              {" "}
+                              {runner?.lay?.[1]?.size}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleBetSlip(
+                                "lay",
+                                game,
+                                runner,
+                                runner?.lay?.[2]?.price,
+                              )
+                            }
+                            className="bl-box lay lay2"
+                          >
+                            <span className="d-block odds">
+                              {" "}
+                              {runner?.lay?.[2]?.price}
+                            </span>
+                            <span className="d-block">
+                              {" "}
+                              {runner?.lay?.[2]?.size}
+                            </span>
+                          </div>
+                        </div>
+                      </Fragment>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </Fragment>
   );
 };

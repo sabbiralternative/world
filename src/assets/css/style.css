@@ -98,7 +98,8 @@
 
 @font-face {
   font-family: "timer";
-  src: url("../fonts/timer.woff2") format("woff2"),
+  src:
+    url("../fonts/timer.woff2") format("woff2"),
     url("../fonts/timer.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -107,7 +108,8 @@
 
 @font-face {
   font-family: "worli";
-  src: url("../fonts/worli.woff2") format("woff2"),
+  src:
+    url("../fonts/worli.woff2") format("woff2"),
     url("../fonts/worli.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -130,7 +132,8 @@
   font-family: "SF Pro Display Ultralight Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Ultralight Italic"),
+  src:
+    local("SF Pro Display Ultralight Italic"),
     url("../fonts/SFPRODISPLAYULTRALIGHTITALIC.woff") format("woff");
 }
 
@@ -138,7 +141,8 @@
   font-family: "SF Pro Display Thin Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Thin Italic"),
+  src:
+    local("SF Pro Display Thin Italic"),
     url("../fonts/SFPRODISPLAYTHINITALIC.woff") format("woff");
 }
 
@@ -146,7 +150,8 @@
   font-family: "SF Pro Display Light Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Light Italic"),
+  src:
+    local("SF Pro Display Light Italic"),
     url("SFPRODISPLAYLIGHTITALIC.woff") format("woff");
 }
 
@@ -154,7 +159,8 @@
   font-family: "SF Pro Display Medium";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Medium"),
+  src:
+    local("SF Pro Display Medium"),
     url("../fonts/SFPRODISPLAYMEDIUM.woff") format("woff");
 }
 
@@ -162,7 +168,8 @@
   font-family: "SF Pro Display Semibold Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Semibold Italic"),
+  src:
+    local("SF Pro Display Semibold Italic"),
     url("../fonts/SFPRODISPLAYSEMIBOLDITALIC.woff") format("woff");
 }
 
@@ -170,7 +177,8 @@
   font-family: "SF Pro Display Bold";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Bold"),
+  src:
+    local("SF Pro Display Bold"),
     url("../fonts/SFPRODISPLAYBOLD.woff") format("woff");
 }
 
@@ -178,7 +186,8 @@
   font-family: "SF Pro Display Heavy Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Heavy Italic"),
+  src:
+    local("SF Pro Display Heavy Italic"),
     url("../fonts/SFPRODISPLAYHEAVYITALIC.woff") format("woff");
 }
 
@@ -186,7 +195,8 @@
   font-family: "SF Pro Display Black Italic";
   font-style: normal;
   font-weight: normal;
-  src: local("SF Pro Display Black Italic"),
+  src:
+    local("SF Pro Display Black Italic"),
     url("../fonts/SFPRODISPLAYBLACKITALIC.woff") format("woff");
 }
 
@@ -1027,7 +1037,7 @@ li {
 
 .sidebar-left {
   width: 302px;
-  background-color: var(--bg-sidebar);
+  background-color: var(--bg-sidebar) !important;
   min-height: 100vh;
   position: fixed;
   top: 34px;
@@ -13669,13 +13679,17 @@ img.r-rotate {
   opacity: 1;
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
-  -webkit-transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+  -webkit-transition:
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+  transition:
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   -webkit-transform-origin: center top;
@@ -13789,7 +13803,11 @@ img.r-rotate {
 }
 
 .mx-datepicker-main {
-  font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
+  font:
+    14px/1.5 "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Microsoft Yahei",
     sans-serif;
   color: #ccc;
   background-color: #333;
@@ -21472,8 +21490,8 @@ img.r-rotate {
   width: 400px;
 }
 
-.horse-table .game-icons{
-    width: auto;
+.horse-table .game-icons {
+  width: auto;
 }
 
 .horse-detail .nation-name label div:last-child > span:first-child {
@@ -22281,7 +22299,8 @@ img.r-rotate {
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       135deg,
       rgba(0, 0, 0, 0.15) 50%,
       rgba(255, 255, 255, 0.15) 100%
@@ -22746,7 +22765,9 @@ img.r-rotate {
     rgba(0, 0, 0, 0.3) 100%
   );
 
-  transition: opacity 0.2s, background 0.2s;
+  transition:
+    opacity 0.2s,
+    background 0.2s;
   opacity: 1;
 }
 
@@ -25607,10 +25628,16 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   background-color: var(--g-chip-inner-color);
   /* background-image: url(https://rgs-livedealerwebclient.worldserviceprovider.com/29e7c4038494162c9293.svg); */
   background-repeat: no-repeat, no-repeat;
-  background-position: center bottom, center;
-  background-size: 100% auto, cover;
+  background-position:
+    center bottom,
+    center;
+  background-size:
+    100% auto,
+    cover;
   border-radius: 50%;
-  transition: transform 360ms var(--g-ttf), border-radius 360ms var(--g-ttf);
+  transition:
+    transform 360ms var(--g-ttf),
+    border-radius 360ms var(--g-ttf);
   z-index: 1;
 }
 
@@ -26071,7 +26098,8 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 .payment-new.deposit-page .payment-icons:hover {
   transform: translateY(-8px);
   border-color: #64748b;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.5),
     0 8px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
@@ -28357,7 +28385,9 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  transition: background 160ms ease, color 160ms ease;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
   width: 100%;
   text-transform: uppercase;
   border-radius: 0;

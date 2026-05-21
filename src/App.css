@@ -113,7 +113,7 @@ input:-moz-autofill {
   margin: 0;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .casino-container {
     grid-template-columns: repeat(4, 1fr) !important;
   }
@@ -127,7 +127,7 @@ input:-moz-autofill {
   column-gap: 8px;
   row-gap: 8px;
   width: 100%;
-}
+} */
 
 .page-body[_ngcontent-ng-c1965075897]
   .casino-section[_ngcontent-ng-c1965075897]

@@ -4,8 +4,12 @@ import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
+import { Settings } from "../../../api";
+import StakeSetting from "../../modals/StakeSetting/StakeSetting";
 
 const LoggedIn = () => {
+  const [showStakeSettings, setShowStakeSettings] = useState(false);
+  const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const mobileMenuRef = useRef(null);
   const ref = useRef(null);
@@ -22,6 +26,9 @@ const LoggedIn = () => {
   };
   return (
     <div className="float-right header-right">
+      {showStakeSettings && (
+        <StakeSetting setShowStakeSettings={setShowStakeSettings} />
+      )}
       <div className="balance d-none-mobile">
         <div>
           <i className="fas fa-wallet" />
@@ -66,6 +73,29 @@ const LoggedIn = () => {
           <Link to="/bonus-statement" className="dropdown-item">
             Bonus Statement
           </Link>
+          {Settings?.referral && (
+            <Link to="/affiliate" className="dropdown-item">
+              Affiliate
+            </Link>
+          )}
+
+          <Link to="/promotions" className="dropdown-item">
+            Promos & Bonus
+          </Link>
+          <Link to="/lossback-bonus" className="dropdown-item">
+            Lossback Bonus
+          </Link>
+          {closePopupForForever && (
+            <Link to="/app-only-bonus" className="dropdown-item">
+              App Only Bonus
+            </Link>
+          )}
+          <a
+            onClick={() => setShowStakeSettings(true)}
+            className="dropdown-item"
+          >
+            Stake Settings
+          </a>
 
           <div className="login-seperator" />
           <a onClick={handleLogout}>Logout</a>
@@ -116,6 +146,29 @@ const LoggedIn = () => {
           <Link to="/bonus-statement" className="dropdown-item">
             Bonus Statement
           </Link>
+          {Settings?.referral && (
+            <Link to="/affiliate" className="dropdown-item">
+              Affiliate
+            </Link>
+          )}
+
+          <Link to="/promotions" className="dropdown-item">
+            Promos & Bonus
+          </Link>
+          <Link to="/lossback-bonus" className="dropdown-item">
+            Lossback Bonus
+          </Link>
+          {closePopupForForever && (
+            <Link to="/app-only-bonus" className="dropdown-item">
+              App Only Bonus
+            </Link>
+          )}
+          <a
+            onClick={() => setShowStakeSettings(true)}
+            className="dropdown-item"
+          >
+            Stake Settings
+          </a>
           <div className="login-seperator" />
           <a onClick={handleLogout}>Logout</a>
         </div>

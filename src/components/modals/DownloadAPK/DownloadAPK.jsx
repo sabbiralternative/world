@@ -95,20 +95,23 @@ const DownloadAPK = () => {
                 App ke saath aapko milega:
               </h2>
 
-              <ul className="benefits-list">
-                <li>
+              <ul
+                style={{ flexDirection: "column", width: "100%" }}
+                className="benefits-list"
+              >
+                <li style={{ padding: "0px 30px" }}>
                   <strong>24×7 Instant Access</strong> – Har waqt khelo bina
                   rukawat
                 </li>
-                <li>
+                <li style={{ padding: "0px 30px" }}>
                   <strong>2X Faster Speed</strong> – Website se bhi double fast
                   loading
                 </li>
-                <li>
+                <li style={{ padding: "0px 30px" }}>
                   <strong>Secure Login</strong> – Aapka data hamesha safe &
                   protected
                 </li>
-                <li>
+                <li style={{ padding: "0px 30px" }}>
                   <strong>Non-Stop Gaming</strong> – No waiting, no
                   interruptions
                 </li>
