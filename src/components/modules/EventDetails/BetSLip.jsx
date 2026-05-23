@@ -19,7 +19,7 @@ import {
   handleDecreasePrice,
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
-import Loader from "../../shared/Loader/Loader";
+
 const BetSLip = ({ currentPlaceBetEvent }) => {
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
@@ -32,7 +32,9 @@ const BetSLip = ({ currentPlaceBetEvent }) => {
   const { refetch: refetchCurrentBets } = useCurrentBets(eventId);
   const { refetch: refetchBalance } = useBalance();
   const { refetch: refetchExposure } = useExposure(eventId);
-  const { placeBetValues, price, stake } = useSelector((state) => state?.event);
+  const { placeBetValues, price, stake, predictOdd } = useSelector(
+    (state) => state?.event,
+  );
 
   const buttonValues = localStorage.getItem("buttonValue");
   let parseButtonValues = [];
@@ -211,204 +213,218 @@ const BetSLip = ({ currentPlaceBetEvent }) => {
       dispatch(setStake(buttonValue + prevStake));
     }
   };
+
   return (
     <div
-      data-v-01cb3fd9
-      className={`bettingTable  ${placeBetValues?.back ? "blue-back" : "pink-lay"}`}
-      style={{}}
+      id="__BVID__13084___BV_modal_outer_"
+      style={{ position: "absolute", zIndex: 1040 }}
     >
-      {loading && <Loader />}
-      {/* <div data-v-a3bfde67 className="betslip-outer-div">
-        <div data-v-a3bfde67 className="bet-any-odds-sec">
-          <div data-v-a3bfde67 className="other-settings-switch">
-            <div data-v-a3bfde67 className="toggle">
-              <input data-v-a3bfde67 type="checkbox" id="acceptOddsToggle" />
-              <label data-v-a3bfde67 htmlFor="acceptOddsToggle" />
-            </div>
-          </div>
-          <span data-v-a3bfde67>Accept any odds</span>
-        </div>
-        
-        <p data-v-a3bfde67 className="fancy-minMax-bet">
-          Aval Bal : &nbsp;
-          <span data-v-a3bfde67 className="text-green">
-            0.21
-          </span>
-        </p>
-      </div> */}
-      <div data-v-a3bfde67 className="bet-left-side" />
-      <div data-v-a3bfde67 className="bets-right-side">
-        <div data-v-a3bfde67 className="card-bet select-value-btn">
-          <div data-v-a3bfde67 className="bets-btn">
-            <div data-v-a3bfde67 className="increment-decrement-sec">
-              {!placeBetValues?.isWeak && (
-                <div
-                  onClick={() => {
-                    handleDecreasePrice(
-                      price,
-                      placeBetValues,
-                      dispatch,
-                      setPrice,
-                    );
-                    setIsCashOut(false);
-                  }}
-                  data-v-a3bfde67
-                  className="value-button v-left"
-                  id="decrease"
-                  value="Decrease Value"
-                >
-                  <img
-                    data-v-a3bfde67
-                    loading="lazy"
-                    src="/assets/betButtonMinus-D2IIXrqQ.svg"
-                  />
-                </div>
-              )}
-
-              <div data-v-a3bfde67 className="select-digit">
-                <input
-                  onChange={(e) => {
-                    dispatch(setPrice(e.target.value));
-                    setIsCashOut(false);
-                  }}
-                  value={price}
-                  data-v-a3bfde67
-                  type="number"
-                  className="form-control"
-                  id="number"
-                />
-              </div>
-              {!placeBetValues?.isWeak && (
-                <div
-                  onClick={() => {
-                    handleIncreasePrice(
-                      price,
-                      placeBetValues,
-                      dispatch,
-                      setPrice,
-                    );
-                    setIsCashOut(false);
-                  }}
-                  data-v-a3bfde67
-                  className="value-button"
-                  id="increase"
-                  value="Increase Value"
-                >
-                  <img
-                    data-v-a3bfde67
-                    loading="lazy"
-                    src="/assets/betButtonPlus-BQuXQGw7.svg"
-                  />
-                </div>
-              )}
-            </div>
-            <div
-              data-v-a3bfde67
-              className="increment-decrement-sec bet-mobile-show"
+      <div
+        id="__BVID__13084"
+        role="dialog"
+        aria-labelledby="__BVID__13084___BV_modal_title_"
+        aria-describedby="__BVID__13084___BV_modal_body_"
+        className="modal fade show modal-placebet"
+        aria-modal="true"
+        style={{ display: "block" }}
+      >
+        <div className="modal-dialog modal-md">
+          <span tabIndex={0} />
+          <div
+            id="__BVID__13084___BV_modal_content_"
+            tabIndex={-1}
+            className="modal-content"
+          >
+            <header
+              id="__BVID__13084___BV_modal_header_"
+              className="modal-header"
             >
-              {/* <div
-                data-v-a3bfde67
-                className="value-button v-left"
-                id="decrease"
-                value="Decrease Value"
+              <h5 id="__BVID__13084___BV_modal_title_" className="modal-title">
+                Bet Slip
+              </h5>
+              <button
+                onClick={handleCancelBet}
+                type="button"
+                aria-label="Close"
+                className="close"
               >
-                <img
-                  data-v-a3bfde67
-                  loading="lazy"
-                  src="/assets/betButtonMinus-D2IIXrqQ.svg"
-                />
-              </div> */}
-              <div data-v-a3bfde67 className="select-digit">
-                <input
-                  data-v-a3bfde67
-                  onChange={(e) => {
-                    dispatch(setStake(e.target.value));
-                    setIsCashOut(false);
-                  }}
-                  placeholder={`Max bet: ${placeBetValues?.maxLiabilityPerBet}`}
-                  value={stake || ""}
-                  className="form-control mbetting-table-none"
-                />
-              </div>
-              {/* <div
-                data-v-a3bfde67
-                className="value-button"
-                id="increase"
-                value="Increase Value"
-              >
-                <img
-                  data-v-a3bfde67
-                  loading="lazy"
-                  src="/assets/betButtonPlus-BQuXQGw7.svg"
-                />
-              </div> */}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-v-a3bfde67 className="place-bet">
-        <ul data-v-a3bfde67 className="stakesBtns mbetting-table-none">
-          {parseButtonValues?.slice(0, 6)?.map((button, i) => (
-            <li
-              key={i}
-              onClick={() => handleButtonValue(button?.value)}
-              data-v-a3bfde67
-            >
-              <button data-v-a3bfde67 className="btn">
-                {button?.value}
+                ×
               </button>
-            </li>
-          ))}
-        </ul>
+            </header>
+            <div id="__BVID__13084___BV_modal_body_" className="modal-body">
+              {" "}
+              <div className="bet-slip-container">
+                {" "}
+                <div
+                  className={`bet-slip-box ${placeBetValues?.back ? "back" : "lay"}`}
+                >
+                  <div className="bet-slip">
+                    <div className="bet-nation">
+                      <span>{placeBetValues?.name.join(" V ")}</span>
+                      <a
+                        onClick={handleCancelBet}
+                        className="close-bet float-right"
+                      >
+                        <img src="https://wver.sprintstaticdata.com/v224/static/front/img/close.svg" />
+                      </a>
+                    </div>
+                    <div className="bet-team">
+                      <span
+                        title="Royal Challengers Bengaluru  "
+                        className="bet-team-name"
+                      >
+                        {placeBetValues?.selectedBetName}
+                      </span>
+                      <span>{placeBetValues?.marketName}</span>
+                    </div>
+                  </div>
+                  <div className="bet-amount-box">
+                    <div>
+                      <div className="bet-input back-border">
+                        <input
+                          type="text"
+                          onChange={(e) => {
+                            dispatch(setStake(e.target.value));
+                            setIsCashOut(false);
+                          }}
+                          placeholder={`Max bet: ${placeBetValues?.maxLiabilityPerBet}`}
+                          value={stake || ""}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="odds-box">
+                        <input
+                          onChange={(e) => {
+                            dispatch(setPrice(e.target.value));
+                            setIsCashOut(false);
+                          }}
+                          value={price}
+                          type="text"
+                          className="form-control"
+                        />
+                        {!placeBetValues?.isWeak && (
+                          <a
+                            onClick={() => {
+                              handleIncreasePrice(
+                                price,
+                                placeBetValues,
+                                dispatch,
+                                setPrice,
+                              );
+                              setIsCashOut(false);
+                            }}
+                          >
+                            <img
+                              src="https://wver.sprintstaticdata.com/v224/static/front/img/arrow-down.svg"
+                              className="arrow-up"
+                            />
+                          </a>
+                        )}
+                        {!placeBetValues?.isWeak && (
+                          <a
+                            onClick={() => {
+                              handleDecreasePrice(
+                                price,
+                                placeBetValues,
+                                dispatch,
+                                setPrice,
+                              );
+                              setIsCashOut(false);
+                            }}
+                          >
+                            <img
+                              src="https://wver.sprintstaticdata.com/v224/static/front/img/arrow-down.svg"
+                              className="arrow-down"
+                            />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="bet-buttons"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(4, 1fr)",
+                      gap: "2px",
+                    }}
+                  >
+                    {parseButtonValues?.slice(0, 6)?.map((button, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleButtonValue(button?.value)}
+                        className="btn btn-primary"
+                      >
+                        <span> {button?.value}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="place-bet-btn">
+                    <button
+                      onClick={() => {
+                        dispatch(setStake(null));
+                      }}
+                      className="btn btn-danger"
+                    >
+                      Clear
+                    </button>
+                    <button
+                      onClick={handleOrderBets}
+                      className="btn btn-primary btn-block"
+                      disabled="disabled"
+                    >
+                      <span>Place Bet</span>
+                    </button>
+                  </div>
+                </div>
+                {(placeBetValues?.btype === "MATCH_ODDS" ||
+                  placeBetValues?.btype === "BOOKMAKER" ||
+                  placeBetValues?.btype === "BOOKMAKER2") && (
+                  <div className="container-fluid">
+                    {predictOdd?.map((predictOdd, i) => {
+                      return (
+                        <div key={i} className="row row5 mt-2">
+                          <div className="col-6">
+                            <span>{predictOdd?.name}</span>
+                          </div>{" "}
+                          <div
+                            className={`col-3 text-center ${
+                              placeBetValues?.exposure &&
+                              placeBetValues?.exposure > 0
+                                ? "text-success"
+                                : "text-danger"
+                            }`}
+                          >
+                            <span>
+                              {predictOdd?.exposure !== 0 &&
+                                predictOdd?.exposure}
+                            </span>
+                          </div>{" "}
+                          <div
+                            className={`col-3 text-right ${
+                              predictOdd?.updatedExposure &&
+                              predictOdd?.updatedExposure > 0
+                                ? "text-success"
+                                : "text-danger"
+                            }`}
+                          >
+                            <span className="">
+                              {" "}
+                              {predictOdd?.updatedExposure}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <span tabIndex={0} />
+        </div>
       </div>
-      <div data-v-a3bfde67 className="m_stakesBtns">
-        <button
-          onClick={() => dispatch(setStake(parseButtonValues[0]?.value))}
-          data-v-a3bfde67
-          className="btn min-btn"
-        >
-          Min
-        </button>
-        <button
-          onClick={() =>
-            dispatch(
-              setStake(
-                parseButtonValues?.[parseButtonValues?.length - 1]?.value,
-              ),
-            )
-          }
-          data-v-a3bfde67
-          className="btn max-btn"
-        >
-          Max
-        </button>
-
-        <button
-          onClick={() => {
-            dispatch(setStake(null));
-          }}
-          data-v-a3bfde67
-          className="btn clear-btn"
-        >
-          Clear
-        </button>
-      </div>
-      <div data-v-a3bfde67 className="mobilebet-btn">
-        <button
-          onClick={handleCancelBet}
-          data-v-a3bfde67
-          className="btn btn-cancel"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleOrderBets}
-          data-v-a3bfde67
-          className="btn btn-betplace filled-stake"
-        >
-          Place Bet
-        </button>
-      </div>
+      <div id="__BVID__13084___BV_modal_backdrop_" className="modal-backdrop" />
     </div>
   );
 };

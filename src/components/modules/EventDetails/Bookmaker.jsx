@@ -8,7 +8,6 @@ import {
 } from "../../../redux/features/events/eventSlice";
 import toast from "react-hot-toast";
 import { Settings } from "../../../api";
-import BetSLip from "./BetSLip";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
@@ -53,12 +52,15 @@ const Bookmaker = ({ data }) => {
               exposure: pnl?.pnl,
               id: pnl?.RunnerId,
               isBettingOnThisRunner: rnr?.id === runner?.id,
+              name: rnr?.name,
+              updatedExposure: pnl?.pnl,
             });
           } else {
             updatedPnl.push({
               exposure: 0,
               id: rnr?.id,
               isBettingOnThisRunner: rnr?.id === runner?.id,
+              name: rnr?.name,
             });
           }
         });
@@ -352,7 +354,31 @@ const Bookmaker = ({ data }) => {
                               <span>{runner?.name}</span>
                               <span className="float-right" />
                             </p>
-                            <p className="mb-0" />
+                            <p className="mb-0">
+                              {pnl && (
+                                <span
+                                  className={`${
+                                    pnl?.pnl > 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  }`}
+                                >
+                                  {pnl?.pnl}
+                                </span>
+                              )}
+
+                              {stake && runnerId && predictOddValues && (
+                                <span
+                                  className={` ${
+                                    predictOddValues?.exposure > 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  } `}
+                                >
+                                  &nbsp;({predictOddValues?.exposure})
+                                </span>
+                              )}
+                            </p>
                           </div>
                           <div
                             onClick={() =>

@@ -11,6 +11,9 @@ import MatchOdds from "../../components/modules/EventDetails/MatchOdds";
 import Bookmaker from "../../components/modules/EventDetails/Bookmaker";
 import Fancy from "../../components/modules/EventDetails/Fancy";
 import RightSidebar from "../../components/modules/EventDetails/RightSidebar";
+import BetSLip from "../../components/modules/EventDetails/BetSLip";
+import Score from "../../components/modules/EventDetails/Score";
+import HorseGreyhoundEventDetails from "../../components/modules/EventDetails/HorseGreyoundEventDetails";
 
 const EventDetails = () => {
   const [sportsVideo, { data: iframe }] = useVideoMutation();
@@ -64,12 +67,16 @@ const EventDetails = () => {
         if (stake) {
           const currentExposure = placeBetValues?.exposure?.map((exp) => {
             return {
-              exposure: exp?.isBettingOnThisRunner
-                ? formatNumber(exp?.exposure + total)
-                : formatNumber(exp?.exposure + -1 * stake),
+              updatedExposure: stake
+                ? exp?.isBettingOnThisRunner
+                  ? formatNumber(exp?.exposure + total)
+                  : formatNumber(exp?.exposure + -1 * stake)
+                : null,
 
               id: exp?.id,
               isBettingOnThisRunner: exp?.isBettingOnThisRunner,
+              name: exp?.name,
+              exposure: exp?.exposure,
             };
           });
 
@@ -87,11 +94,15 @@ const EventDetails = () => {
         if (stake) {
           const currentExposure = placeBetValues?.exposure?.map((exp) => {
             return {
-              exposure: exp?.isBettingOnThisRunner
-                ? formatNumber(exp?.exposure + total)
-                : formatNumber(1 * exp?.exposure + 1 * stake),
+              updatedExposure: stake
+                ? exp?.isBettingOnThisRunner
+                  ? formatNumber(exp?.exposure + total)
+                  : formatNumber(1 * exp?.exposure + 1 * stake)
+                : null,
               id: exp?.id,
               isBettingOnThisRunner: exp?.isBettingOnThisRunner,
+              name: exp?.name,
+              exposure: exp?.exposure,
             };
           });
           dispatch(setPredictOdd(currentExposure));
@@ -142,6 +153,7 @@ const EventDetails = () => {
 
   return (
     <div className="center-main-content">
+      {placeBetValues && window.innerWidth < 1024 && <BetSLip />}
       <div className="fullwidthdetail-container">
         <div className>
           <div className="casino-container">
@@ -169,17 +181,45 @@ const EventDetails = () => {
               </div>
 
               <div className="w-100 d-flex flex-wrap">
+                <div className="w-100 d-none-desktop">
+                  {data?.score?.tracker && (
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "125px",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {" "}
+                      <iframe
+                        className="premium-iframe"
+                        src={data?.score?.tracker}
+                      ></iframe>
+                    </div>
+                  )}
+                  {iframe?.result?.url && (
+                    <iframe
+                      id="tvStr"
+                      className="w-100"
+                      src={iframe?.result?.url}
+                    ></iframe>
+                  )}
+                </div>
+                {eventTypeId == 4 && data?.iscore && (
+                  <Score iscore={data?.iscore} />
+                )}
+
                 {matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
                 {bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
                 {data?.result?.length > 0 && <Fancy data={data?.result} />}
-                {/* {eventTypeId == 7 || eventTypeId == 4339 ? (
-                      <HorseGreyhoundEventDetails data={data?.result} />
-                    ) : null} */}
+                {eventTypeId == 7 || eventTypeId == 4339 ? (
+                  <HorseGreyhoundEventDetails data={data?.result} />
+                ) : null}
                 {tiedMatch?.length > 0 && <MatchOdds data={tiedMatch} />}
               </div>
             </div>
           </div>
-          <RightSidebar />
+          <RightSidebar data={data} iframe={iframe} />
         </div>
       </div>
     </div>

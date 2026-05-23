@@ -8,7 +8,6 @@ import {
   setRunnerId,
 } from "../../../redux/features/events/eventSlice";
 import toast from "react-hot-toast";
-import BetSLip from "./BetSLip";
 import Ladder from "../../modals/Ladder/Ladder";
 import images from "../../../assets/images";
 
@@ -25,7 +24,6 @@ const Fancy = ({ data }) => {
 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
-  const { runnerId } = useSelector((state) => state.event);
   const { data: exposure } = useExposure(eventId);
   const [getLadder] = useGetLadderMutation();
 
@@ -176,7 +174,31 @@ const Fancy = ({ data }) => {
                     <div className="fancy-tripple">
                       <div className="bet-table-mobile-row d-none-desktop">
                         <div className="bet-table-mobile-team-name">
-                          <span> {game?.name}</span> <span />
+                          <span> {game?.name}</span>{" "}
+                          <span>
+                            {pnl && (
+                              <span
+                                className={`${
+                                  pnl?.pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                              >
+                                {pnl?.pnl}
+                              </span>
+                            )}
+                          </span>
+                          {pnl?.pnl && (
+                            <span
+                              style={{ cursor: "pointer" }}
+                              onClick={() => handleGetLadder(pnl)}
+                              className="sucess-simbal"
+                            >
+                              <img
+                                style={{ height: "20px" }}
+                                src={images.ladder}
+                                alt=""
+                              />
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div
@@ -184,7 +206,35 @@ const Fancy = ({ data }) => {
                         className={`bet-table-row  ${game?.status === "OPEN" ? "" : "suspendedtext"} `}
                       >
                         <div className="nation-name d-none-mobile">
-                          <p> {game?.name}</p> <p className="mb-0" />
+                          <p> {game?.name}</p>{" "}
+                          <p className="mb-0">
+                            <span>
+                              {pnl && (
+                                <span
+                                  className={`${
+                                    pnl?.pnl > 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  }`}
+                                >
+                                  {pnl?.pnl}
+                                </span>
+                              )}
+                            </span>
+                            {pnl?.pnl && (
+                              <span
+                                style={{ cursor: "pointer" }}
+                                onClick={() => handleGetLadder(pnl)}
+                                className="sucess-simbal"
+                              >
+                                <img
+                                  style={{ height: "20px" }}
+                                  src={images.ladder}
+                                  alt=""
+                                />
+                              </span>
+                            )}
+                          </p>
                         </div>
 
                         <div

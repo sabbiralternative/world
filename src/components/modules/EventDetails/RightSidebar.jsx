@@ -1,12 +1,40 @@
-const RightSidebar = () => {
+import { useSelector } from "react-redux";
+import BetSlipDesktop from "./BetSlipDesktop";
+
+const RightSidebar = ({ data, iframe }) => {
+  const { placeBetValues } = useSelector((state) => state.event);
   return (
     <div id="right-sidebar-id" className="right-sidebar casino-right-sidebar">
-      <a href="/casino/worli3" className>
-        <div className="blink-message">
-          <i className="fas fa-info-circle" /> <div>Matka</div>
+      {data?.score?.tracker && (
+        <div
+          style={{
+            width: "100%",
+            height: "125px",
+            overflow: "hidden",
+          }}
+        >
+          {" "}
+          <iframe
+            className="premium-iframe"
+            src={data?.score?.tracker}
+          ></iframe>
         </div>
-      </a>
-      <span /> <span />
+      )}
+      {iframe?.result?.url && (
+        <div className="embed-responsive embed-responsive-16by9 ng-star-inserted">
+          <iframe
+            style={{
+              width: "100%",
+
+              overflow: "hidden",
+            }}
+            id="tvStr"
+            className="embed-responsive-item w-100"
+            src={iframe?.result?.url}
+          ></iframe>
+        </div>
+      )}
+      {placeBetValues && <BetSlipDesktop />}
     </div>
   );
 };
