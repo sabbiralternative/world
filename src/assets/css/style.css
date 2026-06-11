@@ -8,25 +8,6 @@
   --app-height: 100%;
 }
 
-:root {
-  --bg-body: #23292e;
-  --text-body: #aaafb5;
-  --bg-sidebar: #16191c;
-  --text-sidebar: #aaafb5;
-  --bg-table: #2e3439;
-  --text-table: #aaafb5;
-  --bg-table-header-new: #126e51;
-  --text-table-header-new: #eeeeee;
-  --text-highlight: #ffffff;
-  --bg-menu1: #3c444b;
-  --text-menu1: #aaafb5;
-  --btn-primary: #0e684e !important;
-  --text-btn-primary: #ffffff !important;
-  --btn-secondary: 75, 75, 75;
-  --text-btn-secondary: #eeeeee;
-  --btn-reset: #fc4242;
-}
-
 :root[data-theme="light"] {
   --bg-body: #dfe5e5;
   --text-body: #222;
@@ -34,15 +15,9 @@
   --text-sidebar: #222;
   --bg-table: #fdfbfe;
   --text-table: #222;
-  --bg-table-header-new: #126e51;
   --text-table-header-new: #eeeeee;
-  --bg-menu1: #eeeeee;
-  --text-menu1: #222222;
   --text-highlight: #000000;
-  --btn-primary: #03b37f;
-  --text-btn-primary: #ffffff;
-  --btn-secondary: 75, 75, 75;
-  --text-btn-secondary: #eeeeee;
+  --bg-primary: #03b37f;
   --btn-reset: #fc4242;
 }
 
@@ -53,15 +28,9 @@
   --text-sidebar: #ffffff;
   --bg-table: #f1f4f3;
   --text-table: #71787d;
-  --bg-table-header-new: #126e51;
   --text-table-header-new: #eeeeee;
-  --bg-menu1: #eeeeee;
-  --text-menu1: #222222;
   --text-highlight: #000000;
-  --btn-primary: #03b37f;
-  --text-btn-primary: #ffffff;
-  --btn-secondary: 75, 75, 75;
-  --text-btn-secondary: #eeeeee;
+  --bg-primary: #03b37f;
   --btn-reset: #fc4242;
 }
 
@@ -685,7 +654,7 @@ li {
   display: -webkit-flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   z-index: 1002;
 }
 
@@ -1174,7 +1143,7 @@ li {
   font-size: 16px;
   font-weight: bold;
   padding: 3px;
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new) !important;
 }
 
@@ -1210,7 +1179,7 @@ li {
   font-size: 16px;
   font-weight: bold;
   padding: 3px;
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new) !important;
 }
 
@@ -1376,7 +1345,7 @@ li {
 .casino-menu li .active,
 .casino-menu li .active:hover,
 .casino-menu li .active:focus {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
@@ -2807,7 +2776,7 @@ li {
 }
 
 .my-market-title {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   padding: 3px 8px;
   cursor: pointer;
@@ -3023,22 +2992,22 @@ li {
 /* 
 .bet-input.back-border:before {
     background-color: #72bbef;
-    background-image: linear-gradient(#72bbef, #72bbef), linear-gradient(#72bbef, #72bbef), linear-gradient(#72bbef, #72bbef), linear-gradient(var(--bg-table-header-new), var(--bg-table-header-new));
+    background-image: linear-gradient(#72bbef, #72bbef), linear-gradient(#72bbef, #72bbef), linear-gradient(#72bbef, #72bbef), linear-gradient(var(--bg-primary), var(--bg-primary));
 }
 
 .bet-input.lay-border:before {
     background-color: #f994ba;
-    background-image: linear-gradient(#f994ba, #f994ba), linear-gradient(#f994ba, #f994ba), linear-gradient(#f994ba, #f994ba), linear-gradient(var(--bg-table-header-new), var(--bg-table-header-new));
+    background-image: linear-gradient(#f994ba, #f994ba), linear-gradient(#f994ba, #f994ba), linear-gradient(#f994ba, #f994ba), linear-gradient(var(--bg-primary), var(--bg-primary));
 }
 
 .bet-input.andar-border:before {
     background-color: #ffa07a;
-    background-image: linear-gradient(#ffa07a, #ffa07a), linear-gradient(#ffa07a, #ffa07a), linear-gradient(#ffa07a, #ffa07a), linear-gradient(var(--bg-table-header-new), var(--bg-table-header-new));
+    background-image: linear-gradient(#ffa07a, #ffa07a), linear-gradient(#ffa07a, #ffa07a), linear-gradient(#ffa07a, #ffa07a), linear-gradient(var(--bg-primary), var(--bg-primary));
 }
 
 .bet-input.bahar-border:before {
     background-color: #90ee90;
-    background-image: linear-gradient(#90ee90, #90ee90), linear-gradient(#90ee90, #90ee90), linear-gradient(#90ee90, #90ee90), linear-gradient(var(--bg-table-header-new), var(--bg-table-header-new));
+    background-image: linear-gradient(#90ee90, #90ee90), linear-gradient(#90ee90, #90ee90), linear-gradient(#90ee90, #90ee90), linear-gradient(var(--bg-primary), var(--bg-primary));
 } */
 
 .bet-input .form-control {
@@ -3062,7 +3031,7 @@ li {
   margin-bottom: 2px;
   height: 40px;
   border-radius: 0;
-  background-color: var(--btn-primary);
+  background-color: var(--bg-primary);
   border-color: transparent;
   padding: 0;
 }
@@ -3218,7 +3187,7 @@ li {
   display: -webkit-flex;
   justify-content: space-between;
   padding: 8px;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
@@ -3441,7 +3410,7 @@ input.form-control:disabled {
 }
 
 .home-casiono-icons h4 {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   padding: 3px;
   font-size: 16px;
@@ -5254,7 +5223,7 @@ input.form-control:disabled {
   height: auto;
   padding: 5px 8px;
   border-radius: 0;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   width: 100%;
   justify-content: space-between;
@@ -6447,7 +6416,7 @@ input.form-control:disabled {
 }
 
 .banner-iframe .slot-header {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -6519,7 +6488,7 @@ input.form-control:disabled {
   font-size: var(--font-big);
   height: 40px;
   align-items: center;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   display: none;
 }
 
@@ -12580,7 +12549,7 @@ img.r-rotate {
 }
 
 .battle-header {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   padding: 8px;
   display: flex;
   display: -webkit-flex;
@@ -13048,7 +13017,7 @@ img.r-rotate {
 .run-amount-container .table thead th {
   position: sticky;
   top: -5px;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 /*Main Rules*/
@@ -13195,7 +13164,7 @@ img.r-rotate {
 }
 
 .rules-language {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   padding: 6px;
   position: absolute;
@@ -14585,8 +14554,8 @@ img.r-rotate {
 .home-new-header-bottom .btn {
   /* width: 150px; */
   width: auto;
-  background-color: var(--btn-primary);
-  border-color: var(--btn-primary);
+  background-color: var(--bg-primary);
+  border-color: var(--bg-primary);
   color: var(--text-btn-primary);
   border-radius: 0;
   height: 40px;
@@ -14925,7 +14894,7 @@ img.r-rotate {
   width: 56px;
   height: 56px;
   border-top: 28px solid transparent;
-  border-left: 28px solid var(--bg-table-header-new);
+  border-left: 28px solid var(--bg-primary);
   border-bottom: 28px solid transparent;
   right: -56px;
 }
@@ -14983,7 +14952,7 @@ img.r-rotate {
 .fixure-title {
   float: left;
   width: 70px;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   text-align: center;
   padding: 8px 0;
   border-radius: 0s;
@@ -15007,7 +14976,7 @@ img.r-rotate {
   width: 46px;
   height: 46px;
   border-top: 23px solid transparent;
-  border-left: 23px solid var(--bg-table-header-new);
+  border-left: 23px solid var(--bg-primary);
   border-bottom: 23px solid transparent;
   right: -46px;
   top: 0;
@@ -16556,7 +16525,7 @@ img.r-rotate {
 }
 
 .kbc .kbc-btns .btn.active {
-  background-color: var(--btn-primary);
+  background-color: var(--bg-primary);
 }
 
 .kbc .kbc-btns .btn img {
@@ -20884,7 +20853,7 @@ img.r-rotate {
   border-radius: 0;
   font-size: 14px;
   height: auto;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 .progress.mobile-timer .progress-bar {
@@ -22305,7 +22274,7 @@ img.r-rotate {
       rgba(0, 0, 0, 0.15) 50%,
       rgba(255, 255, 255, 0.15) 100%
     ),
-    var(--bg-table-header-new);
+    var(--bg-primary);
   opacity: 0;
 
   transition: opacity 0.2s;
@@ -22316,8 +22285,8 @@ img.r-rotate {
 }
 
 .deposit-page .deposit-form .btn-add-container .btn-add:hover {
-  border-color: var(--bg-table-header-new);
-  color: var(--bg-table-header-new);
+  border-color: var(--bg-primary);
+  color: var(--bg-primary);
   transform: translateY(-2px);
 }
 
@@ -22336,9 +22305,9 @@ img.r-rotate {
   .deposit-form
   .btn-add-container
   .btn-add:hover {
-  border-color: var(--bg-table-header-new);
+  border-color: var(--bg-primary);
   transform: translateY(-2px);
-  color: var(--bg-table-header-new);
+  color: var(--bg-primary);
 }
 
 .deposit-page .deposit-form .btn-submit {
@@ -22742,7 +22711,7 @@ img.r-rotate {
   color: var(--text-table-header-new);
 
   /* base */
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
 
   /* overlay system */
   position: relative;
@@ -23207,7 +23176,7 @@ img.r-rotate {
   padding: 10px 15px;
 
   /* base */
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
 
   /* overlay system */
   position: relative;
@@ -23342,7 +23311,7 @@ img.r-rotate {
 }
 
 .withdraw-request .payment-icons-title {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
@@ -23719,11 +23688,11 @@ img.r-rotate {
 }
 
 /* :root[data-theme="light"] .bet-buttons .btn {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
 } */
 
 /* :root[data-theme="light"] .btn-bet {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
     color: var(--text-table-header-new);
 } */
 
@@ -23749,11 +23718,11 @@ img.r-rotate {
 }
 
 /* :root[data-theme="light"] .casino-tabs {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
 } */
 
 /* :root[data-theme="light"] .casino-tabs {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
 } */
 
 :root[data-theme="light"] .worli .casino-tabs {
@@ -23769,7 +23738,7 @@ img.r-rotate {
 }
 
 /* :root[data-theme="light"] .news-bar {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
     color: var(--text-table-header-new);
 } */
 
@@ -23792,7 +23761,7 @@ img.r-rotate {
 } */
 
 :root[data-theme="light"] .casino-primary-tabs {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .casino-primary-tabs .nav-tabs .nav-item .nav-link {
@@ -23891,7 +23860,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="light"] .casino-report-tabs {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .table-hover tbody tr:hover {
@@ -24005,7 +23974,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="light"] .bet-table-header.nodata {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
@@ -24827,7 +24796,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="blue"] .home-new-header {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"] .home-new .sport-list-title {
@@ -24865,7 +24834,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="blue"] .casino-tabs {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"] .casino-tabs .nav-tabs .nav-link {
@@ -24878,7 +24847,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="blue"] .fantasy-desc-container .casino-tabs {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"]
@@ -24905,7 +24874,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="blue"] .bet-buttons .btn {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"] .bet-buttons .btn span {
@@ -24913,16 +24882,16 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="blue"] .lucky7-extra-bets-item {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
 :root[data-theme="blue"] .casino-primary-tabs {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"] .teenpattiopen .casino-open-card-box {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="blue"] .home-new-header a {
@@ -25931,7 +25900,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 .payment-new .deposit-left-payment > div.active {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new);
 
   position: relative;
@@ -25940,7 +25909,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 .payment-new .deposit-left-payment > div.active {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new);
 
   position: relative;
@@ -25980,7 +25949,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 .payment-new .deposit-left-payment > div.active:focus-visible,
 .payment-new .deposit-left-payment > div.active:active {
   opacity: 0.8;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .payment-new .deposit-left-payment > div.active img {
@@ -25989,7 +25958,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 :root[data-theme="light"] .payment-new .deposit-left-payment > div.active {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: #fff;
 }
 
@@ -25999,7 +25968,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   .deposit-left-payment
   > div.active:focus {
   color: #fff;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .payment-new .deposit-left-payment > div.active img {
@@ -26087,7 +26056,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   /* Safari-safe: fade header color -> transparent */
   background: linear-gradient(
     90deg,
-    var(--bg-table-header-new) 0%,
+    var(--bg-primary) 0%,
     rgba(0, 0, 0, 0) 100%
   );
 
@@ -26199,7 +26168,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   opacity: 0.15;
   z-index: -2;
   /* behind text */
@@ -26212,7 +26181,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  border: 1px solid var(--bg-table-header-new);
+  border: 1px solid var(--bg-primary);
   opacity: 0.2;
   /* tweak 0.15–0.30 */
   z-index: -1;
@@ -26221,7 +26190,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 
 /* LIGHT THEME */
 :root[data-theme="light"] .payment-new .payment-icons-title p {
-  color: var(--bg-table-header-new);
+  color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .payment-new .payment-icons-title p::before {
@@ -26270,7 +26239,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   opacity: 0.25;
   z-index: -2;
   /* ✅ behind text */
@@ -26283,7 +26252,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  border: 1px solid var(--bg-table-header-new);
+  border: 1px solid var(--bg-primary);
   opacity: 0.2;
   z-index: -1;
   /* ✅ above ::before, still behind text */
@@ -26291,7 +26260,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 
 /* LIGHT */
 :root[data-theme="light"] .payment-new.deposit-page .auto-payment {
-  color: var(--bg-table-header-new);
+  color: var(--bg-primary);
 }
 
 :root[data-theme="light"] .payment-new.deposit-page .auto-payment::before {
@@ -26992,7 +26961,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 
 .joker1-other-cards h4 {
   color: var(--text-table-header-new);
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   padding: 8px;
   border-radius: 4px;
   font-size: 18px;
@@ -27118,7 +27087,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  border: 1px solid var(--bg-table-header-new);
+  border: 1px solid var(--bg-primary);
   border-radius: 4px;
 }
 
@@ -27138,7 +27107,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   margin-bottom: 0;
   margin-top: 8px;
   border-radius: 4px;
-  border: 1px solid var(--bg-table-header-new);
+  border: 1px solid var(--bg-primary);
 }
 
 :root[data-theme="light"] .setting-sub-box {
@@ -27156,7 +27125,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 .setting-box-container .setting-box h4 .custom-control-label::before {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   border: #fff solid 1px;
 }
 
@@ -27174,7 +27143,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   .custom-control-input:checked
   ~ .custom-control-label::before {
   border-color: #fff;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 .setting-box-container
@@ -27203,7 +27172,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 
 .setting-box button {
   background: #ffffff1c;
-  border: 1px solid var(--bg-table-header-new);
+  border: 1px solid var(--bg-primary);
   color: #fff;
   border-radius: 4px;
   width: 100%;
@@ -27629,7 +27598,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 
 .unique-teen20-table .unique-teen20-table-head {
   font-weight: bold;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
@@ -27870,7 +27839,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 .matka-tabs .nav-pills .nav-link.active,
 .matka-tabs .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   font-weight: bold;
 }
 
@@ -28155,7 +28124,7 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
   font-weight: bold;
   padding: 4px 8px;
   display: inline-block;
-  border-bottom: 3px solid var(--bg-table-header-new);
+  border-bottom: 3px solid var(--bg-primary);
 }
 
 :root[data-theme="light"] .matka.worli .pana .tab-content h4 {
@@ -28399,12 +28368,12 @@ s :root[data-theme="light"] .modal-login-new .modal-header {
 }
 
 .scorecard-bb .nav-pills .nav-link:hover {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new);
 }
 
 .scorecard-bb .nav-pills .nav-link.active {
-  background: var(--bg-table-header-new) !important;
+  background: var(--bg-primary) !important;
   color: var(--text-table-header-new) !important;
 }
 

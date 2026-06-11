@@ -186,7 +186,7 @@ html * {
   }
   .sc_cw-overs-info-mobile {
     display: flex !important;
-    border-top: 0.5px solid var(--btn-primary) !important;
+    border-top: 0.5px solid var(--bg-primary) !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: #fff !important;
@@ -536,7 +536,7 @@ html * {
   display: flex;
   align-items: center;
   padding: 5px 20px;
-  background: var(--btn-primary);
+  background: var(--bg-primary);
 }
 
 .header-content img {
@@ -585,7 +585,7 @@ html * {
   content: "✓";
   position: absolute;
   left: 0;
-  background: var(--btn-primary);
+  background: var(--bg-primary);
   color: #000;
   width: 18px;
   height: 18px;
@@ -607,7 +607,7 @@ html * {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--btn-primary);
+  background: var(--bg-primary);
   text-decoration: none;
   padding: 10px;
   font-size: 12px;
@@ -688,13 +688,13 @@ html * {
 }
 
 .bg-bg_Primary {
-  background: var(--btn-primary);
+  background: var(--bg-primary);
 }
 .bg-primary {
-  background: var(--btn-primary);
+  background: var(--bg-primary);
 }
 .border-primary {
-  border-color: var(--btn-primary);
+  border-color: var(--bg-primary);
 }
 .text-primary {
   color: #000;

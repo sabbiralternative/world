@@ -243,7 +243,7 @@ const AddBank = ({ refetchBankData }) => {
                   {timer ? (
                     <div
                       style={{
-                        background: "var(--btn-primary)",
+                        background: "var(--bg-primary)",
                         borderRadius: "4px",
                         padding: "6px 0px",
                         width: "80px",
@@ -267,7 +267,7 @@ const AddBank = ({ refetchBankData }) => {
                       {/* <button
                         onClick={getOtpOnWhatsapp}
                         style={{
-                          backgroundColor: "var(--btn-primary)",
+                          backgroundColor: "var(--bg-primary)",
                           borderRadius: "4px",
                           padding: "6px 0px",
                           width: "110px",
@@ -281,7 +281,7 @@ const AddBank = ({ refetchBankData }) => {
                       <button
                         onClick={getOtp}
                         style={{
-                          background: "var(--btn-primary)",
+                          background: "var(--bg-primary)",
                           borderRadius: "4px",
                           padding: "6px 0px",
                           width: "110px",

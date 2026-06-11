@@ -105,7 +105,7 @@
     margin-right: auto;
     height: 28px;
     max-width: calc(100% - 5px);
-    background: var(--bg-table-header-new);
+    background: var(--bg-primary);
     color: var(--text-table-header-new);
   }
 
@@ -893,7 +893,7 @@
 
   .casino-rules-table .casino-place-bet-title {
     padding: 8px 8px;
-    background: var(--bg-table-header-new);
+    background: var(--bg-primary);
     margin-bottom: 10px;
     font-weight: bold;
     color: var(--text-fancy);
@@ -3191,7 +3191,7 @@
   }
 
   :root[data-theme="blue"] .header {
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
     color: var(--text-table-header-new);
   }
 
@@ -6073,7 +6073,7 @@
 
   .home-container .home-casiono-icons h4 {
     font-size: 16px;
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
     color: var(--text-table-header-new);
     width: 100%;
     padding: 5px;
@@ -7211,7 +7211,7 @@
     height: auto;
     line-height: 15px;
     background-color: transparent;
-    color: var(--btn-primary);
+    color: var(--bg-primary);
     border: 0;
     font-size: 12px;
     font-weight: bold;
@@ -7245,7 +7245,7 @@
     width: 42px;
     height: 42px;
     border-top: 21px solid transparent;
-    border-left: 21px solid var(--bg-table-header-new);
+    border-left: 21px solid var(--bg-primary);
     border-bottom: 21px solid transparent;
     right: -42px;
   }

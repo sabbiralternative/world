@@ -110,7 +110,7 @@ const ProfitLoss = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         padding: "9px 10px",
-                        background: "var(--btn-primary)",
+                        background: "var(--bg-primary)",
                         margin: "0px",
                       }}
                     >

@@ -1,16 +1,40 @@
 :root {
-  --bg-body: #23292e;
-  --text-body: #aaafb5;
   --bg-sidebar: #16191c;
   --text-sidebar: #aaafb5;
+  --bg-primary: #03b37f !important;
+  --bg-body: #23292e;
+  --text-body: #aaafb5;
   --bg-table: #2e3439;
   --text-table: #aaafb5;
-  --bg-table-header-new: #126e51 !important;
   --text-table-header-new: #eeeeee !important;
   --text-highlight: #ffffff;
   --text-fancy: #fdcf13;
-  --btn-primary: #03b37f;
   --btn-reset: #fc4242;
   --bg-tabs: #03b37f33;
-  --bg-news: ;
 }
+
+/* :root{
+  --bg-body: #dfe5e5;
+  --text-body: #222;
+  --bg-sidebar: #dddddd;
+  --text-sidebar: #222;
+  --bg-table: #fdfbfe;
+  --text-table: #222;
+  --text-table-header-new: #eeeeee;
+  --text-highlight: #000000;
+  --bg-primary: #03b37f;
+  --btn-reset: #fc4242;
+} */
+
+/* :root {
+  --bg-body: #ffffff;
+  --text-body: #3c444b;
+  --bg-sidebar: #4a525a;
+  --text-sidebar: #ffffff;
+  --bg-table: #f1f4f3;
+  --text-table: #71787d;
+  --text-table-header-new: #eeeeee;
+  --text-highlight: #000000;
+  --bg-primary: #03b37f;
+  --btn-reset: #fc4242;
+} */

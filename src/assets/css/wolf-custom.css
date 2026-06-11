@@ -44,7 +44,7 @@
   width: 30px;
   height: 30px;
   border-top: 15px solid transparent;
-  border-left: 15px solid var(--btn-primary);
+  border-left: 15px solid var(--bg-primary);
   border-bottom: 15px solid transparent;
   right: -30px;
   top: 0;
@@ -135,7 +135,7 @@
 }
 
 .order-box {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   padding: 5px;
   border-radius: 8px;
 }
@@ -224,8 +224,8 @@
 
 .dep-with-footer {
   background: var(--bg-table);
-  border-top: 5px solid var(--bg-table-header-new);
-  box-shadow: 0 0 5px var(--bg-table-header-new);
+  border-top: 5px solid var(--bg-primary);
+  box-shadow: 0 0 5px var(--bg-primary);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -276,7 +276,7 @@
 }
 
 .wolf-home .bottom-header {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   padding: 5px;
 }
 
@@ -297,7 +297,7 @@
   width: 98%;
   margin: 0 1%;
   /* border-top: 50px solid #CB5499; */
-  border-bottom: 2px solid var(--bg-table-header-new);
+  border-bottom: 2px solid var(--bg-primary);
 }
 
 .wolf-home .home-main-section:before {
@@ -481,7 +481,7 @@
 
 .wolf-home.home-new .upcoming-fixure {
   height: 48px;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 .wolf-home .social-box {
@@ -622,7 +622,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--bg-table) var(--bg-table-header-new);
+  scrollbar-color: var(--bg-table) var(--bg-primary);
 }
 
 .wolf-home .all-casino-list-tabs::-webkit-scrollbar {
@@ -634,7 +634,7 @@
 }
 
 .wolf-home .all-casino-list-tabs::-webkit-scrollbar-thumb {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 .wolf-home .all-casino-list-tabs .casino-banner-item {
@@ -1789,7 +1789,7 @@
   width: 100%;
   color: var(--text-table-header-new);
   margin-bottom: 0;
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   padding: 5px;
   font-weight: bold;
   font-size: 16px;
@@ -1842,7 +1842,7 @@
 }
 
 .wolf-open-home .home-casiono-icons h4 {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   font-size: 16px;
   font-weight: bold;
@@ -1856,7 +1856,7 @@
 
 .wolf-open-home .point-casino-list-title {
   width: 100%;
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   padding: 5px;
   color: var(--text-table-header-new);
   font-size: 16px;
@@ -1935,7 +1935,7 @@
 .wolf-open-home .menu-box .sports-list-content {
   height: calc(100vh - 290px);
   scrollbar-width: thin;
-  scrollbar-color: var(--bg-table) var(--bg-table-header-new);
+  scrollbar-color: var(--bg-table) var(--bg-primary);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -1949,7 +1949,7 @@
 }
 
 .wolf-open-home .menu-box .sports-list-content::-webkit-scrollbar-thumb {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
 }
 
 .wolf-open-home .top-results {
@@ -1959,7 +1959,7 @@
 }
 
 .wolf-open-home .top-result-title {
-  background: var(--bg-table-header-new);
+  background: var(--bg-primary);
   color: var(--text-table-header-new);
   padding: 3px;
   font-weight: bold;
@@ -2130,7 +2130,7 @@
 }
 
 .wolf-open-home .menu-title {
-  background-color: var(--bg-table-header-new);
+  background-color: var(--bg-primary);
   color: var(--text-table-header-new);
   font-weight: bold;
   padding: 3px;
@@ -2332,7 +2332,7 @@
   }
   .wolf-open-home .login-box .btn.register-btn {
     position: relative;
-    background-color: var(--bg-table-header-new);
+    background-color: var(--bg-primary);
     color: var(--text-table-header-new);
     margin: 0 4px;
   }
@@ -2372,7 +2372,7 @@
     display: block;
   }
   .wolf-open-home .point-casino-tabs ul {
-    background: var(--bg-table-header-new);
+    background: var(--bg-primary);
     border-bottom: 0;
     flex-wrap: nowrap;
   }
@@ -2423,7 +2423,7 @@
   .wolf-open-home .news-bar {
     width: calc(100% - 30px);
     max-width: calc(100% - 30px);
-    background: var(--bg-table-header-new);
+    background: var(--bg-primary);
     color: var(--text-table-header-new);
     /* border-radius: 4px; */
     height: 30px;

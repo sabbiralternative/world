@@ -24,7 +24,7 @@
   width: 64px;
   height: 64px;
   transform: rotate(12deg);
-  fill: var(--btn-primary);
+  fill: var(--bg-primary);
   animation: shake 1.2s infinite;
 }
 
@@ -34,7 +34,7 @@
   right: -4px;
   width: 16px;
   height: 16px;
-  background: var(--btn-primary);
+  background: var(--bg-primary);
   color: white;
   font-size: 10px;
   font-weight: 900;
@@ -136,7 +136,7 @@
 
 /* Button */
 .primary-btn {
-  background: var(--btn-primary);
+  background: var(--bg-primary);
   color: white;
   padding: 8px 16px;
   font-size: 14px;
