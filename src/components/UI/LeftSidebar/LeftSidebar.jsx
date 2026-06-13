@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLogo } from "../../../context/ApiProvider";
+import { latestEvent } from "../../../static/latest-event";
 
 const LeftSidebar = () => {
   const { logo } = useLogo();
@@ -52,6 +53,22 @@ const LeftSidebar = () => {
           <div className="all-menu">
             <span mode="out-in">
               <ul className="navbar-nav">
+                {latestEvent.map((item) => {
+                  return (
+                    <li key={item.eventName} className>
+                      <Link
+                        to={item.pathname}
+                        className="dropdown-item dropdown-toggle sport4"
+                      >
+                        <i className="d-icon icon-4" />
+                        <span className="sport-name ifTooltip">
+                          {item.eventName}
+                        </span>
+                        {/* <span>(33)</span> */}
+                      </Link>
+                    </li>
+                  );
+                })}
                 <li className>
                   <Link
                     to="/?eventTypeId=4"

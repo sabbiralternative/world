@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { Link } from "react-router-dom";
+import { latestEvent } from "../../../static/latest-event";
 
 const MobileSidebar = ({ setShowSidebar }) => {
   const ref = useRef();
@@ -81,6 +82,27 @@ const MobileSidebar = ({ setShowSidebar }) => {
                   <div className="all-menu">
                     <span mode="out-in">
                       <ul className="navbar-nav">
+                        {" "}
+                        {latestEvent.map((item) => {
+                          return (
+                            <li
+                              onClick={() => setShowSidebar(false)}
+                              key={item.eventName}
+                              className
+                            >
+                              <Link
+                                to={item.pathname}
+                                className="dropdown-item dropdown-toggle sport4"
+                              >
+                                <i className="d-icon icon-4" />
+                                <span className="sport-name ifTooltip">
+                                  {item.eventName}
+                                </span>
+                                {/* <span>(33)</span> */}
+                              </Link>
+                            </li>
+                          );
+                        })}
                         <li className>
                           <Link
                             onClick={() => setShowSidebar(false)}
