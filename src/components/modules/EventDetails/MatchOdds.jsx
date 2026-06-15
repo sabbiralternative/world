@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 
 const MatchOdds = ({ data }) => {
   const [speedCashOut, setSpeedCashOut] = useState(null);
@@ -98,7 +99,7 @@ const MatchOdds = ({ data }) => {
 
       dispatch(setPlaceBetValues(betData));
     } else {
-      toast.error("Please login to place a bet.");
+      dispatch(setShowLoginModal(true));
     }
   };
 
@@ -347,7 +348,10 @@ const MatchOdds = ({ data }) => {
                             <span> {runner?.name}</span> <span />
                           </div>
                         </div>
-                        <div data-title="ACTIVE" className="bet-table-row">
+                        <div
+                          data-title={` ${runner?.status === "OPEN" ? "ACTIVE" : "SUSPENDED"}`}
+                          className={`bet-table-row ${runner?.status === "OPEN" ? "" : "suspendedtext"}`}
+                        >
                           <div className="nation-name d-none-mobile">
                             <p>
                               <span>{runner?.name}</span>

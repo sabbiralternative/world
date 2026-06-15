@@ -7,13 +7,15 @@ import {
   setShowLoginModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useForgotPasswordMutation,
   useGetOtpMutation,
 } from "../../../redux/features/auth/authApi";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const ForgotPassword = () => {
+  const ref = useRef();
   const [timer, setTimer] = useState(null);
   const dispatch = useDispatch();
   const [getOTP] = useGetOtpMutation();
@@ -30,7 +32,7 @@ const ForgotPassword = () => {
   const closeForgotPasswordModal = () => {
     dispatch(setShowForgotPasswordModal(false));
   };
-
+  useCloseModalClickOutside(ref, closeForgotPasswordModal);
   const handleOTP = async () => {
     const res = await getOTP({ mobile }).unwrap();
     if (res?.success) {
@@ -89,7 +91,7 @@ const ForgotPassword = () => {
   return (
     <div
       id="login-point___BV_modal_outer_"
-      style={{ position: "absolute", zIndex: 1040 }}
+      style={{ position: "absolute", zIndex: 9999999 }}
     >
       <div
         id="login-point"
@@ -102,6 +104,7 @@ const ForgotPassword = () => {
         <div className="modal-dialog modal-md">
           <span tabIndex={0} />
           <div
+            ref={ref}
             id="login-point___BV_modal_content_"
             tabIndex={-1}
             className="modal-content"

@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { userToken } from "../../../redux/features/auth/authSlice";
 import images from "../../../assets/images";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 
 const WarningCondition = ({ setShowWarning, gameInfo }) => {
+  const dispatch = useDispatch();
   const warningRef = useRef();
   const navigate = useNavigate();
   useCloseModalClickOutside(warningRef, () => {
@@ -84,7 +86,7 @@ const WarningCondition = ({ setShowWarning, gameInfo }) => {
             <button
               onClick={() => {
                 setShowWarning(false);
-                navigate("/login");
+                dispatch(setShowLoginModal(true));
               }}
               type="button"
               className="swal2-confirm swal2-styled bg-primary"

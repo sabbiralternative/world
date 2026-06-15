@@ -7,6 +7,7 @@ import {
   setRunnerId,
 } from "../../../redux/features/events/eventSlice";
 import toast from "react-hot-toast";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 
 const HorseGreyhoundEventDetails = ({ data }) => {
   const { eventId } = useParams();
@@ -133,7 +134,7 @@ const HorseGreyhoundEventDetails = ({ data }) => {
 
       dispatch(setPlaceBetValues(betData));
     } else {
-      toast.error("Please login to place bet");
+      dispatch(setShowLoginModal(true));
     }
   };
 

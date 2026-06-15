@@ -6047,6 +6047,7 @@ input.form-control:disabled {
 }
 
 .casino-tabs .nav-tabs {
+  gap: 10px;
   border: 0;
   margin-left: 50px;
   margin-right: 50px;
@@ -6063,7 +6064,6 @@ input.form-control:disabled {
   padding-bottom: 0;
   padding-left: 5px;
   padding-right: 5px;
-  border: 0;
   text-align: center;
   opacity: 0.7;
   display: flex;
@@ -6073,7 +6073,9 @@ input.form-control:disabled {
   align-items: center;
   transition: opacity 0.2s linear;
   cursor: pointer;
-  border-radius: 0;
+  border-bottom: 1px solid #999;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .casino-tabs .nav-tabs .nav-link img {
@@ -6083,6 +6085,8 @@ input.form-control:disabled {
 .casino-tabs .nav-tabs .nav-item .nav-link.active {
   opacity: 1;
   background-color: transparent;
+  /* border-bottom: 1px solid #999;
+  padding: 5px; */
 }
 
 .casino-tabs .nav-tabs .nav-item .nav-link:hover,

@@ -10,6 +10,7 @@ import {
 import toast from "react-hot-toast";
 import Ladder from "../../modals/Ladder/Ladder";
 import images from "../../../assets/images";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 
 const Fancy = ({ data }) => {
   const fancyData = data?.filter(
@@ -106,7 +107,7 @@ const Fancy = ({ data }) => {
 
       dispatch(setPlaceBetValues(betData));
     } else {
-      toast.error("Please login to place a bet.");
+      dispatch(setShowLoginModal(true));
     }
   };
 
@@ -276,7 +277,7 @@ const Fancy = ({ data }) => {
                           </span>
                         </div>
                         <div className="fancy-min-max">
-                          Min:<span>{game?.minLiabilityPerBet}</span>
+                          Min:<span>{game?.minLiabilityPerBet}</span> <br />
                           Max:<span>{game?.maxLiabilityPerBet}</span>
                         </div>
                       </div>

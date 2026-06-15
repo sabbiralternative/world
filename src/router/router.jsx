@@ -2,11 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home/Home";
 import APK from "../pages/APK/APK";
-import Login from "../pages/Login/Login";
-
 import Settings from "../pages/Settings/Settings";
-import Register from "../pages/Register/Register";
-import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import Account from "../pages/Account/Account";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
 import InPlay from "../pages/InPlay/InPlay";
@@ -136,18 +132,7 @@ export const router = createBrowserRouter(
         },
       ],
     },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/forgot-password",
-      element: <ForgotPassword />,
-    },
+
     {
       path: "/change-password",
       element: <ChangePassword />,

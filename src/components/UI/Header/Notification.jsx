@@ -63,26 +63,32 @@ const Notification = () => {
   // };
 
   return (
-    <div className="news-bar d-none-mobile">
-      <div className="marquee-wrapper">
-        <div
-          className="marquee-content"
-          style={{ animationDuration: "17.32s" }}
-        >
-          {filteredNotification?.map((item) => (
-            <p key={item?.id} className="mr-[100vw] text-white">
-              {item?.text}
-            </p>
-          ))}
+    <>
+      {showNotification && filteredNotification?.length > 0 ? (
+        <div className="news-bar d-none-mobile">
+          <div className="marquee-wrapper">
+            <div
+              className="marquee-content"
+              style={{ animationDuration: "17.32s" }}
+            >
+              {filteredNotification?.map((item) => (
+                <p key={item?.id} className="mr-[100vw] text-white">
+                  {item?.text}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="news-title">
+            <img
+              src="https://wver.sprintstaticdata.com/v223/static/front/img/icons/speaker.svg"
+              alt="news"
+            />
+          </div>
         </div>
-      </div>
-      <div className="news-title">
-        <img
-          src="https://wver.sprintstaticdata.com/v223/static/front/img/icons/speaker.svg"
-          alt="news"
-        />
-      </div>
-    </div>
+      ) : (
+        <div></div>
+      )}
+    </>
   );
 };
 

@@ -27,10 +27,19 @@ const FirstTab = ({
         </a>
         <ul ref={ref} id="casino-scroll-tab" className="nav nav-tabs">
           <li
-            ref={selectedSubProvider === "All" ? activeRef : null}
+            style={{ border: "1px solid #999", borderRadius: "5px" }}
+            ref={selectedSubProvider === "all" ? activeRef : null}
             className="nav-item"
           >
             <a
+              style={{
+                borderBottom: "1px solid #999",
+                padding: "5px",
+                borderBottomLeftRadius: "5px",
+                borderBottomRightRadius: "5px",
+                background: selectedSubProvider === "all" ? "#999" : "none",
+                color: "white",
+              }}
               onClick={() => {
                 setSelectedSubProvider("all");
                 setSearchQuery("");
@@ -45,11 +54,21 @@ const FirstTab = ({
           {subProvider?.map((provider, idx) => {
             return (
               <li
+                style={{ border: "1px solid #999", borderRadius: "5px" }}
                 ref={selectedSubProvider === provider ? activeRef : null}
                 key={idx}
                 className="nav-item"
               >
                 <a
+                  style={{
+                    borderBottom: "1px solid #999",
+                    padding: "5px",
+                    borderBottomLeftRadius: "5px",
+                    borderBottomRightRadius: "5px",
+                    background:
+                      selectedSubProvider === provider ? "#999" : "none",
+                    color: "white",
+                  }}
                   onClick={() => {
                     setSelectedSubProvider(provider);
                     setSearchQuery("");

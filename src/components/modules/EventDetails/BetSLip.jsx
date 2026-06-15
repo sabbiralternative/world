@@ -19,8 +19,9 @@ import {
   handleDecreasePrice,
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
+import { useGetEventDetailsQuery } from "../../../redux/features/events/events";
 
-const BetSLip = ({ currentPlaceBetEvent }) => {
+const BetSLip = () => {
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
   const [profit, setProfit] = useState(0);
@@ -35,7 +36,15 @@ const BetSLip = ({ currentPlaceBetEvent }) => {
   const { placeBetValues, price, stake, predictOdd } = useSelector(
     (state) => state?.event,
   );
-
+  const { data: eventData } = useGetEventDetailsQuery(
+    { eventTypeId, eventId },
+    {
+      pollingInterval: 1000,
+    },
+  );
+  const currentPlaceBetEvent = eventData?.result?.find(
+    (item) => item?.id === placeBetValues?.marketId,
+  );
   const buttonValues = localStorage.getItem("buttonValue");
   let parseButtonValues = [];
   if (buttonValues) {
@@ -261,12 +270,6 @@ const BetSLip = ({ currentPlaceBetEvent }) => {
                   <div className="bet-slip">
                     <div className="bet-nation">
                       <span>{placeBetValues?.name.join(" V ")}</span>
-                      <a
-                        onClick={handleCancelBet}
-                        className="close-bet float-right"
-                      >
-                        <img src="https://wver.sprintstaticdata.com/v224/static/front/img/close.svg" />
-                      </a>
                     </div>
                     <div className="bet-team">
                       <span
@@ -371,7 +374,7 @@ const BetSLip = ({ currentPlaceBetEvent }) => {
                     <button
                       onClick={handleOrderBets}
                       className="btn btn-primary btn-block"
-                      disabled="disabled"
+                      disabled={!stake || !price}
                     >
                       <span>Place Bet</span>
                     </button>

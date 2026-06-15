@@ -3,6 +3,7 @@ import { Settings } from "../../../api";
 import {
   setShowBanner,
   setShowLoginModal,
+  setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 import { useForm } from "react-hook-form";
@@ -211,6 +212,13 @@ const Unauthorized = () => {
         className="btn btn-primary btn-demo d-none-mobile ml-1"
       >
         Demo
+      </button>
+      <button
+        onClick={() => dispatch(setShowRegisterModal(true))}
+        type="button"
+        className="btn btn-primary btn-demo d-none-mobile ml-1"
+      >
+        Register
       </button>
       {Settings.apk_link && (
         <a onClick={handleDownload}>

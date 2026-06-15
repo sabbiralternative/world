@@ -11,9 +11,11 @@ import {
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const Login = () => {
+  const ref = useRef();
   const { closePopupForForever } = useSelector((state) => state.global);
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ const Login = () => {
   const closeLoginModal = () => {
     dispatch(setShowLoginModal(false));
   };
+
+  useCloseModalClickOutside(ref, closeLoginModal);
 
   const onSubmit = async ({ username, password }) => {
     const loginData = {
@@ -131,7 +135,7 @@ const Login = () => {
   return (
     <div
       id="login-point___BV_modal_outer_"
-      style={{ position: "absolute", zIndex: 1040 }}
+      style={{ position: "absolute", zIndex: 9999999 }}
     >
       <div
         id="login-point"
@@ -144,6 +148,7 @@ const Login = () => {
         <div className="modal-dialog modal-md">
           <span tabIndex={0} />
           <div
+            ref={ref}
             id="login-point___BV_modal_content_"
             tabIndex={-1}
             className="modal-content"

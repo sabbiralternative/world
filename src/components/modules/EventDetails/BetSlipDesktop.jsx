@@ -19,7 +19,8 @@ import {
   handleDecreasePrice,
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
-const BetSlipDesktop = ({ currentPlaceBetEvent }) => {
+import { useGetEventDetailsQuery } from "../../../redux/features/events/events";
+const BetSlipDesktop = () => {
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
   const [profit, setProfit] = useState(0);
@@ -32,6 +33,15 @@ const BetSlipDesktop = ({ currentPlaceBetEvent }) => {
   const { refetch: refetchBalance } = useBalance();
   const { refetch: refetchExposure } = useExposure(eventId);
   const { placeBetValues, price, stake } = useSelector((state) => state?.event);
+  const { data: eventData } = useGetEventDetailsQuery(
+    { eventTypeId, eventId },
+    {
+      pollingInterval: 1000,
+    },
+  );
+  const currentPlaceBetEvent = eventData?.result?.find(
+    (item) => item?.id === placeBetValues?.marketId,
+  );
 
   const buttonValues = localStorage.getItem("buttonValue");
   let parseButtonValues = [];

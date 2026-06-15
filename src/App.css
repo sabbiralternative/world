@@ -975,7 +975,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
   background-color: var(--bg-primary);
 }
 
-button.btn {
+/* button.btn {
   font-size: 12px;
   white-space: nowrap;
   border: none;
@@ -985,7 +985,7 @@ button.btn {
   font-weight: 300;
   cursor: pointer;
   width: 100%;
-}
+} */
 
 /* referral modal */
 

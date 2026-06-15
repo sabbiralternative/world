@@ -20,17 +20,35 @@ const SecondTab = ({
     }
   }, [selectedCategory]);
   return (
-    <div style={{ scrollBehavior: "smooth" }} className="casino-tabs">
+    <div
+      style={{
+        scrollBehavior: "smooth",
+      }}
+      className="casino-tabs"
+    >
       <div className="casino-tabs-menu" style={{ maxWidth: "100%" }}>
         <a onClick={() => scrollToLeft(ref)} className="arrow-tabs arrow-left">
           <img src="https://wver.sprintstaticdata.com/v227/static/front/img/arrow-down.svg" />
         </a>
         <ul ref={ref} id="casino-scroll-tab" className="nav nav-tabs">
           <li
-            ref={selectedCategory === "All" ? activeRef : null}
+            style={{ border: "1px solid #999", borderRadius: "5px" }}
+            ref={selectedCategory === "all" ? activeRef : null}
             className="nav-item"
           >
             <a
+              onClick={() => {
+                setSelectedCategory("all");
+                setSearchQuery("");
+              }}
+              style={{
+                borderBottom: "1px solid #999",
+                padding: "5px",
+                borderBottomLeftRadius: "5px",
+                borderBottomRightRadius: "5px",
+                background: selectedCategory === "all" ? "#999" : "none",
+                color: "white",
+              }}
               className={`nav-link ${
                 selectedCategory === "all" ? "active" : ""
               }`}
@@ -42,11 +60,20 @@ const SecondTab = ({
           {categories?.map((category, i) => {
             return (
               <li
+                style={{ border: "1px solid #999", borderRadius: "5px" }}
                 ref={selectedCategory === category ? activeRef : null}
                 key={i}
                 className="nav-item"
               >
                 <a
+                  style={{
+                    borderBottom: "1px solid #999",
+                    padding: "5px",
+                    borderBottomLeftRadius: "5px",
+                    borderBottomRightRadius: "5px",
+                    background: selectedCategory === category ? "#999" : "none",
+                    color: "white",
+                  }}
                   onClick={() => {
                     setSelectedCategory(category);
                     setSearchQuery("");
@@ -62,7 +89,7 @@ const SecondTab = ({
                       .join("")
                       .toLowerCase()}.svg`}
                   />
-                  <span>Roulette</span>
+                  <span>{category}</span>
                 </a>
               </li>
             );

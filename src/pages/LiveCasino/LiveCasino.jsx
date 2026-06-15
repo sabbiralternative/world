@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useGetUltraLobby from "../../hooks/ultraLobby";
 import { Settings } from "../../api";
@@ -7,8 +7,10 @@ import toast from "react-hot-toast";
 import { Loader } from "rsuite";
 import FirstTab from "./FirstTab";
 import SecondTab from "./SecondTab";
+import { setShowLoginModal } from "../../redux/features/global/globalSlice";
 
 const LiveCasino = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token, bonusToken } = useSelector((state) => state.auth);
   const [error, setError] = useState("");
@@ -95,7 +97,7 @@ const LiveCasino = () => {
         setShowWarning(true);
       }
     } else {
-      navigate("/login");
+      dispatch(setShowLoginModal(true));
     }
   };
 

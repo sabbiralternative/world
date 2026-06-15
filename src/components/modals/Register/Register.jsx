@@ -8,13 +8,15 @@ import {
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useGetOtpMutation,
   useRegisterMutation,
 } from "../../../redux/features/auth/authApi";
+import useCloseModalClickOutside from "../../../hooks/closeModal";
 
 const Register = () => {
+  const ref = useRef();
   const affnook_token = localStorage.getItem("affnook_token");
   const referralCode = localStorage.getItem("referralCode");
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ const Register = () => {
   const closeRegisterModal = () => {
     dispatch(setShowRegisterModal(false));
   };
-
+  useCloseModalClickOutside(ref, closeRegisterModal);
   const handleOTP = async () => {
     const res = await getOTP({ mobile }).unwrap();
     if (res?.success) {
@@ -122,7 +124,7 @@ const Register = () => {
   return (
     <div
       id="login-point___BV_modal_outer_"
-      style={{ position: "absolute", zIndex: 1040 }}
+      style={{ position: "absolute", zIndex: 9999999 }}
     >
       <div
         id="login-point"

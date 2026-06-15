@@ -16,6 +16,7 @@ import Score from "../../components/modules/EventDetails/Score";
 import HorseGreyhoundEventDetails from "../../components/modules/EventDetails/HorseGreyoundEventDetails";
 
 const EventDetails = () => {
+  const [showVideo, setShowVideo] = useState(true);
   const [sportsVideo, { data: iframe }] = useVideoMutation();
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
@@ -151,6 +152,7 @@ const EventDetails = () => {
     handleGetVideo();
   }, []);
 
+  console.log(data);
   return (
     <div className="center-main-content">
       {placeBetValues && window.innerWidth < 1024 && <BetSLip />}
@@ -177,7 +179,14 @@ const EventDetails = () => {
                     <small>{data?.result?.[0]?.openDate}</small>
                   </div>
                 </span>
-                <span></span>
+                <span>
+                  {data?.score?.hasVideo && (
+                    <i
+                      onClick={() => setShowVideo(!showVideo)}
+                      className="fas fa-tv"
+                    ></i>
+                  )}
+                </span>
               </div>
 
               <div className="w-100 d-flex flex-wrap">
@@ -197,13 +206,19 @@ const EventDetails = () => {
                       ></iframe>
                     </div>
                   )}
-                  {iframe?.result?.url && (
-                    <iframe
-                      id="tvStr"
-                      className="w-100"
-                      src={iframe?.result?.url}
-                    ></iframe>
-                  )}
+                  {iframe?.result?.url &&
+                    data?.score?.hasVideo &&
+                    showVideo && (
+                      <div className="video-tv d-none-desktop">
+                        <iframe
+                          style={{
+                            width: "100%",
+                            overflow: "hidden",
+                          }}
+                          src={iframe?.result?.url}
+                        ></iframe>
+                      </div>
+                    )}
                 </div>
                 {eventTypeId == 4 && data?.iscore && (
                   <Score iscore={data?.iscore} />

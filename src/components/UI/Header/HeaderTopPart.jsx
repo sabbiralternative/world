@@ -8,6 +8,7 @@ import {
   setClosePopUpForForever,
   setShowAPKModal,
   setShowAppPopUp,
+  setShowLoginModal,
 } from "../../../redux/features/global/globalSlice";
 import Error from "../../modals/Error/Error";
 import Notification from "./Notification";
@@ -89,7 +90,7 @@ const HeaderTopPart = () => {
         setShowWarning(true);
       }
     } else {
-      toast.error("Please login to play");
+      dispatch(setShowLoginModal(true));
     }
   };
 

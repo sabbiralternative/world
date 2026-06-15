@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import "./promotions.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useBalance from "../../hooks/balance";
 import { useState } from "react";
 import { useBonusMutation } from "../../hooks/bonus";
 import toast from "react-hot-toast";
 import images from "../../assets/images";
+import { setShowLoginModal } from "../../redux/features/global/globalSlice";
 
 const Promotions = () => {
+  const dispatch = useDispatch();
   const { refetch } = useBalance();
   const [coupon, setCoupon] = useState(null);
   const { mutateAsync } = useBonusMutation();
@@ -36,7 +38,7 @@ const Promotions = () => {
         toast.error(data?.error);
       }
     } else {
-      navigate("/login");
+      dispatch(setShowLoginModal(true));
     }
   };
   return (
