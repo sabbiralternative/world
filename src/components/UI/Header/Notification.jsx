@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Marquee from "react-fast-marquee";
-import { RxCross2 } from "react-icons/rx";
+// import Marquee from "react-fast-marquee";
+// import { RxCross2 } from "react-icons/rx";
 import { setShowNotification } from "../../../redux/features/global/globalSlice";
 import useGetNotification from "../../../hooks/useGetNotification";
 
@@ -47,52 +47,42 @@ const Notification = () => {
     dispatch,
   ]);
 
-  const closeNotification = () => {
-    const notificationIds =
-      JSON.parse(localStorage.getItem("notificationId")) || [];
+  // const closeNotification = () => {
+  //   const notificationIds =
+  //     JSON.parse(localStorage.getItem("notificationId")) || [];
 
-    notification?.forEach((item) => {
-      if (!notificationIds.some((notif) => notif.id === item.id)) {
-        notificationIds.push({ id: item.id });
-      }
-    });
+  //   notification?.forEach((item) => {
+  //     if (!notificationIds.some((notif) => notif.id === item.id)) {
+  //       notificationIds.push({ id: item.id });
+  //     }
+  //   });
 
-    localStorage.setItem("notificationId", JSON.stringify(notificationIds));
+  //   localStorage.setItem("notificationId", JSON.stringify(notificationIds));
 
-    dispatch(setShowNotification(false));
-  };
+  //   dispatch(setShowNotification(false));
+  // };
 
   return (
-    <>
-      {showNotification && filteredNotification?.length > 0 && (
+    <div className="news-bar d-none-mobile">
+      <div className="marquee-wrapper">
         <div
-          style={{
-            padding: "2px 5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "20px",
-            fontSize: "11px",
-            backgroundColor: "#353535",
-          }}
+          className="marquee-content"
+          style={{ animationDuration: "17.32s" }}
         >
-          <Marquee>
-            {filteredNotification?.map((item) => (
-              <p key={item?.id} className="mr-[100vw] text-white">
-                {item?.text}
-              </p>
-            ))}
-          </Marquee>
-
-          <RxCross2
-            color="#fff"
-            onClick={closeNotification}
-            size={20}
-            cursor="pointer"
-          />
+          {filteredNotification?.map((item) => (
+            <p key={item?.id} className="mr-[100vw] text-white">
+              {item?.text}
+            </p>
+          ))}
         </div>
-      )}
-    </>
+      </div>
+      <div className="news-title">
+        <img
+          src="https://wver.sprintstaticdata.com/v223/static/front/img/icons/speaker.svg"
+          alt="news"
+        />
+      </div>
+    </div>
   );
 };
 

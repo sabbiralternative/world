@@ -9,8 +9,10 @@ import { useForm } from "react-hook-form";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Unauthorized = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
@@ -170,15 +172,19 @@ const Unauthorized = () => {
             <input
               {...register("password", { required: true })}
               placeholder="Password*"
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-control"
             />
             <div className="input-group-append">
               <button
+                onClick={() => setShowPassword(!showPassword)}
                 type="button"
                 className="btn btn-secondary password-visible"
               >
-                <i aria-hidden="true" className="fa fa-eye" />
+                <i
+                  aria-hidden="true"
+                  className={`fa ${showPassword ? "fa-eye " : "fa-eye-slash "}`}
+                />
               </button>
             </div>
           </div>

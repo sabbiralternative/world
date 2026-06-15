@@ -29,6 +29,7 @@ import Promotions from "../pages/Promotions/Promotions";
 import LossBackBonus from "../pages/LossBackBonus/LossBackBonus";
 import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
 import CasinoIFrame from "../pages/CasinoIFrame/CasinoIFrame";
+import LiveCasino from "../pages/LiveCasino/LiveCasino";
 
 export const router = createBrowserRouter(
   [
@@ -128,6 +129,10 @@ export const router = createBrowserRouter(
         {
           path: "/app-only-bonus",
           element: <AppOnlyBonus />,
+        },
+        {
+          path: "/live-casino",
+          element: <LiveCasino />,
         },
       ],
     },

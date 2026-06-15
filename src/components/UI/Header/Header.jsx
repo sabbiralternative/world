@@ -62,7 +62,6 @@ const Header = () => {
   }
   return (
     <header className="header" style={{ padding: "0px", height: "auto" }}>
-      <Notification />
       {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {Settings.apk_link && showAPKModal && <DownloadAPK />}
       <div
@@ -86,22 +85,8 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className="news-bar d-none-mobile">
-        <div className="marquee-wrapper">
-          <div
-            className="marquee-content"
-            style={{ animationDuration: "17.32s" }}
-          >
-            IPL markets live. Bookmaker, Fancy and more. Predict and win big.
-          </div>
-        </div>
-        <div className="news-title">
-          <img
-            src="https://wver.sprintstaticdata.com/v223/static/front/img/icons/speaker.svg"
-            alt="news"
-          />
-        </div>
-      </div>
+      <Notification />
+
       {!token && <Unauthorized />}
       {token && <LoggedIn />}
     </header>

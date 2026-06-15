@@ -165,13 +165,13 @@ const HeaderTopPart = () => {
             <Link
               to="/"
               aria-current="page"
-              className="router-link-exact-active router-link-active"
+              // className="router-link-exact-active router-link-active"
             >
               Exchange
             </Link>
           </li>
           <li>
-            <Link to="/casino" className>
+            <Link to="/live-casino" className>
               Live Casino
             </Link>
           </li>
