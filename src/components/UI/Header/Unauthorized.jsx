@@ -6,58 +6,55 @@ import {
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
-import { useForm } from "react-hook-form";
 import { setUser } from "../../../redux/features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useState } from "react";
 
 const Unauthorized = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  // const [showPassword, setShowPassword] = useState(false);
+  // const navigate = useNavigate();
   const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm();
 
-  const onSubmit = async ({ username, password }) => {
-    const loginData = {
-      username: username,
-      password: password,
-      b2c: Settings.b2c,
-      apk: closePopupForForever ? true : false,
-      nonce: crypto.randomUUID(),
-    };
-    const result = await handleLogin(loginData).unwrap();
+  // const onSubmit = async ({ username, password }) => {
+  //   const loginData = {
+  //     username: username,
+  //     password: password,
+  //     b2c: Settings.b2c,
+  //     apk: closePopupForForever ? true : false,
+  //     nonce: crypto.randomUUID(),
+  //   };
+  //   const result = await handleLogin(loginData).unwrap();
 
-    if (result.success) {
-      const token = result?.result?.token;
-      const bonusToken = result?.result?.bonusToken;
-      const user = result?.result?.loginName;
-      const game = result?.result?.buttonValue?.game;
-      const memberId = result?.result?.memberId;
-      const banner = result?.result?.banner;
+  //   if (result.success) {
+  //     const token = result?.result?.token;
+  //     const bonusToken = result?.result?.bonusToken;
+  //     const user = result?.result?.loginName;
+  //     const game = result?.result?.buttonValue?.game;
+  //     const memberId = result?.result?.memberId;
+  //     const banner = result?.result?.banner;
 
-      dispatch(setUser({ user, token, memberId }));
-      localStorage.setItem("memberId", memberId);
-      localStorage.setItem("buttonValue", JSON.stringify(game));
-      localStorage.setItem("token", token);
-      localStorage.setItem("bonusToken", bonusToken);
-      if (banner) {
-        localStorage.setItem("banner", banner);
-        dispatch(setShowBanner(true));
-      }
-      if (result?.result?.changePassword) {
-        localStorage.setItem("changePassword", true);
-        navigate("/change-password");
-      }
-      if (!result?.result?.changePassword && token && user) {
-        toast.success("Login successful");
-      }
-    } else {
-      toast.error(result?.error);
-    }
-  };
+  //     dispatch(setUser({ user, token, memberId }));
+  //     localStorage.setItem("memberId", memberId);
+  //     localStorage.setItem("buttonValue", JSON.stringify(game));
+  //     localStorage.setItem("token", token);
+  //     localStorage.setItem("bonusToken", bonusToken);
+  //     if (banner) {
+  //       localStorage.setItem("banner", banner);
+  //       dispatch(setShowBanner(true));
+  //     }
+  //     if (result?.result?.changePassword) {
+  //       localStorage.setItem("changePassword", true);
+  //       navigate("/change-password");
+  //     }
+  //     if (!result?.result?.changePassword && token && user) {
+  //       toast.success("Login successful");
+  //     }
+  //   } else {
+  //     toast.error(result?.error);
+  //   }
+  // };
 
   /* handle login demo user */
   const loginWithDemo = async () => {
@@ -148,14 +145,14 @@ const Unauthorized = () => {
         </a>
       )}
 
-      <button
+      {/* <button
         onClick={() => dispatch(setShowLoginModal(true))}
         className="btn btn-primary login-btn d-none-desktop"
       >
         Login
-      </button>
+      </button> */}
 
-      <form
+      {/* <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
         className="d-none-mobile"
@@ -205,7 +202,14 @@ const Unauthorized = () => {
         <button type="submit" className="btn btn-primary">
           Login
         </button>
-      </form>
+      </form> */}
+      <button
+        onClick={() => dispatch(setShowLoginModal(true))}
+        type="button"
+        className="btn btn-primary"
+      >
+        Login
+      </button>
       <button
         onClick={loginWithDemo}
         type="button"
@@ -213,13 +217,16 @@ const Unauthorized = () => {
       >
         Demo
       </button>
-      <button
-        onClick={() => dispatch(setShowRegisterModal(true))}
-        type="button"
-        className="btn btn-primary btn-demo d-none-mobile ml-1"
-      >
-        Register
-      </button>
+      {Settings.registration && (
+        <button
+          onClick={() => dispatch(setShowRegisterModal(true))}
+          type="button"
+          className="btn btn-primary btn-demo d-none-mobile ml-1"
+        >
+          Register
+        </button>
+      )}
+
       {Settings.apk_link && (
         <a onClick={handleDownload}>
           <svg
