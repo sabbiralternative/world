@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "../../../api";
 import { useLogo } from "../../../context/ApiProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AppPopup from "./AppPopUp";
 import { Fragment, useEffect, useState } from "react";
 import {
@@ -13,8 +13,11 @@ import Error from "../../modals/Error/Error";
 import Notification from "./Notification";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
+import toast from "react-hot-toast";
 
 const HeaderTopPart = () => {
+  const [showWarning, setShowWarning] = useState(false);
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
   const stored_build_version = localStorage.getItem("build_version");
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const location = useLocation();
@@ -76,6 +79,20 @@ const HeaderTopPart = () => {
     return <Error />;
   }
 
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      if (Settings.casino_currency !== "AED") {
+        navigate(`/casino/${name}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      toast.error("Please login to play");
+    }
+  };
+
   return (
     <Fragment>
       {/* <Notification />
@@ -92,7 +109,11 @@ const HeaderTopPart = () => {
       <div className="header-top">
         <ul>
           <li>
-            <a href="javascript:void(0);" className="aviator" role="button">
+            <a
+              onClick={() => handleNavigateToIFrame("aviator", 201206)}
+              className="aviator"
+              role="button"
+            >
               <svg
                 id="Layer_2"
                 data-name="Layer 2"
@@ -132,38 +153,27 @@ const HeaderTopPart = () => {
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" role="button">
+            <a
+              onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
+              role="button"
+            >
               Sports Book
             </a>
           </li>
+
           <li>
-            <a href="javascript:void(0);" role="button">
-              Lottery
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
+            <Link
+              to="/"
               aria-current="page"
               className="router-link-exact-active router-link-active"
             >
               Exchange
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/o_casino" className>
+            <Link to="/casino" className>
               Live Casino
-            </a>
-          </li>
-          <li>
-            <a href="/o_slot" className>
-              Slot
-            </a>
-          </li>
-          <li>
-            <a href="/o_fantasy" className>
-              Fantasy Games
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="setting-box-container">

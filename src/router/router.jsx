@@ -28,6 +28,7 @@ import Affiliate from "../pages/Affiliate/Affiliate";
 import Promotions from "../pages/Promotions/Promotions";
 import LossBackBonus from "../pages/LossBackBonus/LossBackBonus";
 import AppOnlyBonus from "../pages/AppOnlyBonus/AppOnlyBonus";
+import CasinoIFrame from "../pages/CasinoIFrame/CasinoIFrame";
 
 export const router = createBrowserRouter(
   [
@@ -145,6 +146,10 @@ export const router = createBrowserRouter(
     {
       path: "/change-password",
       element: <ChangePassword />,
+    },
+    {
+      path: "/casino/:name/:gameId",
+      element: <CasinoIFrame />,
     },
   ],
   {

@@ -16,11 +16,14 @@ export const Events = () => {
     navigate(`/event-details/${eventTypeId}/${keys}`);
   };
 
-  const groupedData = Object.entries(data)
-    .filter(([, value]) => value.visible === true)
-    .sort(([, a], [, b]) => {
-      return b.inPlay - a.inPlay;
-    });
+  const groupedData =
+    data && Object.entries(data)
+      ? Object.entries(data)
+          .filter(([, value]) => value.visible === true)
+          .sort(([, a], [, b]) => {
+            return b.inPlay - a.inPlay;
+          })
+      : [];
 
   return (
     <Fragment>
