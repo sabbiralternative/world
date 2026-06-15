@@ -221,7 +221,7 @@ const Unauthorized = () => {
         <button
           onClick={() => dispatch(setShowRegisterModal(true))}
           type="button"
-          className="btn btn-primary btn-demo d-none-mobile ml-1"
+          className="btn btn-primary btn-demo  ml-1"
         >
           Register
         </button>

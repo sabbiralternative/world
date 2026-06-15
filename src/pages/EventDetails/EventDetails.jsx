@@ -152,7 +152,6 @@ const EventDetails = () => {
     handleGetVideo();
   }, []);
 
-  console.log(data);
   return (
     <div className="center-main-content">
       {placeBetValues && window.innerWidth < 1024 && <BetSLip />}
@@ -169,10 +168,7 @@ const EventDetails = () => {
                 </span>
               </div>
 
-              <div
-                style={{ marginTop: "25px" }}
-                className="game-header d-none-desktop sport4"
-              >
+              <div className="game-header d-none-desktop sport4">
                 <span className="game-header-name">
                   {data?.result?.[0]?.eventName}
                   <div>

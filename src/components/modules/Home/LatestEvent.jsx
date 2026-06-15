@@ -3,7 +3,7 @@ import { useLatestEvent } from "../../../hooks/latestEvent";
 
 const LatestEvent = () => {
   const { data } = useLatestEvent();
-  console.log(data);
+
   return (
     <div className="new-event">
       {data?.map((item) => {

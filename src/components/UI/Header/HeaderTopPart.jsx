@@ -163,15 +163,6 @@ const HeaderTopPart = () => {
           </li>
 
           <li>
-            <Link
-              to="/"
-              aria-current="page"
-              // className="router-link-exact-active router-link-active"
-            >
-              Exchange
-            </Link>
-          </li>
-          <li>
             <Link to="/live-casino" className>
               Live Casino
             </Link>

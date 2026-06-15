@@ -41,13 +41,13 @@ input:-moz-autofill {
   border-radius: 4px;
 }
 
-.search-box .search-list {
+/* .search-box .search-list {
   position: absolute;
   top: 100%;
   min-width: 300px;
   background-color: #f7f7f7;
   color: #333;
-  /* color: white; */
+
   box-shadow: 0 0 5px #f2f2f2;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -62,7 +62,7 @@ input:-moz-autofill {
   max-height: 300px;
   overflow-x: hidden;
   overflow-y: auto;
-}
+} */
 
 .search-game-name {
   background: var(--bg-color-headerBg);

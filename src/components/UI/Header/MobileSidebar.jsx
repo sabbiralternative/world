@@ -2,6 +2,7 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { Link } from "react-router-dom";
 import { latestEvent } from "../../../static/latest-event";
+import Search from "./Search";
 
 const MobileSidebar = ({ setShowSidebar }) => {
   const ref = useRef();
@@ -21,20 +22,8 @@ const MobileSidebar = ({ setShowSidebar }) => {
         <div className="b-sidebar-body">
           <div id="sidebar-left-mo" className="sidebar-left">
             <div className="menu-scrolable">
-              <div className="search-box">
-                <div className="form-group d-inline-block mb-0">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    autoComplete="off"
-                    className="form-control"
-                    style={{ textTransform: "lowercase" }}
-                  />
-                  <img
-                    src="https://wver.sprintstaticdata.com/v224/static/front/img/search.svg"
-                    className="search-icon"
-                  />
-                </div>
+              <div className="search-box" style={{ display: "flex" }}>
+                <Search setShowSidebar={setShowSidebar} />
                 <div
                   onClick={() => setShowSidebar(false)}
                   className="menu-button-mobile d-none-desktop"

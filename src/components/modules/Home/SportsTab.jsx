@@ -1,10 +1,34 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Settings } from "../../../api";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const SportsTab = () => {
+  const navigate = useNavigate();
+  const [showWarning, setShowWarning] = useState(false);
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      if (Settings.casino_currency !== "AED") {
+        navigate(`/casino/${name}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      dispatch(setShowLoginModal(true));
+    }
+  };
   return (
     <div className="sport-tabs menu-tabs d-none-desktop">
       <ul className="nav nav-tabs">
         <li className="nav-item">
           <a
-            href="javascript:void(0);"
+            onClick={() => handleNavigateToIFrame("aviator", 201206)}
             className="aviator nav-link"
             role="button"
           >
@@ -47,34 +71,38 @@ const SportsTab = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a href="javascript:void(0);" className="nav-link" role="button">
+          <a
+            onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
+            className="nav-link"
+            role="button"
+          >
             Sports Book
           </a>
         </li>
         <li className="nav-item">
-          <a href="javascript:void(0);" className="nav-link" role="button">
+          <Link
+            to="/live-casino?category=Lottery"
+            className="nav-link"
+            role="button"
+          >
             Lottery
-          </a>
+          </Link>
         </li>
+
         <li className="nav-item">
-          <a href="/sport" className="nav-link">
-            Exchange
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="/o_casino" className="nav-link">
+          <Link to="/live-casino" className="nav-link">
             Live Casino
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="/o_slot" className="nav-link">
+          <Link to="/live-casino?category=Slots" className="nav-link">
             Slot
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="/o_fantasy" className="nav-link">
+          <Link to="/live-casino?category=Fantasy" className="nav-link">
             Fantasy Games
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

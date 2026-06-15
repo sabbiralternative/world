@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useGetUltraLobby from "../../hooks/ultraLobby";
 import { Settings } from "../../api";
 import toast from "react-hot-toast";
@@ -10,6 +10,9 @@ import SecondTab from "./SecondTab";
 import { setShowLoginModal } from "../../redux/features/global/globalSlice";
 
 const LiveCasino = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const category = params.get("category");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token, bonusToken } = useSelector((state) => state.auth);
@@ -107,15 +110,22 @@ const LiveCasino = () => {
     }
   }, [error]);
 
+  useEffect(() => {
+    if (category) {
+      setSelectedCategory(category);
+    }
+  }, [category]);
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <div className="center-main-content">
       <div className="casino-list-container center-container">
         <div>
           <div className="report-box casino-box fancy-page">
-            <div className="container-fluid container-fluid-5 d-none-mobile">
+            <div className="container-fluid container-fluid-5 ">
               <div className="row row1">
                 <div className="col-md-12 tab-content">
                   <FirstTab
