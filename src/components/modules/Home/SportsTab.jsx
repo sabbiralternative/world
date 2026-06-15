@@ -100,8 +100,8 @@ const SportsTab = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/live-casino?category=Fantasy" className="nav-link">
-            Fantasy Games
+          <Link to="/live-casino?category=Dragon Tiger" className="nav-link">
+            Dragon Tiger
           </Link>
         </li>
       </ul>
