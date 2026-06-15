@@ -1,4 +1,17 @@
+import { useSelector } from "react-redux";
+import { Settings } from "../../../api";
+import images from "../../../assets/images";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
+  const { token } = useSelector((state) => state.auth);
+  const navigateWhatsApp = () => {
+    if (token && Settings?.branchWhatsapplink) {
+      window.open(Settings?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(Settings?.whatsapplink, "_blank");
+    }
+  };
   return (
     <footer className="footer">
       <div className="support">
@@ -9,37 +22,38 @@ const Footer = () => {
           <div className="text-center w-100"></div>
         </div>
         <div className="footer-social">
-          <a href="https://facebook.com/World777exchofficial" target="_blank">
-            <img
-              src="https://wver.sprintstaticdata.com/v223/static/front/img/home-banners/social/facebook.png"
-              alt="facebook"
-            />
-          </a>
-          <a href="https://www.instagram.com/world777_online/" target="_blank">
-            <img
-              src="https://wver.sprintstaticdata.com/v223/static/front/img/home-banners/social/instagram.png"
-              alt="instagram"
-            />
-          </a>
-          <a href="https://t.me/World777_online" target="_blank">
-            <img
-              src="https://wver.sprintstaticdata.com/v223/static/front/img/home-banners/social/telegram.png"
-              alt="telegram"
-            />
-          </a>
+          {(Settings?.whatsapplink || Settings?.branchWhatsapplink) && (
+            <a onClick={navigateWhatsApp}>
+              <img src={images.whatsapp} alt="facebook" />
+            </a>
+          )}
+
+          {Settings?.instagramLink && (
+            <a
+              onClick={() => window.open(Settings?.instagramLink, "_blank")}
+              target="_blank"
+            >
+              <img src={images.instagram} alt="instagram" />
+            </a>
+          )}
+          {Settings?.telegramLink && (
+            <a onClick={() => window.open(Settings?.telegramLink, "_blank")}>
+              <img src={images.telegram} alt="telegram" />
+            </a>
+          )}
         </div>
       </div>
       <div className="footer-menu">
         <ul>
           <li>
-            <a href="/terms-and-conditions" className target="_blank">
+            <Link to="/terms-and-conditions" className target="_blank">
               Terms and Conditions
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/responsible-gaming" className target="_blank">
+            <Link to="/responsible-gaming" className target="_blank">
               Responsible Gaming
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
