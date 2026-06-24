@@ -6,8 +6,15 @@ import { logout } from "../../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
 import { Settings } from "../../../api";
 import StakeSetting from "../../modals/StakeSetting/StakeSetting";
+import images from "../../../assets/images";
+import { useLanguage } from "../../../context/LanguageProvider";
+import Language from "../../modals/Language";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const LoggedIn = () => {
+  const { language, valueByLanguage } = useLanguage();
+  const [showLanguage, setShowLanguage] = useState(false);
   const [showStakeSettings, setShowStakeSettings] = useState(false);
   const { closePopupForForever } = useSelector((state) => state.global);
   const dispatch = useDispatch();
@@ -56,10 +63,10 @@ const LoggedIn = () => {
           className={`collapse user-dropdown ${showDropdown ? "show" : ""}  `}
         >
           <Link to="/deposit" className="dropdown-item">
-            Deposit
+            {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
           </Link>
           <Link to="/withdraw" className="dropdown-item">
-            Withdraw
+            {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
           </Link>
           <Link to="/deposit-withdraw-report" className="dropdown-item">
             Deposit Withdraw Report
@@ -68,10 +75,10 @@ const LoggedIn = () => {
             Betting Profit Loss
           </Link>
           <Link to="/my-bank-details" className="dropdown-item">
-            My Bank Details
+            {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
           </Link>
           <Link to="/bonus-statement" className="dropdown-item">
-            Bonus Statement
+            {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
           </Link>
           {Settings?.referral && (
             <Link to="/affiliate" className="dropdown-item">
@@ -98,7 +105,10 @@ const LoggedIn = () => {
           </a>
 
           <div className="login-seperator" />
-          <a onClick={handleLogout}>Logout</a>
+          <a onClick={handleLogout}>
+            {" "}
+            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
+          </a>
         </div>
       </div>
       <div className="text-center d-none-desktop bal-point">
@@ -129,10 +139,10 @@ const LoggedIn = () => {
           className={`collapse user-dropdown  ${showMobileDropdown ? "show" : ""}  `}
         >
           <Link to="/deposit" className="dropdown-item">
-            Deposit
+            {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
           </Link>
           <Link to="/withdraw" className="dropdown-item">
-            Withdraw
+            {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
           </Link>
           <Link to="/deposit-withdraw-report" className="dropdown-item">
             Deposit Withdraw Report
@@ -141,10 +151,10 @@ const LoggedIn = () => {
             Betting Profit Loss
           </Link>
           <Link to="/my-bank-details" className="dropdown-item">
-            My Bank Details
+            {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
           </Link>
           <Link to="/bonus-statement" className="dropdown-item">
-            Bonus Statement
+            {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
           </Link>
           {Settings?.referral && (
             <Link to="/affiliate" className="dropdown-item">
@@ -170,8 +180,47 @@ const LoggedIn = () => {
             Stake Settings
           </a>
           <div className="login-seperator" />
-          <a onClick={handleLogout}>Logout</a>
+          <a onClick={handleLogout}>
+            {" "}
+            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
+          </a>
         </div>
+      </div>
+      <div style={{ position: "relative", padding: "1px 4px" }}>
+        {Settings.language && (
+          <button onClick={() => setShowLanguage((prev) => !prev)}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "end",
+                background: "transparent",
+                border: "none",
+              }}
+            >
+              <img
+                style={{
+                  height: "20px",
+                  width: "20px",
+                }}
+                src={images.globe}
+                alt=""
+              />
+              <b
+                style={{
+                  margin: "0px",
+                  fontSize: "10px",
+                  textTransform: "capitalize",
+                  color: "white",
+                }}
+              >
+                {language || "EN"}
+              </b>
+            </div>
+          </button>
+        )}
+        {showLanguage && <Language setShowLanguage={setShowLanguage} />}
       </div>
     </div>
   );

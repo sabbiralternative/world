@@ -1,8 +1,12 @@
 import { useRef } from "react";
 import { scrollToLeft, scrollToRight } from "../../../utils/scroll";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const EventTab = () => {
+  const { valueByLanguage } = useLanguage();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const eventTypeId = params.get("eventTypeId");
@@ -23,7 +27,7 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "4" ? "active" : ""}`}
           >
             <i className="d-icon icon-4" />
-            <span>Cricket</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.CRICKET)}</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -32,7 +36,7 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "1" ? "active" : ""}`}
           >
             <i className="d-icon icon-1" />
-            <span>Football</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -41,7 +45,7 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "2" ? "active" : ""}`}
           >
             <i className="d-icon icon-2" />
-            <span>Tennis</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.TENNIS)}</span>
           </Link>
         </li>
 
@@ -51,7 +55,7 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "7" ? "active" : ""}`}
           >
             <i className="d-icon icon-10" />
-            <span>Horse Racing</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.HORSE)}</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -60,7 +64,10 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "4339" ? "active" : ""}`}
           >
             <i className="d-icon icon-65" />
-            <span>Greyhound Racing</span>
+            <span>
+              {" "}
+              {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+            </span>
           </Link>
         </li>
         <li className="nav-item">
@@ -69,7 +76,7 @@ const EventTab = () => {
             className={`nav-link  sport4 ${eventTypeId === "5" ? "active" : ""}`}
           >
             <i className="d-icon icon-66" />
-            <span>Kabaddi</span>
+            <span> {languageValue(valueByLanguage, LanguageKey.KABADDI)}</span>
           </Link>
         </li>
         <li className="nav-item">

@@ -3,8 +3,12 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { Link } from "react-router-dom";
 import { latestEvent } from "../../../static/latest-event";
 import Search from "./Search";
+import { useLanguage } from "../../../context/LanguageProvider";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 const MobileSidebar = ({ setShowSidebar }) => {
+  const { valueByLanguage } = useLanguage();
   const ref = useRef();
   useCloseModalClickOutside(ref, () => setShowSidebar(false));
   return (
@@ -47,7 +51,10 @@ const MobileSidebar = ({ setShowSidebar }) => {
                       className="dropdown-toggle sport10"
                     >
                       <i className="d-icon icon-10" />
-                      <span className="sport-name">Horse Racing</span>
+                      <span className="sport-name">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                      </span>
                     </Link>
                   </li>
                   <li className="nav-item dropdown dropright">
@@ -58,7 +65,10 @@ const MobileSidebar = ({ setShowSidebar }) => {
                       className="dropdown-toggle sport65"
                     >
                       <i className="d-icon icon-65" />
-                      <span className="sport-name">Greyhound Racing</span>
+                      <span className="sport-name">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                      </span>
                     </Link>
                   </li>
                 </ul>
@@ -100,7 +110,10 @@ const MobileSidebar = ({ setShowSidebar }) => {
                           >
                             <i className="d-icon icon-4" />
                             <span className="sport-name ifTooltip">
-                              Cricket
+                              {languageValue(
+                                valueByLanguage,
+                                LanguageKey.CRICKET,
+                              )}
                             </span>
                             {/* <span>(33)</span> */}
                           </Link>
@@ -115,7 +128,10 @@ const MobileSidebar = ({ setShowSidebar }) => {
                           >
                             <i className="d-icon icon-1" />
                             <span className="sport-name ifTooltip">
-                              Football
+                              {languageValue(
+                                valueByLanguage,
+                                LanguageKey.FOOTBALL,
+                              )}
                             </span>
                             {/* <span>(83)</span> */}
                           </Link>
@@ -129,7 +145,13 @@ const MobileSidebar = ({ setShowSidebar }) => {
                             className="dropdown-item dropdown-toggle sport2"
                           >
                             <i className="d-icon icon-2" />
-                            <span className="sport-name ifTooltip">Tennis</span>
+                            <span className="sport-name ifTooltip">
+                              {" "}
+                              {languageValue(
+                                valueByLanguage,
+                                LanguageKey.TENNIS,
+                              )}
+                            </span>
                             {/* <span>(143)</span> */}
                           </Link>
                         </li>
@@ -144,7 +166,10 @@ const MobileSidebar = ({ setShowSidebar }) => {
                           >
                             <i className="d-icon icon-66" />
                             <span className="sport-name ifTooltip">
-                              Kabaddi
+                              {languageValue(
+                                valueByLanguage,
+                                LanguageKey.KABADDI,
+                              )}
                             </span>
                           </Link>
                         </li>
