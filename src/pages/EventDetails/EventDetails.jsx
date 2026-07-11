@@ -14,6 +14,7 @@ import RightSidebar from "../../components/modules/EventDetails/RightSidebar";
 import BetSLip from "../../components/modules/EventDetails/BetSLip";
 import Score from "../../components/modules/EventDetails/Score";
 import HorseGreyhoundEventDetails from "../../components/modules/EventDetails/HorseGreyoundEventDetails";
+import Premium from "../../components/modules/EventDetails/Premium";
 
 const EventDetails = () => {
   const [showVideo, setShowVideo] = useState(true);
@@ -221,6 +222,9 @@ const EventDetails = () => {
                 )}
 
                 {matchOdds?.length > 0 && <MatchOdds data={matchOdds} />}
+                {data?.premium && data?.premium?.eventId && (
+                  <Premium premium={data?.premium} />
+                )}
                 {bookmaker?.length > 0 && <Bookmaker data={bookmaker} />}
                 {data?.result?.length > 0 && <Fancy data={data?.result} />}
                 {eventTypeId == 7 || eventTypeId == 4339 ? (
