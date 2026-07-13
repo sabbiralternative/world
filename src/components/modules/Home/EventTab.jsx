@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { eventNameList } from "../../../static/event-name-list";
 
 const EventTab = () => {
   const { valueByLanguage } = useLanguage();
@@ -88,6 +89,19 @@ const EventTab = () => {
             <span>Politics</span>
           </Link>
         </li>
+        {eventNameList.map((item) => {
+          return (
+            <li key={item.id} className="nav-item">
+              <Link
+                to={`/?eventTypeId=${item.id}`}
+                className={`nav-link  sport4 ${eventTypeId == item.id ? "active" : ""}`}
+              >
+                <img src={item.image} alt="" />
+                <span> {item.name}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <a onClick={() => scrollToRight(ref)} className="arrow-tabs arrow-right">
         <img

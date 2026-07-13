@@ -4,6 +4,7 @@ import { latestEvent } from "../../../static/latest-event";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { eventNameList } from "../../../static/event-name-list";
 
 const LeftSidebar = () => {
   const { valueByLanguage } = useLanguage();
@@ -147,6 +148,29 @@ const LeftSidebar = () => {
                   </Link>
                 </li>
               </ul>
+              {eventNameList.map((item) => {
+                return (
+                  <ul key={item.id} className="navbar-nav">
+                    <li className>
+                      <Link
+                        to={`/?eventTypeId=${item.id}`}
+                        className="dropdown-item dropdown-toggle sport40"
+                      >
+                        {/* <i className="d-icon icon-40" /> */}
+                        <img
+                          src={item.image}
+                          style={{ height: "16px", marginRight: "15px" }}
+                          alt=""
+                        />
+                        <span className="sport-name ifTooltip">
+                          {item.name}
+                        </span>
+                        {/* <span>(1)</span> */}
+                      </Link>
+                    </li>
+                  </ul>
+                );
+              })}
             </span>
           </div>
         </div>

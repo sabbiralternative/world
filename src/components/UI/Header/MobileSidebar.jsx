@@ -6,6 +6,7 @@ import Search from "./Search";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { eventNameList } from "../../../static/event-name-list";
 
 const MobileSidebar = ({ setShowSidebar }) => {
   const { valueByLanguage } = useLanguage();
@@ -189,6 +190,33 @@ const MobileSidebar = ({ setShowSidebar }) => {
                           </Link>
                         </li>
                       </ul>
+                      {eventNameList.map((item) => {
+                        return (
+                          <ul key={item.id} className="navbar-nav">
+                            <li className>
+                              <Link
+                                onClick={() => setShowSidebar(false)}
+                                to={`/?eventTypeId=${item.id}`}
+                                className="dropdown-item dropdown-toggle sport40"
+                              >
+                                {/* <i className="d-icon icon-40" /> */}
+                                <img
+                                  src={item.image}
+                                  style={{
+                                    height: "16px",
+                                    marginRight: "15px",
+                                  }}
+                                  alt=""
+                                />
+                                <span className="sport-name ifTooltip">
+                                  {item.name}
+                                </span>
+                                {/* <span>(1)</span> */}
+                              </Link>
+                            </li>
+                          </ul>
+                        );
+                      })}
                     </span>
                   </div>
                 </div>
