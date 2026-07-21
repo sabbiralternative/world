@@ -16,7 +16,7 @@ import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 
 const Unauthorized = () => {
-  const { language, valueByLanguage } = useLanguage();
+  const { valueByLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   // const [showPassword, setShowPassword] = useState(false);
   // const navigate = useNavigate();
@@ -304,7 +304,7 @@ const Unauthorized = () => {
                   color: "white",
                 }}
               >
-                {language || "EN"}
+                {/* {language || "EN"} */}
               </b>
             </div>
           </button>

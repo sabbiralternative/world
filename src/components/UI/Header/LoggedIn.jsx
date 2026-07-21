@@ -13,7 +13,7 @@ import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 
 const LoggedIn = () => {
-  const { language, valueByLanguage } = useLanguage();
+  const { valueByLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   const [showStakeSettings, setShowStakeSettings] = useState(false);
   const { closePopupForForever } = useSelector((state) => state.global);
@@ -215,7 +215,7 @@ const LoggedIn = () => {
                   color: "white",
                 }}
               >
-                {language || "EN"}
+                {/* {language || "EN"} */}
               </b>
             </div>
           </button>
