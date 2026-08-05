@@ -1,10 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGroupQuery } from "../../../hooks/group";
 import { EVENT_NAMES } from "../../../const";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import HorseGreyhound from "./HorseGreyhound";
+import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
+import LiveVirtual from "./LiveVirtual";
 
 export const Events = () => {
+  const [liveVirtual, setLiveVirtual] = useState([]);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const eventTypeId = params.get("eventTypeId");
@@ -16,15 +19,19 @@ export const Events = () => {
     navigate(`/event-details/${eventTypeId}/${keys}`);
   };
 
-  const groupedData =
-    data && Object.entries(data)
-      ? Object.entries(data)
-          .filter(([, value]) => value.visible === true)
-          .sort(([, a], [, b]) => {
-            return b.inPlay - a.inPlay;
-          })
-      : [];
-
+  // const groupedData =
+  //   data && Object.entries(data)
+  //     ? Object.entries(data)
+  //         .filter(([, value]) => value.visible === true)
+  //         .sort(([, a], [, b]) => {
+  //           return b.inPlay - a.inPlay;
+  //         })
+  //     : [];
+  const groupedData = filterLiveVirtual(
+    liveVirtual,
+    Number(eventTypeId) || 4,
+    data,
+  );
   return (
     <Fragment>
       {eventTypeId != 7 && eventTypeId != 4339 && (
@@ -33,6 +40,11 @@ export const Events = () => {
             <div className="game-title">
               <i className="d-icon icon-4" />{" "}
               <span>{EVENT_NAMES[eventTypeId]}</span>
+              <LiveVirtual
+                setLiveVirtual={setLiveVirtual}
+                liveVirtual={liveVirtual}
+                category={Number(eventTypeId) || 4}
+              />
             </div>
             <div className="point-title d-none-mobile">1</div>
             <div className="point-title d-none-mobile">X</div>
