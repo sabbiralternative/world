@@ -6,13 +6,15 @@ import {
   setPlaceBetValues,
   setRunnerId,
 } from "../../../redux/features/events/eventSlice";
-import toast from "react-hot-toast";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Bookmaker = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -281,7 +283,7 @@ const Bookmaker = ({ data }) => {
                           }}
                           className="btn btn-success btn-sm"
                         >
-                          Cashout{" "}
+                          {getLanguage(LanguageKey.CASHOUT)}{" "}
                           {teamProfitForGame?.profit &&
                             `(${teamProfitForGame.profit.toFixed(0)})`}
                         </button>
@@ -302,13 +304,13 @@ const Bookmaker = ({ data }) => {
                           // disabled={isGameSuspended(game)}
                           className="btn btn-success btn-sm"
                         >
-                          Speed Cashout
+                          {getLanguage(LanguageKey.SPEED_CASHOUT)}
                         </button>
                       )}
 
                     <span className="max-bet d-none-desktop">
                       <span title="Max : 1">
-                        Max:
+                        {getLanguage(LanguageKey.MAX)}:
                         <span>{game?.maxLiabilityPerBet}</span>
                       </span>
                     </span>
@@ -323,7 +325,7 @@ const Bookmaker = ({ data }) => {
                     <div className="nation-name">
                       <span className="max-bet">
                         <span title="Max : 1">
-                          Max:
+                          {getLanguage(LanguageKey.MAX)}:
                           <span>{game?.maxLiabilityPerBet}</span>
                         </span>
                       </span>

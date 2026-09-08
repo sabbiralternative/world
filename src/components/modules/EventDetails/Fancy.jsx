@@ -7,12 +7,14 @@ import {
   setPlaceBetValues,
   setRunnerId,
 } from "../../../redux/features/events/eventSlice";
-import toast from "react-hot-toast";
 import Ladder from "../../modals/Ladder/Ladder";
 import images from "../../../assets/images";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Fancy = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const fancyData = data?.filter(
     (fancy) =>
       fancy.btype === "FANCY" &&
@@ -277,8 +279,10 @@ const Fancy = ({ data }) => {
                           </span>
                         </div>
                         <div className="fancy-min-max">
-                          Min:<span>{game?.minLiabilityPerBet}</span> <br />
-                          Max:<span>{game?.maxLiabilityPerBet}</span>
+                          {getLanguage(LanguageKey.MIN)}:
+                          <span>{game?.minLiabilityPerBet}</span> <br />
+                          {getLanguage(LanguageKey.MAX)}:
+                          <span>{game?.maxLiabilityPerBet}</span>
                         </div>
                       </div>
                     </div>

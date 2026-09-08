@@ -42,6 +42,8 @@ const MainLayout = () => {
 
   return (
     <div className="login-home">
+      <meta name="description" content={Settings.metaDescription} />
+      <meta name="keywords" content={Settings.metaKeywords} />
       {showLoginModal && <Login />}
       {showRegisterModal && <Register />}
       {showForgotPasswordModal && <ForgotPassword />}

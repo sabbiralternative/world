@@ -13,8 +13,11 @@ import {
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Login = () => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const { closePopupForForever } = useSelector((state) => state.global);
   const [showPass, setShowPass] = useState(false);
@@ -158,7 +161,7 @@ const Login = () => {
               className="modal-header"
             >
               <div aria-label="Close" className="close-login-modal">
-                <h5>Login</h5>
+                <h5>{getLanguage(LanguageKey.LOGIN)}</h5>
                 <img
                   onClick={closeLoginModal}
                   src="https://wver.sprintstaticdata.com/v223/static/front/img/close.svg"
@@ -173,7 +176,9 @@ const Login = () => {
                 className="login-form mt-0"
               >
                 <div className="form-group">
-                  <label className="user-email-text">Username</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.USERNAME)}
+                  </label>
                   <input
                     {...register("username", { required: true })}
                     type="text"
@@ -182,7 +187,9 @@ const Login = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">Password</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.PASSWORD)}
+                  </label>
                   <div className="input-group">
                     <input
                       {...register("password", { required: true })}
@@ -204,7 +211,9 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="text-right mt-1">
-                    <a onClick={showForgotPassword}>Forgot Password?</a>
+                    <a onClick={showForgotPassword}>
+                      {getLanguage(LanguageKey.FORGOT_PASSWORD)}?
+                    </a>
                   </div>
                 </div>
                 <div className="form-group">
@@ -233,15 +242,17 @@ const Login = () => {
                 </div>
                 <div className="form-group mb-1">
                   <button type="submit" className="btn btn-primary btn-block">
-                    Login
+                    {getLanguage(LanguageKey.LOGIN)}
                   </button>
-                  <div className="login-btn-devider">or</div>
+                  <div className="login-btn-devider">
+                    {getLanguage(LanguageKey.OR)}
+                  </div>
                   <button
                     onClick={loginWithDemo}
                     type="button"
                     className="btn btn-primary btn-block"
                   >
-                    Request a Demo
+                    {getLanguage(LanguageKey.DEMO_LOGIN)}
                   </button>
                   <div className="text-center mt-3">
                     Don&apos;t have an account?{" "}
@@ -258,7 +269,7 @@ const Login = () => {
                         type="button"
                         className="btn btn-primary"
                       >
-                        Whatsapp
+                        {getLanguage(LanguageKey.WHATSAPP)}
                       </button>
                     )}
                     {Settings?.apk_link && (
@@ -268,7 +279,7 @@ const Login = () => {
                         type="button"
                         className="btn btn-primary"
                       >
-                        Download .apk
+                        {getLanguage(LanguageKey.DOWNLOAD_APK)}
                       </button>
                     )}
                   </div>

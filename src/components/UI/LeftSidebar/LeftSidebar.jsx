@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { useLogo } from "../../../context/ApiProvider";
 import { latestEvent } from "../../../static/latest-event";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { eventNameList } from "../../../static/event-name-list";
+import useLanguage from "../../../hooks/use-language";
 
 const LeftSidebar = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const { logo } = useLogo();
 
   return (
@@ -37,7 +36,7 @@ const LeftSidebar = () => {
               <i className="d-icon icon-10" />
               <span className="sport-name">
                 {" "}
-                {languageValue(valueByLanguage, LanguageKey.HORSE)}
+                {getLanguage(LanguageKey.HORSE)}
               </span>
             </Link>
           </li>
@@ -50,7 +49,7 @@ const LeftSidebar = () => {
               <i className="d-icon icon-65" />
               <span className="sport-name">
                 {" "}
-                {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
+                {getLanguage(LanguageKey.GREYHOUND)}
               </span>
             </Link>
           </li>
@@ -58,7 +57,7 @@ const LeftSidebar = () => {
       </div>
       <div className="menu-box">
         <h5 className="text-yellow pl-2">
-          <u>All Sports</u>
+          <u>{getLanguage(LanguageKey.ALL_SPORTS)}</u>
         </h5>
         <div className="sports-list-content">
           <div className="all-menu">
@@ -88,7 +87,7 @@ const LeftSidebar = () => {
                     <i className="d-icon icon-4" />
                     <span className="sport-name ifTooltip">
                       {" "}
-                      {languageValue(valueByLanguage, LanguageKey.CRICKET)}
+                      {getLanguage(LanguageKey.CRICKET)}
                     </span>
                     {/* <span>(33)</span> */}
                   </Link>
@@ -103,7 +102,7 @@ const LeftSidebar = () => {
                     <i className="d-icon icon-1" />
                     <span className="sport-name ifTooltip">
                       {" "}
-                      {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
+                      {getLanguage(LanguageKey.FOOTBALL)}
                     </span>
                     {/* <span>(83)</span> */}
                   </Link>
@@ -118,7 +117,7 @@ const LeftSidebar = () => {
                     <i className="d-icon icon-2" />
                     <span className="sport-name ifTooltip">
                       {" "}
-                      {languageValue(valueByLanguage, LanguageKey.TENNIS)}
+                      {getLanguage(LanguageKey.TENNIS)}
                     </span>
                     {/* <span>(143)</span> */}
                   </Link>
@@ -131,7 +130,7 @@ const LeftSidebar = () => {
                     <i className="d-icon icon-66" />
                     <span className="sport-name ifTooltip">
                       {" "}
-                      {languageValue(valueByLanguage, LanguageKey.KABADDI)}
+                      {getLanguage(LanguageKey.KABADDI)}
                     </span>
                   </Link>
                 </li>
@@ -143,7 +142,9 @@ const LeftSidebar = () => {
                     className="dropdown-item dropdown-toggle sport40"
                   >
                     <i className="d-icon icon-40" />
-                    <span className="sport-name ifTooltip">Politics</span>
+                    <span className="sport-name ifTooltip">
+                      {getLanguage(LanguageKey.POLITICS)}
+                    </span>
                     {/* <span>(1)</span> */}
                   </Link>
                 </li>
@@ -163,7 +164,7 @@ const LeftSidebar = () => {
                           alt=""
                         />
                         <span className="sport-name ifTooltip">
-                          {item.name}
+                          {getLanguage(item.name)}
                         </span>
                         {/* <span>(1)</span> */}
                       </Link>

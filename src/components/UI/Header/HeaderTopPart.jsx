@@ -15,8 +15,11 @@ import Notification from "./Notification";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 import toast from "react-hot-toast";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const HeaderTopPart = () => {
+  const { getLanguage } = useLanguage();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
   const stored_build_version = localStorage.getItem("build_version");
@@ -150,7 +153,7 @@ const HeaderTopPart = () => {
                   </g>
                 </g>
               </svg>
-              <span className="ml-1">Crash</span>
+              <span className="ml-1">{getLanguage(LanguageKey.CRASH)}</span>
             </a>
           </li>
           <li>
@@ -158,13 +161,13 @@ const HeaderTopPart = () => {
               onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
               role="button"
             >
-              Sports Book
+              {getLanguage(LanguageKey.SPORTSBOOK)}
             </a>
           </li>
 
           <li>
             <Link to="/live-casino" className>
-              Live Casino
+              {getLanguage(LanguageKey.LIVE_CASINO)}
             </Link>
           </li>
         </ul>

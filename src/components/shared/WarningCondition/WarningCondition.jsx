@@ -6,8 +6,11 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { userToken } from "../../../redux/features/auth/authSlice";
 import images from "../../../assets/images";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const WarningCondition = ({ setShowWarning, gameInfo }) => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const warningRef = useRef();
   const navigate = useNavigate();
@@ -80,7 +83,7 @@ const WarningCondition = ({ setShowWarning, gameInfo }) => {
                 color: "white",
               }}
             >
-              OK
+              {getLanguage(LanguageKey.OK)}
             </button>
           ) : (
             <button
@@ -97,7 +100,7 @@ const WarningCondition = ({ setShowWarning, gameInfo }) => {
                 justifyContent: "center",
               }}
             >
-              OK
+              {getLanguage(LanguageKey.OK)}
             </button>
           )}
 
@@ -107,7 +110,7 @@ const WarningCondition = ({ setShowWarning, gameInfo }) => {
             className="swal2-cancel swal2-styled"
             aria-label=""
           >
-            Cancel
+            {getLanguage(LanguageKey.CANCEL)}
           </button>
         </div>
       </motion.div>

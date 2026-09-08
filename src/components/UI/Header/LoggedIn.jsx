@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 import { Settings } from "../../../api";
 import StakeSetting from "../../modals/StakeSetting/StakeSetting";
 import images from "../../../assets/images";
-import { useLanguage } from "../../../context/LanguageProvider";
 import Language from "../../modals/Language";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const LoggedIn = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   const [showStakeSettings, setShowStakeSettings] = useState(false);
   const { closePopupForForever } = useSelector((state) => state.global);
@@ -63,52 +62,49 @@ const LoggedIn = () => {
           className={`collapse user-dropdown ${showDropdown ? "show" : ""}  `}
         >
           <Link to="/deposit" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+            {getLanguage(LanguageKey.DEPOSIT)}
           </Link>
           <Link to="/withdraw" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+            {getLanguage(LanguageKey.WITHDRAW)}
           </Link>
           <Link to="/deposit-withdraw-report" className="dropdown-item">
-            Deposit Withdraw Report
+            {getLanguage(LanguageKey.DEPOSIT_WITHDRAW_REPORT)}
           </Link>
           <Link to="/betting-profit-loss" className="dropdown-item">
-            Betting Profit Loss
+            {getLanguage(LanguageKey.BETTING_PROFIT_AND_LOSS)}
           </Link>
           <Link to="/my-bank-details" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+            {getLanguage(LanguageKey.MY_BANK_DETAILS)}
           </Link>
           <Link to="/bonus-statement" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+            {getLanguage(LanguageKey.BONUS_STATEMENT)}
           </Link>
           {Settings?.referral && (
             <Link to="/affiliate" className="dropdown-item">
-              Affiliate
+              {getLanguage(LanguageKey.AFFILIATE)}
             </Link>
           )}
 
           <Link to="/promotions" className="dropdown-item">
-            Promos & Bonus
+            {getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}
           </Link>
           <Link to="/lossback-bonus" className="dropdown-item">
-            Lossback Bonus
+            {getLanguage(LanguageKey.LOSSBACK_BONUS)}
           </Link>
           {closePopupForForever && (
             <Link to="/app-only-bonus" className="dropdown-item">
-              App Only Bonus
+              {getLanguage(LanguageKey.APP_ONLY_BONUS)}
             </Link>
           )}
           <a
             onClick={() => setShowStakeSettings(true)}
             className="dropdown-item"
           >
-            Stake Settings
+            {getLanguage(LanguageKey.STAKE_SETTINGS)}
           </a>
 
           <div className="login-seperator" />
-          <a onClick={handleLogout}>
-            {" "}
-            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
-          </a>
+          <a onClick={handleLogout}> {getLanguage(LanguageKey.LOGOUT)}</a>
         </div>
       </div>
       <div className="text-center d-none-desktop bal-point">
@@ -139,51 +135,48 @@ const LoggedIn = () => {
           className={`collapse user-dropdown  ${showMobileDropdown ? "show" : ""}  `}
         >
           <Link to="/deposit" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+            {getLanguage(LanguageKey.DEPOSIT)}
           </Link>
           <Link to="/withdraw" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+            {getLanguage(LanguageKey.WITHDRAW)}
           </Link>
           <Link to="/deposit-withdraw-report" className="dropdown-item">
-            Deposit Withdraw Report
+            {getLanguage(LanguageKey.DEPOSIT_WITHDRAW_REPORT)}
           </Link>
           <Link to="/betting-profit-loss" className="dropdown-item">
-            Betting Profit Loss
+            {getLanguage(LanguageKey.BETTING_PROFIT_AND_LOSS)}
           </Link>
           <Link to="/my-bank-details" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+            {getLanguage(LanguageKey.MY_BANK_DETAILS)}
           </Link>
           <Link to="/bonus-statement" className="dropdown-item">
-            {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+            {getLanguage(LanguageKey.BONUS_STATEMENT)}
           </Link>
           {Settings?.referral && (
             <Link to="/affiliate" className="dropdown-item">
-              Affiliate
+              {getLanguage(LanguageKey.AFFILIATE)}
             </Link>
           )}
 
           <Link to="/promotions" className="dropdown-item">
-            Promos & Bonus
+            {getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}
           </Link>
           <Link to="/lossback-bonus" className="dropdown-item">
-            Lossback Bonus
+            {getLanguage(LanguageKey.LOSSBACK_BONUS)}
           </Link>
           {closePopupForForever && (
             <Link to="/app-only-bonus" className="dropdown-item">
-              App Only Bonus
+              {getLanguage(LanguageKey.APP_ONLY_BONUS)}
             </Link>
           )}
           <a
             onClick={() => setShowStakeSettings(true)}
             className="dropdown-item"
           >
-            Stake Settings
+            {getLanguage(LanguageKey.STAKE_SETTINGS)}
           </a>
           <div className="login-seperator" />
-          <a onClick={handleLogout}>
-            {" "}
-            {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
-          </a>
+          <a onClick={handleLogout}> {getLanguage(LanguageKey.LOGOUT)}</a>
         </div>
       </div>
       <div style={{ position: "relative", padding: "1px 4px" }}>

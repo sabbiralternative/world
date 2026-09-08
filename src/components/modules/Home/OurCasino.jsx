@@ -1,13 +1,16 @@
 import { Fragment } from "react";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export const OurCasino = () => {
+  const { getLanguage } = useLanguage();
   return (
     <Fragment>
       <div className="d-none-desktop point-casino-tabs">
         <ul className="nav nav-tabs">
           <li className="nav-item w-100">
             <a data-toggle="tab" href="#our-casino" className="nav-link active">
-              Our Casino
+              {getLanguage(LanguageKey.OUR_CASINO)}
             </a>
           </li>
         </ul>

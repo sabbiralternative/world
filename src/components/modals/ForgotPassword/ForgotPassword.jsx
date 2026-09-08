@@ -13,8 +13,11 @@ import {
   useGetOtpMutation,
 } from "../../../redux/features/auth/authApi";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const ForgotPassword = () => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const [timer, setTimer] = useState(null);
   const dispatch = useDispatch();
@@ -114,7 +117,7 @@ const ForgotPassword = () => {
               className="modal-header"
             >
               <div aria-label="Close" className="close-login-modal">
-                <h5>Forgot Password</h5>
+                <h5>{getLanguage(LanguageKey.FORGOT_PASSWORD)}</h5>
                 <img
                   onClick={closeForgotPasswordModal}
                   src="https://wver.sprintstaticdata.com/v223/static/front/img/close.svg"
@@ -129,7 +132,9 @@ const ForgotPassword = () => {
                 className="login-form mt-0"
               >
                 <div className="form-group">
-                  <label className="user-email-text">Mobile</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.MOBILE_NUMBER)}
+                  </label>
                   <div className="input-group">
                     <input
                       placeholder="Enter Phone Number"
@@ -144,7 +149,7 @@ const ForgotPassword = () => {
                           type="button"
                           className="btn btn-secondary password-visible"
                         >
-                          Retry in {timer}
+                          {getLanguage(LanguageKey.RETRY_IN)} {timer}
                         </button>
                       ) : (
                         <button
@@ -153,14 +158,16 @@ const ForgotPassword = () => {
                           className="btn btn-secondary password-visible"
                           disabled={Settings.otp && mobile?.length < 10}
                         >
-                          Get OTP
+                          {getLanguage(LanguageKey.GET_OTP)}
                         </button>
                       )}
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">OTP</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.OTP)}
+                  </label>
                   <input
                     {...register("otp", { required: true })}
                     type="text"
@@ -169,7 +176,9 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">Password</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.PASSWORD)}
+                  </label>
                   <div className="input-group">
                     <input
                       {...register("password", { required: true })}
@@ -192,7 +201,9 @@ const ForgotPassword = () => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">Confirm Password</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.CONFIRM_PASSWORD)}
+                  </label>
                   <div className="input-group">
                     <input
                       {...register("confirmPassword", { required: true })}
@@ -219,7 +230,7 @@ const ForgotPassword = () => {
 
                 <div className="form-group mb-1">
                   <button type="submit" className="btn btn-primary btn-block">
-                    Reset Password
+                    {getLanguage(LanguageKey.RESET_PASSWORD)}
                   </button>
                 </div>
               </form>

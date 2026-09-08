@@ -14,8 +14,11 @@ import {
   useRegisterMutation,
 } from "../../../redux/features/auth/authApi";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Register = () => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const affnook_token = localStorage.getItem("affnook_token");
   const referralCode = localStorage.getItem("referralCode");
@@ -146,7 +149,7 @@ const Register = () => {
               className="modal-header"
             >
               <div aria-label="Close" className="close-login-modal">
-                <h5>Register</h5>
+                <h5>{getLanguage(LanguageKey.REGISTER)}</h5>
                 <img
                   onClick={closeRegisterModal}
                   src="https://wver.sprintstaticdata.com/v223/static/front/img/close.svg"
@@ -161,7 +164,9 @@ const Register = () => {
                 className="login-form mt-0"
               >
                 <div className="form-group">
-                  <label className="user-email-text">Mobile</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.MOBILE_NUMBER)}
+                  </label>
                   <div className="input-group">
                     <input
                       placeholder="Enter Phone Number"
@@ -176,7 +181,7 @@ const Register = () => {
                           type="button"
                           className="btn btn-secondary password-visible"
                         >
-                          Retry in {timer}
+                          {getLanguage(LanguageKey.RETRY_IN)} {timer}
                         </button>
                       ) : (
                         <button
@@ -185,14 +190,16 @@ const Register = () => {
                           className="btn btn-secondary password-visible"
                           disabled={Settings.otp && mobile?.length < 10}
                         >
-                          Get OTP
+                          {getLanguage(LanguageKey.GET_OTP)}
                         </button>
                       )}
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">OTP</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.OTP)}
+                  </label>
                   <input
                     {...register("otp", { required: true })}
                     type="text"
@@ -201,7 +208,9 @@ const Register = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">Password</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.PASSWORD)}
+                  </label>
                   <div className="input-group">
                     <input
                       {...register("password", { required: true })}
@@ -224,7 +233,9 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="user-email-text">Confirm Password</label>
+                  <label className="user-email-text">
+                    {getLanguage(LanguageKey.CONFIRM_PASSWORD)}
+                  </label>
                   <div className="input-group">
                     <input
                       {...register("confirmPassword", { required: true })}
@@ -250,7 +261,8 @@ const Register = () => {
                 </div>
                 <div className="form-group">
                   <label className="user-email-text">
-                    Referral Code(Optional)
+                    {getLanguage(LanguageKey.REFERRAL_CODE)}(
+                    {getLanguage(LanguageKey.OPTIONAL)})
                   </label>
                   <input
                     readOnly={referralCode}
@@ -287,12 +299,13 @@ const Register = () => {
                 </div>
                 <div className="form-group mb-1">
                   <button type="submit" className="btn btn-primary btn-block">
-                    Register
+                    {getLanguage(LanguageKey.REGISTER)}
                   </button>
                   <div className="login-btn-devider">or</div>
 
                   <div className="text-center mt-3">
-                    Already have account? <a onClick={showLogin}>Login</a>
+                    Already have account?{" "}
+                    <a onClick={showLogin}>{getLanguage(LanguageKey.LOGIN)}</a>
                   </div>
                   <div
                     className="d-flex"

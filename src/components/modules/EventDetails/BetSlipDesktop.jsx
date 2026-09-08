@@ -20,7 +20,10 @@ import {
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
 import { useGetEventDetailsQuery } from "../../../redux/features/events/events";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 const BetSlipDesktop = () => {
+  const { getLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
   const [profit, setProfit] = useState(0);
@@ -225,7 +228,9 @@ const BetSlipDesktop = () => {
     <span>
       <div className="bet-slip-container">
         <div>
-          <h4 className="mb-0 bet-slip-title">Bet Slip</h4>
+          <h4 className="mb-0 bet-slip-title">
+            {getLanguage(LanguageKey.BET_SLIP)}
+          </h4>
         </div>
         <div
           className={`bet-slip-box ${placeBetValues?.back ? "back" : "lay"}`}
@@ -335,13 +340,13 @@ const BetSlipDesktop = () => {
               }}
               className="btn btn-danger"
             >
-              Clear
+              {getLanguage(LanguageKey.CLEAR)}
             </button>
             <button
               onClick={handleOrderBets}
               className="btn btn-primary btn-block"
             >
-              <span>Place Bet</span>
+              <span>{getLanguage(LanguageKey.PLACE_BET)}</span>
             </button>
           </div>
         </div>

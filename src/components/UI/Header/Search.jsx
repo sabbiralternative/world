@@ -5,8 +5,11 @@ import { AxiosSecure } from "../../../lib/AxiosSecure";
 import { API } from "../../../api";
 import { Link } from "react-router-dom";
 import "./search.css";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Search = ({ setShowSidebar }) => {
+  const { getLanguage } = useLanguage();
   const [searchText, setSearchText] = useState("");
   const token = useSelector(userToken);
   const [data, setData] = useState([]);
@@ -92,7 +95,9 @@ const Search = ({ setShowSidebar }) => {
 
         {data?.length === 0 && searchText?.length > 4 && (
           <div className="search-no-results">
-            <div className="search-no-results-text">No data found</div>
+            <div className="search-no-results-text">
+              {getLanguage(LanguageKey.NO_RECORD_FOUND)}
+            </div>
           </div>
         )}
       </div>

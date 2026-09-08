@@ -3,8 +3,11 @@ import { Settings } from "../../../api";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const SportsTab = () => {
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
@@ -67,7 +70,7 @@ const SportsTab = () => {
                 </g>
               </g>
             </svg>
-            <span className="ml-1">Crash</span>
+            <span className="ml-1">{getLanguage(LanguageKey.CRASH)}</span>
           </a>
         </li>
         <li className="nav-item">
@@ -76,7 +79,7 @@ const SportsTab = () => {
             className="nav-link"
             role="button"
           >
-            Sports Book
+            {getLanguage(LanguageKey.SPORTSBOOK)}
           </a>
         </li>
         <li className="nav-item">
@@ -85,23 +88,23 @@ const SportsTab = () => {
             className="nav-link"
             role="button"
           >
-            Lottery
+            {getLanguage(LanguageKey.LOTTERY)}
           </Link>
         </li>
 
         <li className="nav-item">
           <Link to="/live-casino" className="nav-link">
-            Live Casino
+            {getLanguage(LanguageKey.LIVE_CASINO)}
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/live-casino?category=Slots" className="nav-link">
-            Slot
+            {getLanguage(LanguageKey.SLOTS)}
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/live-casino?category=Dragon Tiger" className="nav-link">
-            Dragon Tiger
+            {getLanguage(LanguageKey.DRAGON_TIGER)}
           </Link>
         </li>
       </ul>

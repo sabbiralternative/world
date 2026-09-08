@@ -1,12 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGroupQuery } from "../../../hooks/group";
-import { EVENT_NAMES } from "../../../const";
+import { EVENT_NAMES, LanguageKey } from "../../../const";
 import { Fragment, useState } from "react";
 import HorseGreyhound from "./HorseGreyhound";
 import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
 import LiveVirtual from "./LiveVirtual";
+import useLanguage from "../../../hooks/use-language";
 
 export const Events = () => {
+  const { getLanguage } = useLanguage();
   const [liveVirtual, setLiveVirtual] = useState([]);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -62,7 +64,7 @@ export const Events = () => {
                     <div className="game-title">
                       {value?.inPlay === 1 && (
                         <div className="game-date inplay">
-                          <span>Live</span>
+                          <span>{getLanguage(LanguageKey.LIVE)}</span>
                         </div>
                       )}
                       {value?.inPlay === 0 && (
@@ -115,7 +117,7 @@ export const Events = () => {
                     <div className="game-title d-none-mobile">
                       {value?.inPlay === 1 && (
                         <div className="game-date inplay">
-                          <span>Live</span>
+                          <span>{getLanguage(LanguageKey.LIVE)}</span>
                         </div>
                       )}
                       {value?.inPlay === 0 && (

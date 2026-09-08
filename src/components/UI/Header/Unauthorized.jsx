@@ -8,15 +8,15 @@ import {
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import toast from "react-hot-toast";
-import { useLanguage } from "../../../context/LanguageProvider";
+
 import { useState } from "react";
 import images from "../../../assets/images";
 import Language from "../../modals/Language";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const Unauthorized = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   // const [showPassword, setShowPassword] = useState(false);
   // const navigate = useNavigate();
@@ -216,14 +216,14 @@ const Unauthorized = () => {
         type="button"
         className="btn btn-primary"
       >
-        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+        {getLanguage(LanguageKey.LOGIN)}
       </button>
       <button
         onClick={loginWithDemo}
         type="button"
         className="btn btn-primary btn-demo d-none-mobile ml-1"
       >
-        Demo
+        {getLanguage(LanguageKey.DEMO_LOGIN)}
       </button>
       {Settings.registration && (
         <button
@@ -231,7 +231,7 @@ const Unauthorized = () => {
           type="button"
           className="btn btn-primary btn-demo  ml-1"
         >
-          {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+          {getLanguage(LanguageKey.REGISTER)}
         </button>
       )}
 

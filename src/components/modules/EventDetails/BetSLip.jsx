@@ -20,8 +20,11 @@ import {
   handleIncreasePrice,
 } from "../../../utils/editBetSlipPrice";
 import { useGetEventDetailsQuery } from "../../../redux/features/events/events";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const BetSLip = () => {
+  const { getLanguage } = useLanguage();
   const { closePopupForForever } = useSelector((state) => state.global);
   const [isCashOut, setIsCashOut] = useState(false);
   const [profit, setProfit] = useState(0);
@@ -249,7 +252,7 @@ const BetSLip = () => {
               className="modal-header"
             >
               <h5 id="__BVID__13084___BV_modal_title_" className="modal-title">
-                Bet Slip
+                {getLanguage(LanguageKey.BET_SLIP)}
               </h5>
               <button
                 onClick={handleCancelBet}
@@ -369,14 +372,14 @@ const BetSLip = () => {
                       }}
                       className="btn btn-danger"
                     >
-                      Clear
+                      {getLanguage(LanguageKey.CLEAR)}
                     </button>
                     <button
                       onClick={handleOrderBets}
                       className="btn btn-primary btn-block"
                       disabled={!stake || !price}
                     >
-                      <span>Place Bet</span>
+                      <span>{getLanguage(LanguageKey.PLACE_BET)}</span>
                     </button>
                   </div>
                 </div>

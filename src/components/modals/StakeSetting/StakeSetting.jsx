@@ -3,8 +3,11 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useEditButtonValuesMutation } from "../../../redux/features/events/events";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const StakeSetting = ({ setShowStakeSettings }) => {
+  const { getLanguage } = useLanguage();
   const ref = useRef(null);
   const handleClose = () => {
     setShowStakeSettings(false);
@@ -66,7 +69,7 @@ const StakeSetting = ({ setShowStakeSettings }) => {
               className="modal-header"
             >
               <h5 id="__BVID__17016___BV_modal_title_" className="modal-title">
-                Set Button Value
+                {getLanguage(LanguageKey.EDIT_STAKE)}
               </h5>
               <button
                 onClick={handleClose}
@@ -89,7 +92,8 @@ const StakeSetting = ({ setShowStakeSettings }) => {
                       <table className="table button-value">
                         <thead>
                           <tr>
-                            <th>Price Label</th> <th>Price Value</th>
+                            <th>{getLanguage(LanguageKey.STAKE_LABEL)}</th>{" "}
+                            <th>{getLanguage(LanguageKey.STAKE_VALUE)}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -123,7 +127,7 @@ const StakeSetting = ({ setShowStakeSettings }) => {
                         type="submit"
                         className="btn btn-primary btn-block"
                       >
-                        Submit
+                        {getLanguage(LanguageKey.SUBMIT)}
                       </button>
                     </div>
                   </div>
