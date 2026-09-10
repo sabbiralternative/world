@@ -8,7 +8,7 @@ import {
   setShowRegisterModal,
 } from "../../../redux/features/global/globalSlice";
 import toast from "react-hot-toast";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import {
   useGetOtpMutation,
   useRegisterMutation,
@@ -16,8 +16,12 @@ import {
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import useLanguage from "../../../hooks/use-language";
 import { LanguageKey } from "../../../const";
+import { FaMobileAlt, FaRegUser } from "react-icons/fa";
 
 const Register = () => {
+  const [tab, setTab] = useState(
+    Settings.registration_mobile ? "mobile" : "username",
+  );
   const { getLanguage } = useLanguage();
   const ref = useRef();
   const affnook_token = localStorage.getItem("affnook_token");
@@ -55,7 +59,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     const registerData = {
-      username: "",
+      username: data?.username,
       password: data?.password,
       confirmPassword: data?.confirmPassword,
       mobile: mobile,
@@ -65,6 +69,8 @@ const Register = () => {
       orderId: order.orderId,
       otpMethod: order.otpMethod,
       affnook_token: affnook_token || null,
+      registration_mobile: Settings.registration_mobile,
+      registration_username: Settings.registration_username,
     };
 
     const result = await handleRegister(registerData).unwrap();
@@ -143,6 +149,7 @@ const Register = () => {
             id="login-point___BV_modal_content_"
             tabIndex={-1}
             className="modal-content"
+            ref={ref}
           >
             <header
               id="login-point___BV_modal_header_"
@@ -163,50 +170,136 @@ const Register = () => {
                 autoComplete="off"
                 className="login-form mt-0"
               >
-                <div className="form-group">
-                  <label className="user-email-text">
-                    {getLanguage(LanguageKey.MOBILE_NUMBER)}
-                  </label>
-                  <div className="input-group">
+                {Settings.registration_mobile &&
+                  Settings.registration_username && (
+                    <div
+                      style={{
+                        width: "100%",
+                        background:
+                          "color-mix(in srgb, var(--bg-primary) 30%, transparent)",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                          position: "relative",
+                          width: "100%",
+                        }}
+                      >
+                        <div
+                          onClick={() => setTab("mobile")}
+                          style={{
+                            cursor: "pointer",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "5px",
+                            width: "100%",
+                            gap: "6px",
+                            color: "white",
+                            background:
+                              tab === "mobile"
+                                ? "var(--bg-primary)"
+                                : undefined,
+                          }}
+                        >
+                          <FaMobileAlt />
+
+                          <span>{getLanguage(LanguageKey.BY_PHONE)}</span>
+                        </div>
+
+                        <div
+                          onClick={() => setTab("username")}
+                          style={{
+                            cursor: "pointer",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "5px",
+                            width: "100%",
+                            gap: "6px",
+                            color: "white",
+                            background:
+                              tab === "username"
+                                ? "var(--bg-primary)"
+                                : undefined,
+                          }}
+                        >
+                          <FaRegUser />
+
+                          <span>{getLanguage(LanguageKey.BY_USERNAME)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                {tab === "mobile" && Settings.registration_mobile && (
+                  <Fragment>
+                    <div className="form-group">
+                      <label className="user-email-text">
+                        {getLanguage(LanguageKey.MOBILE_NUMBER)}
+                      </label>
+                      <div className="input-group">
+                        <input
+                          placeholder="Enter Phone Number"
+                          onChange={(e) => handleMobileNo(e)}
+                          value={mobile}
+                          className="form-control"
+                        />
+                        <div className="input-group-append">
+                          {timer ? (
+                            <button
+                              onClick={() => setShowPassword(!showPassword)}
+                              type="button"
+                              className="btn btn-secondary password-visible"
+                            >
+                              {getLanguage(LanguageKey.RETRY_IN)} {timer}
+                            </button>
+                          ) : (
+                            <button
+                              onClick={handleOTP}
+                              type="button"
+                              className="btn btn-secondary password-visible"
+                              disabled={Settings.otp && mobile?.length < 10}
+                            >
+                              {getLanguage(LanguageKey.GET_OTP)}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="user-email-text">
+                        {getLanguage(LanguageKey.OTP)}
+                      </label>
+                      <input
+                        {...register("otp", { required: true })}
+                        type="text"
+                        placeholder="Enter OTP"
+                        className="form-control"
+                      />
+                    </div>
+                  </Fragment>
+                )}
+                {tab === "username" && Settings.registration_username && (
+                  <div className="form-group">
+                    <label className="user-email-text">
+                      {getLanguage(LanguageKey.USERNAME)}
+                    </label>
                     <input
-                      placeholder="Enter Phone Number"
-                      onChange={(e) => handleMobileNo(e)}
-                      value={mobile}
+                      {...register("username", { required: true })}
+                      type="text"
+                      placeholder="Enter Username"
                       className="form-control"
                     />
-                    <div className="input-group-append">
-                      {timer ? (
-                        <button
-                          onClick={() => setShowPassword(!showPassword)}
-                          type="button"
-                          className="btn btn-secondary password-visible"
-                        >
-                          {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                        </button>
-                      ) : (
-                        <button
-                          onClick={handleOTP}
-                          type="button"
-                          className="btn btn-secondary password-visible"
-                          disabled={Settings.otp && mobile?.length < 10}
-                        >
-                          {getLanguage(LanguageKey.GET_OTP)}
-                        </button>
-                      )}
-                    </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="user-email-text">
-                    {getLanguage(LanguageKey.OTP)}
-                  </label>
-                  <input
-                    {...register("otp", { required: true })}
-                    type="text"
-                    placeholder="Enter OTP"
-                    className="form-control"
-                  />
-                </div>
+                )}
+
                 <div className="form-group">
                   <label className="user-email-text">
                     {getLanguage(LanguageKey.PASSWORD)}
