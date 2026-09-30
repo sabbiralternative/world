@@ -83,6 +83,15 @@ const SportsTab = () => {
           </a>
         </li>
         <li className="nav-item">
+          <a
+            onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+            className="nav-link"
+            role="button"
+          >
+            {getLanguage(LanguageKey.FANTASY_11)}
+          </a>
+        </li>
+        <li className="nav-item">
           <Link
             to="/live-casino?category=Lottery"
             className="nav-link"

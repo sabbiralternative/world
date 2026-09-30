@@ -164,6 +164,14 @@ const HeaderTopPart = () => {
               {getLanguage(LanguageKey.SPORTSBOOK)}
             </a>
           </li>
+          <li>
+            <a
+              onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+              role="button"
+            >
+              {getLanguage(LanguageKey.FANTASY_11)}
+            </a>
+          </li>
 
           <li>
             <Link to="/live-casino" className>

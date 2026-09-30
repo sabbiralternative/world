@@ -507,6 +507,7 @@ export const LanguageKey = {
   RACING_SPORTS: "RACING_SPORTS",
   BY_USERNAME: "BY_USERNAME",
   BY_PHONE: "BY_PHONE",
+  FANTASY_11: "FANTASY_11",
 };
 
 export const EVENT_NAMES = {
